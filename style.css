@@ -1,0 +1,425 @@
+/* --- CSS Reset --- */
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, code,
+del, dfn, em, img, q, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0px;
+  padding: 0;
+  border: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline;
+}
+
+/* --- Typography --- */
+
+.grid p {
+  line-height: 16px;
+  font-size: 10px;
+  font-family: Verdana, Geneva, sans-serif;
+  background-color:white;
+}
+
+.grid h1 {
+  line-height: 28px;
+  font-size: 24px;
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+}
+
+.grid h2 {
+  line-height: 32px;
+  font-size: 16px;
+  font-family: Verdana, Geneva, sans-serif;
+}
+
+.grid h3 {
+  line-height: 16px;
+  font-size: 14px;
+  font-family: Verdana, Geneva, sans-serif;
+}
+
+.grid h4 {
+  line-height: 16px;
+  font-size: 12px;
+  font-family: Verdana, Geneva, sans-serif;
+  
+}
+
+.grid h5 {
+  line-height: 32px;
+  font-size: 16px;
+  font-family: Verdana, Geneva, sans-serif;
+}
+
+.grid h6 {
+  line-height: 32px;
+  font-size: 16px;
+  font-family: Verdana, Geneva, sans-serif;
+}
+
+
+/* --- Scalable Grid --- */
+
+.grid {
+	width: 768px;
+  	height: 1024px;
+  	font-family: Verdana, Geneva, sans-serif;
+  	-webkit-text-size-adjust: none;
+  	line-height: 1;  /*This is necessary or else line-height won't work elsewhere due to block/inline relationship*/
+}
+
+
+.grid-top_bar {
+  float: left;
+  width: 100%;
+  height: 110px;
+  background: black;
+  color: white;
+  /*text-align: center;*/
+}
+
+.grid-bottom_bar {
+  float: left;
+  width: 100%;
+  height: 95px;
+  background: black;
+  color: white;
+  text-align: center;
+}
+
+.grid-upper_body {
+  float: left;
+  width: 100%;
+  height: 387px;
+  background: white;
+  color: white;
+  /*text-align: center;*/
+}
+
+.grid-lower_body {
+  float: left;
+  width: 100%;
+  height: 387px;
+  background: pink;
+  color: white;
+  /*text-align: center;*/
+}
+
+.grid-horizontal_divider {
+  float: left;
+  width: 100%;
+  height: 10px;
+  background: white;
+}
+
+.grid-vertical_margin {
+  float: left;
+  width: 5px;
+  height: 100%;
+  background: white;
+}
+
+.grid-vertical_gutter {
+  float: left;
+  width: 5px;
+  height: 100%;
+  background: white;
+}
+
+.grid-body_section_horizontal_labels {
+  float: left;
+  width: 100%;
+  height: 25px;
+  background: white;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 18px;
+}
+
+.grid-body_section_vertical_labels {
+  float:left;
+  width:23px;
+  height:257px;
+  background:white;
+  color:black;
+  text-align:center;
+  font-size:18px;
+  padding-top:130px;
+}
+
+.grid-body_top_left_corner {
+  float:left;
+  width:23px;
+  height:25px;
+  background:white;
+ }
+ 
+.grid-anterior_column {
+  float: left;
+  width: 180px;
+  height: 100%;
+  background: white;
+  text-align: center;
+  vertical-align:middle;
+}
+
+.grid-posterior_column {
+  float: left;
+  width: 180px;
+  height: 100%;
+  background: white;
+  text-align: center;
+}
+
+
+.grid-lateral_medial_column {
+  float: left;
+  width: 360px;
+  height: 100%;
+  background: white;
+  text-align: center;
+}
+
+.grid-anterior_column_top_row {
+  float: left;
+  width: 100%;
+  height: 100px;
+  background: lightblue;
+  text-align: center;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.grid-anterior_column_middle_rows {
+  float: left;
+  width: 100%;
+  height: 80px;
+  background: lightgreen;
+  text-align: center;
+  /*border-style:solid;
+  border-width:1px;
+  border-color:white;*/
+}
+
+.grid-anterior_column_bottom_row {
+  float: left;
+  width: 100%;
+  height: 47px;
+  background: gray;
+  text-align: center;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.grid-lower_anterior_column_top_row {
+  float: left;
+  width: 100%;
+  height: 47px;
+  background: gray;
+  text-align: center;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.grid-lower_anterior_column_bottom_row {
+  float: left;
+  width: 100%;
+  height: 100px;
+  background: lightblue;
+  text-align: center;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+/*
+*
+****************************** 
+* HEADER CONTENT STYLES 
+****************************** 
+* 
+*/
+
+.heading-top_spacer {
+	float: left;
+	width: 100%;
+	height: 10px;
+	background: white;
+}
+
+.heading-bottom_spacer {
+	float: left;
+	width: 100%;
+	height: 10px;
+	background: white;
+}
+
+.heading-main_part {
+	float: left;
+	width: 100%;
+	height: 90px;
+	background: green;
+}
+
+.heading-top_of_main_part {
+  float: left;
+  width: 100%;
+  height: 30px;
+  background: brown;
+}
+
+.heading-mtest_label {
+  float: left;
+  width: 538px;
+  height: 100%;
+  background: white;
+  color: black;
+  text-align: center;
+  line-height: 28px;
+  font-size: 24px;
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+}
+
+.heading-mtest_label_right_gutter {
+  float: left;
+  width: 20px;
+  height: 100%;
+  background: white;
+}
+
+.heading-date {
+  float: left;
+  width: 200px;
+  height: 100%;
+  background: white;
+  color: black;
+}
+
+.heading-bottom_of_main_part {
+  float: left;
+  width: 100%;
+  height: 55px;
+  background: brown;
+}
+
+.heading-ratings_explanation {
+  float: left;
+  width: 225px;
+  height: 100%;
+  background: white;
+  color: black;
+}
+
+.heading-bottom_of_main_part_gutter {
+  float: left;
+  width: 20px;
+  height: 100%;
+  background: white;
+}
+
+.heading-patient_information_left_box {
+  float: left;
+  width: 393px;
+  height: 100%;
+  background: white;
+  color: black;
+}
+
+.heading-patient_information_right_box {
+  float: left;
+  width: 100px;
+  height: 100%;
+  background: white;
+  color: black;
+  background-image: url('ratings.png'); 
+}
+
+.heading-patient_information_right_box_pre {
+  float: left;
+  width: 20px;
+  height: 25px;
+  margin-top: 20px;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-bottom: 10px;
+  background: white;
+  color: black;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.heading-patient_information_right_box_post {
+  float: left;
+  width: 20px;
+  height: 25px;
+  margin-top: 20px;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-bottom: 10px;
+  background: white;
+  color: black;
+  text-align:center;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.heading-vertical_margin {
+  float: left;
+  width: 5px;
+  height: 100%;
+  background: white;
+}
+
+.heading-horizontal_gutter {
+  float: left;
+  width: 100%;
+  height: 5px;
+  background: white;
+}
+
+.heading-patient_information_label {
+  font-size:12px;
+  font-family:Verdana, Geneva, sans-serif;
+  text-align:left;
+  font-weight:bold;
+  display:inline;
+  padding:0px;
+  margin:0px;
+  line-height:1.3em;
+}
+
+.heading-patient_information_content {
+  font-size:12px;
+  font-family:Verdana, Geneva, sans-serif;
+  text-align:left;
+  display:inline;
+  padding:0px;
+  margin:0px;
+  line-height:1.3em;
+}
+
+.heading-date_label {
+  line-height:28px;
+  font-size:12px;
+  font-family:Verdana, Geneva, sans-serif;
+  text-align:left;
+  display:inline;
+  vertical-align:middle;
+}
+
+.heading-date_content {
+  line-height:1.25em;
+  font-size:24px;
+  font-family:Verdana, Geneva, sans-serif;
+  text-align:left;
+  /*font-weight:bold;*/
+  display:inline;
+  vertical-align:middle;
+}
