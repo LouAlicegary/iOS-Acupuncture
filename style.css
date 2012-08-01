@@ -557,6 +557,16 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   border-color:white;*/
 }
 
+.grid-anterior_column_middle_rows2 {
+  float: left;
+  width: 50%;
+  height: 80px;
+  background: lightgreen;
+  text-align: center;
+  /*border-style:solid;
+  border-width:1px;
+  border-color:white;*/
+}
 .grid-upper_anterior_column_bottom_row {
   float: left;
   width: 100%;
@@ -586,6 +596,26 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   background: lightblue;
   text-align: center;
   border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.grid-lower_anterior_column_bottom_row2L {
+  float: left;
+  width: 50%;
+  height: 100px;
+  background: lightblue;
+  text-align: center;
+  border-bottom-left-radius: 15px;
+  /*border-bottom-right-radius: 15px;*/
+}
+
+.grid-lower_anterior_column_bottom_row2R {
+  float: left;
+  width: 50%;
+  height: 100px;
+  background: lightblue;
+  text-align: center;
+  /*border-bottom-left-radius: 15px;*/
   border-bottom-right-radius: 15px;
 }
 

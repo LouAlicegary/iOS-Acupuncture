@@ -5,8 +5,12 @@
     <!-- The Web Marmalade library must be loaded before any scripts
 	 that call its methods. To be safe, load it in the page head -->
     <script type="text/javascript" charset="utf-8" src="wm.js"></script>
+    <script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
     
-    <link rel="stylesheet" href="style.css" title="my_stylesheet" type="text/css" media="screen" />
+    
+    <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/themes/cupertino/jquery-ui.css" type="text/css" media="all" />
     
     <meta name="viewport" content="user-scalable=no, width=device-width,  initial-scale=1, minimum-scale=1,  maximum-scale=1"/>
     <meta name="format-detection" content="telephone=no" />
@@ -19,7 +23,10 @@
       	Hello Mobile!
       
       	<img src="button_new_patient.png"> <img src="button_existing_patient.png">
-    -->  
+
+	-->
+
+
       
 		<div class="grid">
 			<div class="grid-top_bar">
@@ -30,7 +37,17 @@
 						<div class="heading-mtest_label">M-Test Patient Consultation Sheet</div>	
 						<div class="heading-mtest_label_right_gutter">&nbsp;</div>
 						<div class="heading-date">
-							<div class="heading-date_label">date: </div><div class="heading-date_content">07/09/2012</div>	
+							<div class="heading-date_label">date: </div>
+							<div class="heading-date_content">
+								<!--07/09/2012-->
+								<script type="text/javascript">
+									var currentTime = new Date();
+									var month = currentTime.getMonth() + 1;
+									var day = currentTime.getDate();
+									var year = currentTime.getFullYear();
+									document.write(month + "/" + day + "/" + year);
+								</script>
+							</div>	
 						</div>					
 						<div class="heading-vertical_margin">&nbsp;</div>
 					</div>
@@ -45,7 +62,7 @@
 						<div class="heading-patient_information_left_box">
 							<div class="heading-patient_information_label">Name: </div><div class="heading-patient_information_content">Alicegary, Luscious</div>&nbsp;&nbsp;<div class="heading-patient_information_label">Sex: </div><div class="heading-patient_information_content">M</div>&nbsp;&nbsp;<div class="heading-patient_information_label">Age: </div><div class="heading-patient_information_content">32</div><br/>
 							<div class="heading-patient_information_label">Disorder: </div><div class="heading-patient_information_content">Madness with occasional bouts of homicide</div><br/>
-							<div class="heading-patient_information_label">C.C.: </div><div class="heading-patient_information_content">I have no idea what this means</div>
+							<div class="heading-patient_information_label">C.C.: </div><div class="heading-patient_information_content">This means chief complaint, apparently</div>
 						</div>
 						<div class="heading-bottom_of_main_part_gutter">&nbsp;</div>
 						<div class="heading-patient_information_right_box">
@@ -75,7 +92,7 @@
 				<div class="grid-body_section_vertical_labels">U<br/>P<br/>P<br/>E<br/>R</div>
 				<div class="grid-vertical_gutter">&nbsp;</div>
 			 	<div class="grid-anterior_column">
-			    	<div class="grid-upper_anterior_column_top_row">
+			    	<div id="q01" class="grid-upper_anterior_column_top_row">
 			    		<div class="grid-body_image_short"><img src="01.png"></div>
 			    		<div class="grid-rating_pre_box_three_narrow">4</div>
 			    		<div class="grid-rating_post_box_three_narrow">2</div>
@@ -84,21 +101,21 @@
 			    		<div class="grid-rating_pre_box_three_narrow">7</div>
 			    		<div class="grid-rating_post_box_three_narrow">3</div>			    	
 			    	</div>
-			    	<div class="grid-anterior_column_middle_rows">
+			    	<div id="q04"class="grid-anterior_column_middle_rows">
 			    		<div class="grid-body_image_short"><img src="04.png"></div>
 			    		<div class="grid-rating_pre_box">4</div>
 			    		<div class="grid-rating_post_box">2</div>
 			    		<div class="grid-rating_pre_box">9</div>
 			    		<div class="grid-rating_post_box">6</div>
 			    	</div>
-			    	<div class="grid-anterior_column_middle_rows">
+			    	<div id="q05" class="grid-anterior_column_middle_rows">
 			    		<div class="grid-body_image_short"><img src="05.png"></div>
 			    		<div class="grid-rating_pre_box">4</div>
 			    		<div class="grid-rating_post_box">2</div>
 			    		<div class="grid-rating_pre_box">9</div>
 			    		<div class="grid-rating_post_box">6</div>
 			    	</div>
-			    	<div class="grid-anterior_column_middle_rows">
+			    	<div id="q12" class="grid-anterior_column_middle_rows">
 			    		<div class="grid-body_image_short"><img src="12.png"></div>
 			    		<div class="grid-rating_pre_box">4</div>
 			    		<div class="grid-rating_post_box">2</div>
@@ -112,26 +129,26 @@
 			  	</div>
 			  	<div class="grid-vertical_gutter">&nbsp;</div>
 			  	<div class="grid-posterior_column">
-			    	<div class="grid-upper_anterior_column_top_row">
+			    	<div id="q02" class="grid-upper_anterior_column_top_row">
 						<div class="grid-body_image_short"><img src="02.png"></div>
 			    		<div class="grid-rating_pre_box_two_wide">4</div>
 			    		<div class="grid-rating_post_box_two_wide">2</div>	
 			    	</div>
-			    	<div class="grid-anterior_column_middle_rows">
+			    	<div id="q06" class="grid-anterior_column_middle_rows">
 			    		<div class="grid-body_image_short"><img src="06.png"></div>
 			    		<div class="grid-rating_pre_box">4</div>
 			    		<div class="grid-rating_post_box">2</div>
 			    		<div class="grid-rating_pre_box">9</div>
 			    		<div class="grid-rating_post_box">6</div>
 			    	</div>
-			    	<div class="grid-anterior_column_middle_rows">
+			    	<div id="q07" class="grid-anterior_column_middle_rows">
 			    		<div class="grid-body_image_short"><img src="07.png"></div>
 			    		<div class="grid-rating_pre_box">4</div>
 			    		<div class="grid-rating_post_box">2</div>
 			    		<div class="grid-rating_pre_box">9</div>
 			    		<div class="grid-rating_post_box">6</div>
 			    	</div>
-			    	<div class="grid-anterior_column_middle_rows">
+			    	<div id="q13" class="grid-anterior_column_middle_rows">
 			    		<div class="grid-body_image_short"><img src="13.png"></div>
 			    		<div class="grid-rating_pre_box">4</div>
 			    		<div class="grid-rating_post_box">2</div>
@@ -145,14 +162,28 @@
 			  	</div>
 			  	<div class="grid-vertical_gutter">&nbsp;</div>
 			  	<div class="grid-lateral_medial_column">
-			    	<div class="grid-upper_anterior_column_top_row">
+			    	<div id="q03" class="grid-upper_anterior_column_top_row">
 			    		<div class="grid-body_image_short"><img src="03.png"></div>
 			    		<div class="grid-rating_pre_box_two_wide">4</div>
 			    		<div class="grid-rating_post_box_two_wide">2</div>
 			    		<div class="grid-rating_pre_box_two_wide">9</div>
 			    		<div class="grid-rating_post_box_two_wide">6</div>		    		
 			    	</div>
-			    	<div class="grid-anterior_column_middle_rows">			    		
+			    	<div id="q08" class="grid-anterior_column_middle_rows2">
+			    		<div class="grid-body_image_short"><img src="08.png"></div>
+			    		<div class="grid-rating_pre_box">4</div>
+			    		<div class="grid-rating_post_box">2</div>
+			    		<div class="grid-rating_pre_box">9</div>
+			    		<div class="grid-rating_post_box">6</div>		    		
+			    	</div>
+			    	<div id="q10" class="grid-anterior_column_middle_rows2">
+			    		<div class="grid-body_image_short"><img src="10.png"></div>
+			    		<div class="grid-rating_pre_box">7</div>
+			    		<div class="grid-rating_post_box">5</div>
+			    		<div class="grid-rating_pre_box">3</div>
+			    		<div class="grid-rating_post_box">1</div>		    		
+			    	</div>
+			   <!--	<div id="q08" class="grid-anterior_column_middle_rows">			    		
 			    		<div class="grid-body_image_short"><img src="8-10.png"></div>
 			    		<div class="grid-rating_pre_box">4</div>
 			    		<div class="grid-rating_post_box">2</div>
@@ -162,8 +193,22 @@
 			    		<div class="grid-rating_post_box">5</div>
 			    		<div class="grid-rating_pre_box">3</div>
 			    		<div class="grid-rating_post_box">1</div>
+			    </div> -->
+			    	<div id="q09" class="grid-anterior_column_middle_rows2">
+			    		<div class="grid-body_image_short"><img src="09.png"></div>
+			    		<div class="grid-rating_pre_box">4</div>
+			    		<div class="grid-rating_post_box">2</div>
+			    		<div class="grid-rating_pre_box">9</div>
+			    		<div class="grid-rating_post_box">6</div>		    		
 			    	</div>
-			    	<div class="grid-anterior_column_middle_rows">			    		
+			    	<div id="q11" class="grid-anterior_column_middle_rows2">
+			    		<div class="grid-body_image_short"><img src="11.png"></div>
+			    		<div class="grid-rating_pre_box">7</div>
+			    		<div class="grid-rating_post_box">5</div>
+			    		<div class="grid-rating_pre_box">3</div>
+			    		<div class="grid-rating_post_box">1</div>		    		
+			    	</div>
+			 	<!--<div id="q09" class="grid-anterior_column_middle_rows">			    		
 			    		<div class="grid-body_image_short"><img src="9-11.png"></div>
 			    		<div class="grid-rating_pre_box">4</div>
 			    		<div class="grid-rating_post_box">2</div>
@@ -173,8 +218,22 @@
 			    		<div class="grid-rating_post_box">5</div>
 			    		<div class="grid-rating_pre_box">3</div>
 			    		<div class="grid-rating_post_box">1</div>
+			  </div> -->
+			    	<div id="q14" class="grid-anterior_column_middle_rows2">
+			    		<div class="grid-body_image_short"><img src="14.png"></div>
+			    		<div class="grid-rating_pre_box">4</div>
+			    		<div class="grid-rating_post_box">2</div>
+			    		<div class="grid-rating_pre_box">9</div>
+			    		<div class="grid-rating_post_box">6</div>		    		
 			    	</div>
-			    	<div class="grid-anterior_column_middle_rows">			    		
+			    	<div id="q15" class="grid-anterior_column_middle_rows2">
+			    		<div class="grid-body_image_short"><img src="15.png"></div>
+			    		<div class="grid-rating_pre_box">7</div>
+			    		<div class="grid-rating_post_box">5</div>
+			    		<div class="grid-rating_pre_box">3</div>
+			    		<div class="grid-rating_post_box">1</div>		    		
+			    	</div>			  
+			    <!--<div id="q14" class="grid-anterior_column_middle_rows">			    		
 			    		<div class="grid-body_image_short"><img src="14-15.png"></div>
 			    		<div class="grid-rating_pre_box">4</div>
 			    		<div class="grid-rating_post_box">2</div>
@@ -184,7 +243,7 @@
 			    		<div class="grid-rating_post_box">5</div>
 			    		<div class="grid-rating_pre_box">3</div>
 			    		<div class="grid-rating_post_box">1</div>
-			    	</div>
+			    </div> -->
 			    	<div class="grid-upper_anterior_column_bottom_row">
 			    		PC (PC9, PC7)<br/> 
 			    		TE (TE3, TE10)
@@ -204,28 +263,28 @@
 			    		SP (SP2, SP5)<br/> 
 			    		ST (ST41, ST45)
 			    	</div>
-			    	<div class="grid-anterior_column_middle_rows">
+			    	<div id="q16" class="grid-anterior_column_middle_rows">
 			    		<div class="grid-body_image_short"><img src="16.png"></div>
 			    		<div class="grid-rating_pre_box">4</div>
 			    		<div class="grid-rating_post_box">2</div>
 			    		<div class="grid-rating_pre_box">9</div>
 			    		<div class="grid-rating_post_box">6</div>
 			    	</div>
-			    	<div class="grid-anterior_column_middle_rows">
+			    	<div id="q17" class="grid-anterior_column_middle_rows">
 			    		<div class="grid-body_image_short"><img src="17.png"></div>
 			    		<div class="grid-rating_pre_box">4</div>
 			    		<div class="grid-rating_post_box">2</div>
 			    		<div class="grid-rating_pre_box">9</div>
 			    		<div class="grid-rating_post_box">6</div>
 			    	</div>
-			    	<div class="grid-anterior_column_middle_rows">
+			    	<div id="q23" class="grid-anterior_column_middle_rows">
 			    		<div class="grid-body_image_short"><img src="23.png"></div>
 			    		<div class="grid-rating_pre_box">4</div>
 			    		<div class="grid-rating_post_box">2</div>
 			    		<div class="grid-rating_pre_box">9</div>
 			    		<div class="grid-rating_post_box">6</div>
 			    	</div>
-			    	<div class="grid-lower_anterior_column_bottom_row">
+			    	<div id="q27" class="grid-lower_anterior_column_bottom_row">
 			    		<div class="grid-body_image_tall"><img src="27.png"></div>
 			    		<div class="grid-rating_pre_box_two_wide">4</div>
 			    		<div class="grid-rating_post_box_two_wide">2</div>	
@@ -237,28 +296,28 @@
 			    		KI (KI7, KI1)<br/> 
 			    		BL (BL67, BL65)
 			    	</div>
-			    	<div class="grid-anterior_column_middle_rows">
+			    	<div id="q18" class="grid-anterior_column_middle_rows">
 			    		<div class="grid-body_image_short"><img src="18.png"></div>
 			    		<div class="grid-rating_pre_box">4</div>
 			    		<div class="grid-rating_post_box">2</div>
 			    		<div class="grid-rating_pre_box">9</div>
 			    		<div class="grid-rating_post_box">6</div>
 			    	</div>
-			    	<div class="grid-anterior_column_middle_rows">
+			    	<div id="q19" class="grid-anterior_column_middle_rows">
 			    		<div class="grid-body_image_short"><img src="19.png"></div>
 			    		<div class="grid-rating_pre_box">4</div>
 			    		<div class="grid-rating_post_box">2</div>
 			    		<div class="grid-rating_pre_box">9</div>
 			    		<div class="grid-rating_post_box">6</div>
 			    	</div>
-			    	<div class="grid-anterior_column_middle_rows">
+			    	<div id="q24" class="grid-anterior_column_middle_rows">
 			    		<div class="grid-body_image_short"><img src="24.png"></div>
 			    		<div class="grid-rating_pre_box">4</div>
 			    		<div class="grid-rating_post_box">2</div>
 			    		<div class="grid-rating_pre_box">9</div>
 			    		<div class="grid-rating_post_box">6</div>
 			    	</div>
-					<div class="grid-lower_anterior_column_bottom_row">
+					<div id="q28" class="grid-lower_anterior_column_bottom_row">
 						<div class="grid-body_image_tall"><img src="28.png"></div>
 			    		<div class="grid-rating_pre_box_two_wide">4</div>
 			    		<div class="grid-rating_post_box_two_wide">2</div>	
@@ -270,7 +329,7 @@
 			    		LR (LR8, LR2)<br/> 
 			    		GB (GB43, GB38)
 			    	</div>
-			    	<div class="grid-medial_lateral_column_middle_fat_tall">
+			    	<div id="q20" class="grid-medial_lateral_column_middle_fat_tall">
 			    		<div class="grid-body_image_fat_tall"><img src="20a.png"></div>
 			    		<div class="grid-rating_pre_box_jammed_together_tall_left">4</div>
 			    		<div class="grid-rating_post_box_jammed_together_tall_left">2</div>
@@ -279,7 +338,7 @@
 			    		<div class="grid-rating_post_box_jammed_together_tall_right">6</div>
 			    		<div class="grid-body_image_fat_tall"><img src="20b.png"></div>
 			    	</div>
-			    	<div class="grid-medial_lateral_column_middle_fat_short">
+			    	<div id="q21" class="grid-medial_lateral_column_middle_fat_short">
 			    		<div class="grid-body_image_fat_tall"><img src="21a.png"></div>
 			    		<div class="grid-rating_pre_box_jammed_together_short_left">4</div>
 			    		<div class="grid-rating_post_box_jammed_together_short_left">2</div>
@@ -288,7 +347,7 @@
 			    		<div class="grid-rating_post_box_jammed_together_short_right">6</div>
 			    		<div class="grid-body_image_fat_tall"><img src="21b.png"></div>				    		
 			    	</div>
-			    	<div class="grid-medial_lateral_column_middle_fat_tall">
+			    	<div id="q22" class="grid-medial_lateral_column_middle_fat_tall">
 			    		<div class="grid-body_image_fat_tall"><img src="22a.png"></div>
 			    		<div class="grid-rating_pre_box_jammed_together_tall_left">4</div>
 			    		<div class="grid-rating_post_box_jammed_together_tall_left">2</div>
@@ -297,7 +356,21 @@
 			    		<div class="grid-rating_post_box_jammed_together_tall_right">6</div>
 			    		<div class="grid-body_image_fat_tall"><img src="22b.png"></div>	
 			    	</div>
-			    	<div class="grid-anterior_column_middle_rows">
+			    	<div id="q25" class="grid-anterior_column_middle_rows2">
+			    		<div class="grid-body_image_short"><img src="25.png"></div>
+			    		<div class="grid-rating_pre_box">4</div>
+			    		<div class="grid-rating_post_box">2</div>
+			    		<div class="grid-rating_pre_box">9</div>
+			    		<div class="grid-rating_post_box">6</div>		    		
+			    	</div>
+			    	<div id="q26" class="grid-anterior_column_middle_rows2">
+			    		<div class="grid-body_image_short"><img src="26.png"></div>
+			    		<div class="grid-rating_pre_box">7</div>
+			    		<div class="grid-rating_post_box">5</div>
+			    		<div class="grid-rating_pre_box">3</div>
+			    		<div class="grid-rating_post_box">1</div>		    		
+			    	</div>
+			    <!--<div id="q25" class="grid-anterior_column_middle_rows">
 			    		<div class="grid-body_image_short"><img src="25-26.png"></div>
 			    		<div class="grid-rating_pre_box">4</div>
 			    		<div class="grid-rating_post_box">2</div>
@@ -307,9 +380,22 @@
 			    		<div class="grid-rating_post_box">5</div>
 			    		<div class="grid-rating_pre_box">3</div>
 			    		<div class="grid-rating_post_box">1</div>
+			    </div> -->
+			    	<div id="q29" class="grid-lower_anterior_column_bottom_row2L">
+			    		<div class="grid-body_image_tall"><img src="29.png"></div>
+			    		<div class="grid-rating_pre_box">4</div>
+			    		<div class="grid-rating_post_box">2</div>
+			    		<div class="grid-rating_pre_box">9</div>
+			    		<div class="grid-rating_post_box">6</div>		    		
 			    	</div>
-
-			    	<div class="grid-lower_anterior_column_bottom_row">
+			    	<div id="q30" class="grid-lower_anterior_column_bottom_row2R">
+			    		<div class="grid-body_image_tall"><img src="30.png"></div>
+			    		<div class="grid-rating_pre_box">7</div>
+			    		<div class="grid-rating_post_box">5</div>
+			    		<div class="grid-rating_pre_box">3</div>
+			    		<div class="grid-rating_post_box">1</div>		    		
+			    	</div>
+			    <!--<div id="q29" class="grid-lower_anterior_column_bottom_row">
 			    		<div class="grid-body_image_tall"><img src="29-30.png"></div>
 			    		<div class="grid-rating_pre_box">4</div>
 			    		<div class="grid-rating_post_box">2</div>
@@ -319,7 +405,7 @@
 			    		<div class="grid-rating_post_box">5</div>
 			    		<div class="grid-rating_pre_box">3</div>
 			    		<div class="grid-rating_post_box">1</div>	
-			    	</div>
+			    </div> -->
 			  	</div>
 			  	<div class="grid-vertical_margin">&nbsp;</div>			
 			</div>
@@ -333,18 +419,60 @@
 					<div class="grid-bottom_bar_button">Print</div>
 				</div>
 			</div>
-							
+				
 	   	</div>  	
   </div>
   
+  <div id="dialog" title="Dialog Title">I'm in a dialog</div>
+  
+  
   <!-- Load your app script here. -->
   <script type="text/javascript" charset="utf-8">
+    
     // The entry point for your app
     function onDeviceReady() {
       // Now safe to use the Web Marmalade API
       //alert("Web Marmalade Ready!");
+      
+        //Runs popUpDialog() function below on 1-30 if clicked
+		$(".grid-anterior_column_middle_rows, .grid-anterior_column_middle_rows2, .grid-upper_anterior_column_top_row, .grid-lower_anterior_column_bottom_row, .grid-medial_lateral_column_middle_fat_short, .grid-medial_lateral_column_middle_fat_tall, .grid-lower_anterior_column_bottom_row2L , .grid-lower_anterior_column_bottom_row2R ").click(function(event){
+	     popUpDialog(this.className, this.id);
+    	})
     }
+    
+    function popUpDialog(the_class, the_id) {
+    	
+    	$("#dialog").dialog({
+	     	modal: true,
+	     	height: 400,
+	     	width: 600,
+	     	resizable: false,
+    		buttons: [{
+        		text: "OK", 
+        		"id": "btnOk",
+        		click: function () {
+            		//okCallback();
+        		}, }, {
+        		text: "Cancel",
+        		click: function () {
+            		//cancelCallback();
+            		$(this).dialog('close')
+        		},
+    		}]
+	     });
+	     
+	     //$('.ui-dialog-title').hide(); //hides title but keeps thin bar with 'X' close button
+	     $('.ui-widget-header').hide(); //completely hides title bar
+	     
+	     // Remove focus on all buttons within the div with class ui-dialog
+         $('.ui-dialog :button').blur();
+         
+         $("#dialog").text("CLASS = " + the_class + " ID = " + the_id);
+	     
+	}
+    
   </script>
+  
   <!-- Set the event listener that signals initialisation
        complete. Your app can now be run. -->
   <script>document.addEventListener("deviceready", onDeviceReady, false);</script>
