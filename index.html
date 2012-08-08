@@ -9,13 +9,31 @@
     <script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
     
+    <script type="text/javascript" charset="utf-8" src="support.js"></script>
     <script type="text/javascript" charset="utf-8" src="db_patient.js"></script>
+    <script type="text/javascript" charset="utf-8" src="dialogs.js"></script>
     
     <link rel="stylesheet" href="style.css" type="text/css" media="all" />
     <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/themes/cupertino/jquery-ui.css" type="text/css" media="all" />
-    
+
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
     <meta name="format-detection" content="telephone=no" />   
+    
+    
+		<script type="text/javascript" src="jquery.dataTables.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			$(document).ready(function() {
+				$('#example').dataTable();
+			} );
+		</script>    
+		
+		<style type="text/css" title="currentStyle">
+			@import "demo_page.css";
+			@import "demo_table.css";
+			tr { height: 75px; font-size: 28px; line-height: 72px;}
+		</style>
+    
+    
 </head>
 <body>
   	<div id="YourPageContainer">
@@ -40,49 +58,54 @@
 			<fieldset>
 				<p class="first">
 					<label for="name">First Name</label>
-					<input type="text" name="firstname" id="firstname" onfocus="window.scrollTo(0, 0);"/>
+					<input type="text" name="firstname" id="firstname" onfocus="window.scrollTo(0, 0);" tabindex="1" value="Lou"/>
+				</p>
+				<p>
+					<label for="dob">Date of Birth</label>
+					<input type="text" name="dob" id="dob" placeholder="(MM/DD/YYYY)" onfocus="window.scrollTo(0, 0);" tabindex="3" value="10/09/1979"/>
 				</p>
 				<p>
 					<label for="phone">Phone Number</label>
-					<input type="text" name="phone" id="phone" onfocus="window.scrollTo(0, 0);"/>
-				</p>				
-				<p>
-					<label for="dob">Date of Birth</label>
-					<input type="text" name="dob" id="dob" placeholder="(MM/DD/YYYY)" onfocus="window.scrollTo(0, 0);"/>
-				</p>											
+					<input type="text" name="phone" id="phone" onfocus="window.scrollTo(0, 0);" tabindex="6" value="(313) 776-1457"/>
+				</p>															
 			</fieldset>
 			<fieldset>																		
 				<p>
 					<label for="email">Last Name</label>
-					<input type="text" name="lastname" id="lastname" onfocus="window.scrollTo(0, 0);"/>
-				</p>							
-				<p>
-					<label for="email">E-Mail Address</label>
-					<input type="text" name="email" id="email" onfocus="window.scrollTo(0, 0);"/>
-				</p>	
+					<input type="text" name="lastname" id="lastname" onfocus="window.scrollTo(0, 0);" tabindex="2" value="Alicegary"/>
+				</p>								
 				<p>
 					<label for="sex">Sex</label>
 					<label for="male" class="radio_label">Male</label>
-					<input type="radio" id="male" name="sex" value="male" onfocus="window.scrollTo(0, 0);"/>
+					<input type="radio" id="male" name="sex" value="male" onfocus="window.scrollTo(0, 0);" tabindex="4" />
 					<label for="female" class="radio_label">Female</label>
-					<input type="radio" id="female" name="sex" value="female" onfocus="window.scrollTo(0, 0);"/>
-				</p>											
+					<input type="radio" id="female" name="sex" value="female" onfocus="window.scrollTo(0, 0);" tabindex="5" checked="checked" / >
+				</p>	
+				<p>
+					<label for="email">E-Mail Address</label>
+					<input type="text" name="email" id="email" onfocus="window.scrollTo(0, 0);" tabindex="7" value="haggis@hotmail.com"/>
+				</p>														
 			</fieldset>
 			<fieldset class="large_fieldset">
 				<p>
 					<label for="disorder">Disorder</label>
-					<input type="text" class="large_input" name="disorder" id="disorder" onfocus="window.scrollTo(0, 0);"/>
+					<input type="text" class="large_input" name="disorder" id="disorder" onfocus="window.scrollTo(0, 0);" tabindex="8" value="General anxiety"/>
 				</p>
 				<p>
 					<label for="chiefcomplaint">Chief Complaint</label>
-					<input type="text" class="large_input" name="chiefcomplaint" id="chiefcomplaint" onfocus="window.scrollTo(0, 0);" />
+					<input type="text" class="large_input" name="chiefcomplaint" id="chiefcomplaint" onfocus="window.scrollTo(0, 0);"  tabindex="9" value="Patient never wants to leave the house"/>
 				</p>
 				<p>
 					<label for="notes">Notes</label>
-					<textarea name="notes" id="notes" cols="50" rows="3" onfocus="window.scrollTo(0, 0);"></textarea>
+					<textarea name="notes" id="notes" cols="50" rows="3" onfocus="window.scrollTo(0, 0);" tabindex="10">What a buster, this guy.</textarea>
 				</p>				
 			</fieldset>																										
 		</div>
+	</div>
+
+	<div id="patient_list_dialog" style="display:none">
+		<div class="patient_info_header">List of Patients</div>
+		<div id="demo">&nbsp;</div>
 	</div>
 
   <!-- Load your app script here. -->
@@ -97,74 +120,33 @@
       
       	initPatientDatabase();
       
-      
         //Open dialog if "new patient" button clicked
 		$("#new_patient_button").click(function(event) {
-			popUpDialog(this.className, this.id);
+			popUpPatientDialog(0);
     	})
     	
     	//Open sheet.html if "existing patient" button clicked
 		$("#existing_patient_button").click(function(event) {
-			window.location="sheet.html"
+			popUpPatientListDialog();
     	})
+    			
+		$('#example tbody tr').live('click', function (event) {
+			var id = $(this).text();
+			id = id.substr(0, 10);
+			//alert(id);
+			window.name = getWindowNameByID(id);
+			setTimeout(function(){window.location="sheet.html";}, 250)
+		});
     	
     }
     
-
-    function popUpDialog(the_class, the_id) {
-    	
-    	$("#new_patient_dialog").dialog({
-	     	modal: true,
-	     	height: 650,
-	     	width: 700,
-	     	resizable: false,
-    		buttons: [{
-        		text: "OK", 
-        		id: "btnOk",
-        		click: function () {
-            		//$(this).dialog('close');
-
-            		writePatientToDb(document.getElementById('firstname').value, document.getElementById('lastname').value, document.getElementById('dob').value, getSex());
-            		//window.location="sheet.html";
-            		//getPatientNameActual();
-        		}, }, {
-        		text: "Cancel",
-        		click: function () {
-            		$(this).dialog('close');
-        		},
-    		}]
-	     });
-	     
-	     $('.ui-dialog').css("top","50px"); //keeps dialog at top of screen to avoid keyboard
-	     
-	     //$('.ui-dialog-title').hide(); //hides title but keeps thin bar with 'X' close button
-	     $('.ui-widget-header').hide(); //completely hides title bar
-         $('.ui-dialog :button').blur(); // Remove focus on all buttons within the div class ui-dialog
-         $('.ui-dialog :input').blur(); // Remove initial focus on input elements within the div class ui-dialog KEEP THIS LINE OR NO?
-         
-         //getPatientName();
-	}
-
-	function writePatientToDb(first, last, dob, sex) {
-		alert (first + last + dob + sex);
-	}
-
-	function getSex(){
-        var sex;
-		if(document.getElementById('male').checked)
-			sex = 'M'; //Male radio button is checked 
-		else if(document.getElementById('female').checked)
-			sex = 'F'; //Female is checked
-		else 
-			sex = 'X'; //Neither is checked
-		return sex;
-	}
+	// MOVED DIALOG SCRIPTS TO SEPARATE JS FILE
 
   </script>
   
   <!-- Set the event listener that signals initialisation complete. Your app can now be run. -->
   <script>document.addEventListener("deviceready", onDeviceReady, false);
-  	//onDeviceReady();
+  	//onDeviceReady(); //I used this for debugging on non-mobile device
   </script>
   
 </body>
