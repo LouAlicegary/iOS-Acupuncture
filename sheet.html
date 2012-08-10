@@ -2,18 +2,20 @@
 <html>
 <head>
     <title>M-Test Acupuncture Application</title>
-    <!-- The Web Marmalade library must be loaded before any scripts
-	 that call its methods. To be safe, load it in the page head -->
-    <script type="text/javascript" charset="utf-8" src="wm.js"></script>
+
     <script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
     
-    <!--<script type="text/javascript" charset="utf-8" src="db_demo.js"></script>-->
-    <script type="text/javascript" charset="utf-8" src="support.js"></script>
-    <script type="text/javascript" charset="utf-8" src="db_patient.js"></script>
-    <script type="text/javascript" charset="utf-8" src="dialogs.js"></script>
+    <!-- The Web Marmalade library must be loaded before any scripts that call its methods. To be safe, load it in the page head -->
+    <script type="text/javascript" charset="utf-8" src="js/wm.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/support.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/db_patient.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/dialogs.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/data.js"></script>
     
-    <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/movement_dialog.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/patient_info_form.css" type="text/css" media="all" />
     <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/themes/cupertino/jquery-ui.css" type="text/css" media="all" />
     
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
@@ -22,14 +24,6 @@
 </head>
 <body>
   	<div id="YourPageContainer">
-    <!-- 
-    	<p style="color:red">
-      	Hello Mobile!
-      
-      	<img src="images\button_new_patient.png"> <img src="images\button_existing_patient.png">
-
-	-->
-
 		<div class="grid">
 			<div class="grid-top_bar">
 				<div class="heading-top_spacer">&nbsp;</div>
@@ -96,33 +90,33 @@
 			 	<div class="grid-anterior_column">
 			    	<div id="q01" class="grid-upper_anterior_column_top_row">
 			    		<div class="grid-body_image_short"><img src="images\01.png"></div>
-			    		<div class="grid-rating_pre_box_three_narrow">4</div>
-			    		<div class="grid-rating_post_box_three_narrow">2</div>
-			    		<div class="grid-rating_pre_box_three_narrow">9</div>
-			    		<div class="grid-rating_post_box_three_narrow">6</div>
-			    		<div class="grid-rating_pre_box_three_narrow">7</div>
-			    		<div class="grid-rating_post_box_three_narrow">3</div>			    	
+			    		<div id="q01_pre_l" class="grid-rating_pre_box_three_narrow"> </div>
+			    		<div id="q01_post_l" class="grid-rating_post_box_three_narrow"> </div>
+			    		<div id="q01_pre_m" class="grid-rating_pre_box_three_narrow"> </div>
+			    		<div id="q01_post_m" class="grid-rating_post_box_three_narrow"> </div>
+			    		<div id="q01_pre_r" class="grid-rating_pre_box_three_narrow"> </div>
+			    		<div id="q01_post_r" class="grid-rating_post_box_three_narrow"> </div>			    	
 			    	</div>
 			    	<div id="q04"class="grid-anterior_column_middle_rows">
 			    		<div class="grid-body_image_short"><img src="images\04.png"></div>
-			    		<div class="grid-rating_pre_box">4</div>
-			    		<div class="grid-rating_post_box">2</div>
-			    		<div class="grid-rating_pre_box">9</div>
-			    		<div class="grid-rating_post_box">6</div>
+			    		<div id="q04_pre_l" class="grid-rating_pre_box"> </div>
+			    		<div id="q04_post_l" class="grid-rating_post_box"> </div>
+			    		<div id="q04_pre_r" class="grid-rating_pre_box"> </div>
+			    		<div id="q04_post_r" class="grid-rating_post_box"> </div>
 			    	</div>
 			    	<div id="q05" class="grid-anterior_column_middle_rows">
 			    		<div class="grid-body_image_short"><img src="images\05.png"></div>
-			    		<div class="grid-rating_pre_box">4</div>
-			    		<div class="grid-rating_post_box">2</div>
-			    		<div class="grid-rating_pre_box">9</div>
-			    		<div class="grid-rating_post_box">6</div>
+			    		<div id="q05_pre_l" class="grid-rating_pre_box"> </div>
+			    		<div id="q05_post_l" class="grid-rating_post_box"> </div>
+			    		<div id="q05_pre_r" class="grid-rating_pre_box"> </div>
+			    		<div id="q05_post_r" class="grid-rating_post_box"> </div>
 			    	</div>
 			    	<div id="q12" class="grid-anterior_column_middle_rows">
 			    		<div class="grid-body_image_short"><img src="images\12.png"></div>
-			    		<div class="grid-rating_pre_box">4</div>
-			    		<div class="grid-rating_post_box">2</div>
-			    		<div class="grid-rating_pre_box">9</div>
-			    		<div class="grid-rating_post_box">6</div>
+			    		<div id="q12_pre_l" class="grid-rating_pre_box"> </div>
+			    		<div id="q12_post_l" class="grid-rating_post_box"> </div>
+			    		<div id="q12_pre_r" class="grid-rating_pre_box"> </div>
+			    		<div id="q12_post_r" class="grid-rating_post_box"> </div>
 			    	</div>
 			    	<div class="grid-upper_anterior_column_bottom_row">
 			    		LU (LU5, LU9)<br/> 
@@ -133,29 +127,29 @@
 			  	<div class="grid-posterior_column">
 			    	<div id="q02" class="grid-upper_anterior_column_top_row">
 						<div class="grid-body_image_short"><img src="images\02.png"></div>
-			    		<div class="grid-rating_pre_box_two_wide">4</div>
-			    		<div class="grid-rating_post_box_two_wide">2</div>	
+			    		<div id="q02_pre_m" class="grid-rating_pre_box_two_wide"> </div>
+			    		<div id="q02_post_m" class="grid-rating_post_box_two_wide"> </div>	
 			    	</div>
 			    	<div id="q06" class="grid-anterior_column_middle_rows">
 			    		<div class="grid-body_image_short"><img src="images\06.png"></div>
-			    		<div class="grid-rating_pre_box">4</div>
-			    		<div class="grid-rating_post_box">2</div>
-			    		<div class="grid-rating_pre_box">9</div>
-			    		<div class="grid-rating_post_box">6</div>
+			    		<div id="q06_pre_l" class="grid-rating_pre_box"> </div>
+			    		<div id="q06_post_l" class="grid-rating_post_box"> </div>
+			    		<div id="q06_pre_r" class="grid-rating_pre_box"> </div>
+			    		<div id="q06_post_r" class="grid-rating_post_box"> </div>
 			    	</div>
 			    	<div id="q07" class="grid-anterior_column_middle_rows">
 			    		<div class="grid-body_image_short"><img src="images\07.png"></div>
-			    		<div class="grid-rating_pre_box">4</div>
-			    		<div class="grid-rating_post_box">2</div>
-			    		<div class="grid-rating_pre_box">9</div>
-			    		<div class="grid-rating_post_box">6</div>
+			    		<div id="q07_pre_l" class="grid-rating_pre_box"> </div>
+			    		<div id="q07_post_l" class="grid-rating_post_box"> </div>
+			    		<div id="q07_pre_r" class="grid-rating_pre_box"> </div>
+			    		<div id="q07_post_r" class="grid-rating_post_box"> </div>
 			    	</div>
 			    	<div id="q13" class="grid-anterior_column_middle_rows">
 			    		<div class="grid-body_image_short"><img src="images\13.png"></div>
-			    		<div class="grid-rating_pre_box">4</div>
-			    		<div class="grid-rating_post_box">2</div>
-			    		<div class="grid-rating_pre_box">9</div>
-			    		<div class="grid-rating_post_box">6</div>
+			    		<div id="q13_pre_l" class="grid-rating_pre_box"> </div>
+			    		<div id="q13_post_l" class="grid-rating_post_box"> </div>
+			    		<div id="q13_pre_r" class="grid-rating_pre_box"> </div>
+			    		<div id="q13_post_r" class="grid-rating_post_box"> </div>
 			    	</div>
 			    	<div class="grid-upper_anterior_column_bottom_row">
 			    		HT (HT9, HT7)<br/> 
@@ -166,86 +160,53 @@
 			  	<div class="grid-lateral_medial_column">
 			    	<div id="q03" class="grid-upper_anterior_column_top_row">
 			    		<div class="grid-body_image_short"><img src="images\03.png"></div>
-			    		<div class="grid-rating_pre_box_two_wide">4</div>
-			    		<div class="grid-rating_post_box_two_wide">2</div>
-			    		<div class="grid-rating_pre_box_two_wide">9</div>
-			    		<div class="grid-rating_post_box_two_wide">6</div>		    		
+			    		<div id="q03_pre_l" class="grid-rating_pre_box_two_wide"> </div>
+			    		<div id="q03_post_l" class="grid-rating_post_box_two_wide"> </div>
+			    		<div id="q03_pre_r" class="grid-rating_pre_box_two_wide"> </div>
+			    		<div id="q03_post_r" class="grid-rating_post_box_two_wide"> </div>		    		
 			    	</div>
 			    	<div id="q08" class="grid-anterior_column_middle_rows2">
 			    		<div class="grid-body_image_short"><img src="images\08.png"></div>
-			    		<div class="grid-rating_pre_box">4</div>
-			    		<div class="grid-rating_post_box">2</div>
-			    		<div class="grid-rating_pre_box">9</div>
-			    		<div class="grid-rating_post_box">6</div>		    		
+			    		<div id="q08_pre_l" class="grid-rating_pre_box"> </div>
+			    		<div id="q08_post_l" class="grid-rating_post_box"> </div>
+			    		<div id="q08_pre_r" class="grid-rating_pre_box"> </div>
+			    		<div id="q08_post_r" class="grid-rating_post_box"> </div>		    		
 			    	</div>
 			    	<div id="q10" class="grid-anterior_column_middle_rows2">
 			    		<div class="grid-body_image_short"><img src="images\10.png"></div>
-			    		<div class="grid-rating_pre_box">7</div>
-			    		<div class="grid-rating_post_box">5</div>
-			    		<div class="grid-rating_pre_box">3</div>
-			    		<div class="grid-rating_post_box">1</div>		    		
+			    		<div id="q10_pre_l" class="grid-rating_pre_box"> </div>
+			    		<div id="q10_post_l" class="grid-rating_post_box"> </div>
+			    		<div id="q10_pre_r" class="grid-rating_pre_box"> </div>
+			    		<div id="q10_post_r" class="grid-rating_post_box"> </div>	    		
 			    	</div>
-			   <!--	<div id="q08" class="grid-anterior_column_middle_rows">			    		
-			    		<div class="grid-body_image_short"><img src="images\8-10.png"></div>
-			    		<div class="grid-rating_pre_box">4</div>
-			    		<div class="grid-rating_post_box">2</div>
-			    		<div class="grid-rating_pre_box">9</div>
-			    		<div class="grid-rating_post_box">6</div>
-			    		<div class="grid-rating_pre_box">7</div>
-			    		<div class="grid-rating_post_box">5</div>
-			    		<div class="grid-rating_pre_box">3</div>
-			    		<div class="grid-rating_post_box">1</div>
-			    </div> -->
 			    	<div id="q09" class="grid-anterior_column_middle_rows2">
 			    		<div class="grid-body_image_short"><img src="images\09.png"></div>
-			    		<div class="grid-rating_pre_box">4</div>
-			    		<div class="grid-rating_post_box">2</div>
-			    		<div class="grid-rating_pre_box">9</div>
-			    		<div class="grid-rating_post_box">6</div>		    		
+			    		<div id="q09_pre_l" class="grid-rating_pre_box"> </div>
+			    		<div id="q09_post_l" class="grid-rating_post_box"> </div>
+			    		<div id="q09_pre_r" class="grid-rating_pre_box"> </div>
+			    		<div id="q09_post_r" class="grid-rating_post_box"> </div>	    		
 			    	</div>
 			    	<div id="q11" class="grid-anterior_column_middle_rows2">
 			    		<div class="grid-body_image_short"><img src="images\11.png"></div>
-			    		<div class="grid-rating_pre_box">7</div>
-			    		<div class="grid-rating_post_box">5</div>
-			    		<div class="grid-rating_pre_box">3</div>
-			    		<div class="grid-rating_post_box">1</div>		    		
+			    		<div id="q11_pre_l" class="grid-rating_pre_box"> </div>
+			    		<div id="q11_post_l" class="grid-rating_post_box"> </div>
+			    		<div id="q11_pre_r" class="grid-rating_pre_box"> </div>
+			    		<div id="q11_post_r" class="grid-rating_post_box"> </div>		    		
 			    	</div>
-			 	<!--<div id="q09" class="grid-anterior_column_middle_rows">			    		
-			    		<div class="grid-body_image_short"><img src="images\9-11.png"></div>
-			    		<div class="grid-rating_pre_box">4</div>
-			    		<div class="grid-rating_post_box">2</div>
-			    		<div class="grid-rating_pre_box">9</div>
-			    		<div class="grid-rating_post_box">6</div>
-			    		<div class="grid-rating_pre_box">7</div>
-			    		<div class="grid-rating_post_box">5</div>
-			    		<div class="grid-rating_pre_box">3</div>
-			    		<div class="grid-rating_post_box">1</div>
-			  </div> -->
 			    	<div id="q14" class="grid-anterior_column_middle_rows2">
 			    		<div class="grid-body_image_short"><img src="images\14.png"></div>
-			    		<div class="grid-rating_pre_box">4</div>
-			    		<div class="grid-rating_post_box">2</div>
-			    		<div class="grid-rating_pre_box">9</div>
-			    		<div class="grid-rating_post_box">6</div>		    		
+			    		<div id="q14_pre_l" class="grid-rating_pre_box"> </div>
+			    		<div id="q14_post_l" class="grid-rating_post_box"> </div>
+			    		<div id="q14_pre_r" class="grid-rating_pre_box"> </div>
+			    		<div id="q14_post_r" class="grid-rating_post_box"> </div>		    		
 			    	</div>
 			    	<div id="q15" class="grid-anterior_column_middle_rows2">
 			    		<div class="grid-body_image_short"><img src="images\15.png"></div>
-			    		<div class="grid-rating_pre_box">7</div>
-			    		<div class="grid-rating_post_box">5</div>
-			    		<div class="grid-rating_pre_box">3</div>
-			    		<div class="grid-rating_post_box">1</div>		    		
+			    		<div id="q15_pre_l" class="grid-rating_pre_box"> </div>
+			    		<div id="q15_post_l" class="grid-rating_post_box"> </div>
+			    		<div id="q15_pre_r" class="grid-rating_pre_box"> </div>
+			    		<div id="q15_post_r" class="grid-rating_post_box"> </div>		    		
 			    	</div>			  
-			    <!--<div id="q14" class="grid-anterior_column_middle_rows">			    		
-			    		<div class="grid-body_image_short"><img src="images\14-15.png"></div>
-			    		<div class="grid-rating_pre_box">4</div>
-			    		<div class="grid-rating_post_box">2</div>
-			    		<div class="grid-rating_pre_box">9</div>
-			    		<div class="grid-rating_post_box">6</div>
-			    		<div class="grid-rating_pre_box">7</div>
-			    		<div class="grid-rating_post_box">5</div>
-			    		<div class="grid-rating_pre_box">3</div>
-			    		<div class="grid-rating_post_box">1</div>
-			    </div> -->
 			    	<div class="grid-upper_anterior_column_bottom_row">
 			    		PC (PC9, PC7)<br/> 
 			    		TE (TE3, TE10)
@@ -267,29 +228,29 @@
 			    	</div>
 			    	<div id="q16" class="grid-anterior_column_middle_rows">
 			    		<div class="grid-body_image_short"><img src="images\16.png"></div>
-			    		<div class="grid-rating_pre_box">4</div>
-			    		<div class="grid-rating_post_box">2</div>
-			    		<div class="grid-rating_pre_box">9</div>
-			    		<div class="grid-rating_post_box">6</div>
+			    		<div id="q16_pre_l" class="grid-rating_pre_box"> </div>
+			    		<div id="q16_post_l" class="grid-rating_post_box"> </div>
+			    		<div id="q16_pre_r" class="grid-rating_pre_box"> </div>
+			    		<div id="q16_post_r" class="grid-rating_post_box"> </div>	
 			    	</div>
 			    	<div id="q17" class="grid-anterior_column_middle_rows">
 			    		<div class="grid-body_image_short"><img src="images\17.png"></div>
-			    		<div class="grid-rating_pre_box">4</div>
-			    		<div class="grid-rating_post_box">2</div>
-			    		<div class="grid-rating_pre_box">9</div>
-			    		<div class="grid-rating_post_box">6</div>
+			    		<div id="q17_pre_l" class="grid-rating_pre_box"> </div>
+			    		<div id="q17_post_l" class="grid-rating_post_box"> </div>
+			    		<div id="q17_pre_r" class="grid-rating_pre_box"> </div>
+			    		<div id="q17_post_r" class="grid-rating_post_box"> </div>	
 			    	</div>
 			    	<div id="q23" class="grid-anterior_column_middle_rows">
 			    		<div class="grid-body_image_short"><img src="images\23.png"></div>
-			    		<div class="grid-rating_pre_box">4</div>
-			    		<div class="grid-rating_post_box">2</div>
-			    		<div class="grid-rating_pre_box">9</div>
-			    		<div class="grid-rating_post_box">6</div>
+			    		<div id="q23_pre_l" class="grid-rating_pre_box"> </div>
+			    		<div id="q23_post_l" class="grid-rating_post_box"> </div>
+			    		<div id="q23_pre_r" class="grid-rating_pre_box"> </div>
+			    		<div id="q23_post_r" class="grid-rating_post_box"> </div>	
 			    	</div>
 			    	<div id="q27" class="grid-lower_anterior_column_bottom_row">
 			    		<div class="grid-body_image_tall"><img src="images\27.png"></div>
-			    		<div class="grid-rating_pre_box_two_wide">4</div>
-			    		<div class="grid-rating_post_box_two_wide">2</div>	
+			    		<div id="q27_pre_m" class="grid-rating_pre_box_two_wide"> </div>
+			    		<div id="q27_post_m" class="grid-rating_post_box_two_wide"> </div>	
 			    	</div>
 			  	</div>
 			  	<div class="grid-vertical_gutter">&nbsp;</div>
@@ -300,29 +261,29 @@
 			    	</div>
 			    	<div id="q18" class="grid-anterior_column_middle_rows">
 			    		<div class="grid-body_image_short"><img src="images\18.png"></div>
-			    		<div class="grid-rating_pre_box">4</div>
-			    		<div class="grid-rating_post_box">2</div>
-			    		<div class="grid-rating_pre_box">9</div>
-			    		<div class="grid-rating_post_box">6</div>
+			    		<div id="q18_pre_l" class="grid-rating_pre_box"> </div>
+			    		<div id="q18_post_l" class="grid-rating_post_box"> </div>
+			    		<div id="q18_pre_r" class="grid-rating_pre_box"> </div>
+			    		<div id="q18_post_r" class="grid-rating_post_box"> </div>	
 			    	</div>
 			    	<div id="q19" class="grid-anterior_column_middle_rows">
 			    		<div class="grid-body_image_short"><img src="images\19.png"></div>
-			    		<div class="grid-rating_pre_box">4</div>
-			    		<div class="grid-rating_post_box">2</div>
-			    		<div class="grid-rating_pre_box">9</div>
-			    		<div class="grid-rating_post_box">6</div>
+			    		<div id="q19_pre_l" class="grid-rating_pre_box"> </div>
+			    		<div id="q19_post_l" class="grid-rating_post_box"> </div>
+			    		<div id="q19_pre_r" class="grid-rating_pre_box"> </div>
+			    		<div id="q19_post_r" class="grid-rating_post_box"> </div>	
 			    	</div>
 			    	<div id="q24" class="grid-anterior_column_middle_rows">
 			    		<div class="grid-body_image_short"><img src="images\24.png"></div>
-			    		<div class="grid-rating_pre_box">4</div>
-			    		<div class="grid-rating_post_box">2</div>
-			    		<div class="grid-rating_pre_box">9</div>
-			    		<div class="grid-rating_post_box">6</div>
+			    		<div id="q24_pre_l" class="grid-rating_pre_box"> </div>
+			    		<div id="q24_post_l" class="grid-rating_post_box"> </div>
+			    		<div id="q24_pre_r" class="grid-rating_pre_box"> </div>
+			    		<div id="q24_post_r" class="grid-rating_post_box"> </div>	
 			    	</div>
 					<div id="q28" class="grid-lower_anterior_column_bottom_row">
 						<div class="grid-body_image_tall"><img src="images\28.png"></div>
-			    		<div class="grid-rating_pre_box_two_wide">4</div>
-			    		<div class="grid-rating_post_box_two_wide">2</div>	
+			    		<div id="q28_pre_m" class="grid-rating_pre_box_two_wide"> </div>
+			    		<div id="q28_post_m" class="grid-rating_post_box_two_wide"> </div>	
 					</div>
 			  	</div>
 			  	<div class="grid-vertical_gutter">&nbsp;</div>
@@ -333,81 +294,59 @@
 			    	</div>
 			    	<div id="q20" class="grid-medial_lateral_column_middle_fat_tall">
 			    		<div class="grid-body_image_fat_tall"><img src="images\20a.png"></div>
-			    		<div class="grid-rating_pre_box_jammed_together_tall_left">4</div>
-			    		<div class="grid-rating_post_box_jammed_together_tall_left">2</div>
+			    		<div id="q20_pre_l" class="grid-rating_pre_box_jammed_together_tall_left"> </div>
+			    		<div id="q20_post_l" class="grid-rating_post_box_jammed_together_tall_left"> </div>
 			    		<div class="grid-number_fat_tall"><img src="images\20_number.png"></div>
-			    		<div class="grid-rating_pre_box_jammed_together_tall_right">9</div>
-			    		<div class="grid-rating_post_box_jammed_together_tall_right">6</div>
+			    		<div id="q20_pre_r" class="grid-rating_pre_box_jammed_together_tall_right"> </div>
+			    		<div id="q0_post_r" class="grid-rating_post_box_jammed_together_tall_right"> </div>
 			    		<div class="grid-body_image_fat_tall"><img src="images\20b.png"></div>
 			    	</div>
 			    	<div id="q21" class="grid-medial_lateral_column_middle_fat_short">
 			    		<div class="grid-body_image_fat_tall"><img src="images\21a.png"></div>
-			    		<div class="grid-rating_pre_box_jammed_together_short_left">4</div>
-			    		<div class="grid-rating_post_box_jammed_together_short_left">2</div>
+			    		<div id="q21_pre_l" class="grid-rating_pre_box_jammed_together_short_left"> </div>
+			    		<div id="q21_post_l"class="grid-rating_post_box_jammed_together_short_left"> </div>
 			    		<div class="grid-number_fat_tall"><img src="images\21_number.png"></div>
-			    		<div class="grid-rating_pre_box_jammed_together_short_right">9</div>
-			    		<div class="grid-rating_post_box_jammed_together_short_right">6</div>
+			    		<div id="q21_pre_r" class="grid-rating_pre_box_jammed_together_short_right"> </div>
+			    		<div id="q21_post_r" class="grid-rating_post_box_jammed_together_short_right"> </div>
 			    		<div class="grid-body_image_fat_tall"><img src="images\21b.png"></div>				    		
 			    	</div>
 			    	<div id="q22" class="grid-medial_lateral_column_middle_fat_tall">
 			    		<div class="grid-body_image_fat_tall"><img src="images\22a.png"></div>
-			    		<div class="grid-rating_pre_box_jammed_together_tall_left">4</div>
-			    		<div class="grid-rating_post_box_jammed_together_tall_left">2</div>
+			    		<div id="q22_pre_l" class="grid-rating_pre_box_jammed_together_tall_left"> </div>
+			    		<div id="q22_post_l" class="grid-rating_post_box_jammed_together_tall_left"> </div>
 			    		<div class="grid-number_fat_tall"><img src="images\22_number.png"></div>
-			    		<div class="grid-rating_pre_box_jammed_together_tall_right">9</div>
-			    		<div class="grid-rating_post_box_jammed_together_tall_right">6</div>
+			    		<div id="q22_pre_r" class="grid-rating_pre_box_jammed_together_tall_right"> </div>
+			    		<div id="q22_post_r" class="grid-rating_post_box_jammed_together_tall_right"> </div>
 			    		<div class="grid-body_image_fat_tall"><img src="images\22b.png"></div>	
 			    	</div>
 			    	<div id="q25" class="grid-anterior_column_middle_rows2">
 			    		<div class="grid-body_image_short"><img src="images\25.png"></div>
-			    		<div class="grid-rating_pre_box">4</div>
-			    		<div class="grid-rating_post_box">2</div>
-			    		<div class="grid-rating_pre_box">9</div>
-			    		<div class="grid-rating_post_box">6</div>		    		
+			    		<div id="q25_pre_l" class="grid-rating_pre_box"> </div>
+			    		<div id="q25_post_l" class="grid-rating_post_box"> </div>
+			    		<div id="q25_pre_r" class="grid-rating_pre_box"> </div>
+			    		<div id="q25_post_r" class="grid-rating_post_box"> </div>			    		
 			    	</div>
 			    	<div id="q26" class="grid-anterior_column_middle_rows2">
 			    		<div class="grid-body_image_short"><img src="images\26.png"></div>
-			    		<div class="grid-rating_pre_box">7</div>
-			    		<div class="grid-rating_post_box">5</div>
-			    		<div class="grid-rating_pre_box">3</div>
-			    		<div class="grid-rating_post_box">1</div>		    		
+			    		<div id="q26_pre_l" class="grid-rating_pre_box"> </div>
+			    		<div id="q26_post_l" class="grid-rating_post_box"> </div>
+			    		<div id="q26_pre_r" class="grid-rating_pre_box"> </div>
+			    		<div id="q26_post_r" class="grid-rating_post_box"> </div>		    		
 			    	</div>
-			    <!--<div id="q25" class="grid-anterior_column_middle_rows">
-			    		<div class="grid-body_image_short"><img src="images\25-26.png"></div>
-			    		<div class="grid-rating_pre_box">4</div>
-			    		<div class="grid-rating_post_box">2</div>
-			    		<div class="grid-rating_pre_box">9</div>
-			    		<div class="grid-rating_post_box">6</div>
-			    		<div class="grid-rating_pre_box">7</div>
-			    		<div class="grid-rating_post_box">5</div>
-			    		<div class="grid-rating_pre_box">3</div>
-			    		<div class="grid-rating_post_box">1</div>
-			    </div> -->
 			    	<div id="q29" class="grid-lower_anterior_column_bottom_row2L">
 			    		<div class="grid-body_image_tall"><img src="images\29.png"></div>
-			    		<div class="grid-rating_pre_box">4</div>
-			    		<div class="grid-rating_post_box">2</div>
-			    		<div class="grid-rating_pre_box">9</div>
-			    		<div class="grid-rating_post_box">6</div>		    		
+			    		<div id="q29_pre_l" class="grid-rating_pre_box"> </div>
+			    		<div id="q29_post_l" class="grid-rating_post_box"> </div>
+			    		<div id="q29_pre_r" class="grid-rating_pre_box"> </div>
+			    		<div id="q29_post_r" class="grid-rating_post_box"> </div>		    		
 			    	</div>
 			    	<div id="q30" class="grid-lower_anterior_column_bottom_row2R">
 			    		<div class="grid-body_image_tall"><img src="images\30.png"></div>
-			    		<div class="grid-rating_pre_box">7</div>
-			    		<div class="grid-rating_post_box">5</div>
-			    		<div class="grid-rating_pre_box">3</div>
-			    		<div class="grid-rating_post_box">1</div>		    		
+			    		<div id="q30_pre_l" class="grid-rating_pre_box"> </div>
+			    		<div id="q30_post_l" class="grid-rating_post_box"> </div>
+			    		<div id="q30_pre_r" class="grid-rating_pre_box"> </div>
+			    		<div id="q30_post_r" class="grid-rating_post_box"> </div>			    		
 			    	</div>
-			    <!--<div id="q29" class="grid-lower_anterior_column_bottom_row">
-			    		<div class="grid-body_image_tall"><img src="images\29-30.png"></div>
-			    		<div class="grid-rating_pre_box">4</div>
-			    		<div class="grid-rating_post_box">2</div>
-			    		<div class="grid-rating_pre_box">9</div>
-			    		<div class="grid-rating_post_box">6</div>
-			    		<div class="grid-rating_pre_box">7</div>
-			    		<div class="grid-rating_post_box">5</div>
-			    		<div class="grid-rating_pre_box">3</div>
-			    		<div class="grid-rating_post_box">1</div>	
-			    </div> -->
 			  	</div>
 			  	<div class="grid-vertical_margin">&nbsp;</div>			
 			</div>
@@ -420,27 +359,24 @@
 					<div class="grid-bottom_bar_button">Save</div>
 					<div class="grid-bottom_bar_button">Print</div>
 				</div>
-			</div>
-				
+			</div>			
 	   	</div>  	
   </div>
   
   	<div id="new_movement_dialog" class="movement_dialog" title="Dialog Title" style="display:none">
-  		<div class="movement_dialog_header">Extend the arm backward and away from the body, with the palms facing inward.</div>
+  		<div id="movement_dialog_header" class="movement_dialog_header">..........</div>
   		<div id="movement_dialog_image" class="movement_dialog_image"><img src="images/02-big.png"></div>
   		<div class="movement_dialog_image_description_container">
   			<div class="movement_dialog_image_description">Left Arm</div>
   			<div class="movement_dialog_image_description">Right Arm</div>
   		</div>
-  		<div class="movement_dialog_score_boxes">
-  			<div id="left_pre" class="movement-rating_pre_box_two_wide">5</div>
-  			<div id="left_post" class="movement-rating_post_box_two_wide">3</div>
+  		<div id="movement_dialog_score_boxes" class="movement_dialog_score_boxes">
+  			<!--<div id="left_pre" class="movement-rating_pre_box_two_wide"></div>
+  			<div id="left_post" class="movement-rating_post_box_two_wide"></div>
+  			<div id="right_pre" class="movement-rating_pre_box_two_wide"></div>
+  			<div id="right_post" class="movement-rating_post_box_two_wide"></div>-->
   		</div>
-  		<div class="movement_dialog_score_boxes">
-  			<div id="right_pre" class="movement-rating_pre_box_two_wide">5</div>
-  			<div id="right_post" class="movement-rating_post_box_two_wide">3</div>
-  		</div>
-  		<div class="movement_dialog_notes_box"><textarea name="notes" id="notes" placeholder="Insert notes here" rows="3" onfocus="window.scrollTo(0, 0);"></textarea></div>	
+  		<div class="movement_dialog_notes_box"><textarea name="notes" id="movement_notes" placeholder="Insert notes here" rows="3" onfocus="window.scrollTo(0, 0);"></textarea></div>	
   	</div>
    
 	<div id="new_patient_dialog" style="display:none">
@@ -493,7 +429,7 @@
 				</p>
 				<p>
 					<label for="notes">Notes</label>
-					<textarea name="notes" id="notes" cols="50" rows="3" onfocus="window.scrollTo(0, 0);" tabindex="10">&nbsp;</textarea>
+					<textarea name="notes" id="notes" cols="50" rows="3" onfocus="window.scrollTo(0, 0);" tabindex="10"></textarea>
 				</p>				
 			</fieldset>																										
 		</div>
@@ -520,26 +456,49 @@
 		$(".grid-anterior_column_middle_rows, .grid-anterior_column_middle_rows2, .grid-upper_anterior_column_top_row, .grid-lower_anterior_column_bottom_row, .grid-medial_lateral_column_middle_fat_short, .grid-medial_lateral_column_middle_fat_tall, .grid-lower_anterior_column_bottom_row2L , .grid-lower_anterior_column_bottom_row2R ").click(function(event) {
 			popUpMovementDialog(this.className, this.id);
     	})
+    	
+    	
+    	$("#back_button").click(function(event) {
+			window.history.back();
+    	})
+    	
     }
     
-    $("#back_button").click(function(event) {
-		window.history.back();
-    })
-    
-       
+ 
     function popUpMovementDialog(the_class, the_id) {
     	
     	$("#new_movement_dialog").dialog({
 	     	modal: true,
 	     	height: 550,
 	     	width: 634,
+	     	autoOpen: false,
 	     	resizable: false,
     		buttons: [{
         		text: "OK", 
         		id: "btnOk",
         		click: function () {
             		//okCallback();
-            		$(this).dialog('close');
+			        var movement_number = the_id.substr(1);    		
+					if (movement_number == 1) {
+						document.getElementById(the_id+"_pre_l").innerText = document.getElementById('left_pre').innerText;
+	            		document.getElementById(the_id+"_post_l").innerText = document.getElementById('left_post').innerText;
+	            		document.getElementById(the_id+"_pre_m").innerText = document.getElementById('middle_pre').innerText;
+	            		document.getElementById(the_id+"_post_m").innerText = document.getElementById('middle_post').innerText;
+	            		document.getElementById(the_id+"_pre_r").innerText = document.getElementById('right_pre').innerText;
+	            		document.getElementById(the_id+"_post_r").innerText = document.getElementById('right_post').innerText;			
+					}
+					else if (movement_number == 2 || movement_number == 27 || movement_number == 28) {
+	            		document.getElementById(the_id+"_pre_m").innerText = document.getElementById('middle_pre').innerText;
+	            		document.getElementById(the_id+"_post_m").innerText = document.getElementById('middle_post').innerText;						
+					}
+					else {
+						document.getElementById(the_id+"_pre_l").innerText = document.getElementById('left_pre').innerText;
+	            		document.getElementById(the_id+"_post_l").innerText = document.getElementById('left_post').innerText;
+	            		document.getElementById(the_id+"_pre_r").innerText = document.getElementById('right_pre').innerText;
+	            		document.getElementById(the_id+"_post_r").innerText = document.getElementById('right_post').innerText;
+					}            		
+            		
+            		$(this).dialog('destroy');
         		}, }, {
         		text: "Cancel",
         		click: function () {
@@ -550,98 +509,106 @@
     		}]
 	     });
 	     
+	     $("#new_movement_dialog").dialog('open');
+	     
 	     //$('.ui-dialog-title').hide(); //hides title but keeps thin bar with 'X' close button
 	     $('.ui-widget-header').hide(); //completely hides title bar
-	     
-	     // Remove focus on all buttons within the div with class ui-dialog
-         $('.ui-dialog :button').blur();
+         $('.ui-dialog :button').blur(); // Remove focus on all buttons within the div with class ui-dialog
+         $('.ui-dialog :input').blur(); // Remove initial focus on input elements within the div class ui-dialog KEEP THIS LINE OR NO?
 
-
-		//alert(the_id);
+		//alert(the_id); //the_id contains a string like "q04" which would refer to movement 4
 		var movement_number = the_id.substr(1);
-		//alert(movement_number);
+		
+
 		document.getElementById('movement_dialog_image').innerHTML = "<img src=\"images/" + movement_number + "_big.png\">";
+		document.getElementById('movement_dialog_header').innerText = Movement_Descriptions[movement_number-1];
 
-
-
-		var mousedowntime;
+		if (movement_number == 1) {
+			document.getElementById('movement_dialog_score_boxes').innerHTML = 
+				"<div id=\"left_pre\" class=\"movement-rating_pre_box_three_wide\">" + 
+					document.getElementById(the_id+"_pre_l").innerText + "</div>" + 
+				"<div id=\"left_post\" class=\"movement-rating_post_box_three_wide\">" + 
+					document.getElementById(the_id+"_post_l").innerText + "</div>" + 
+				"<div id=\"middle_pre\" class=\"movement-rating_pre_box_three_wide\">" + 
+					document.getElementById(the_id+"_pre_m").innerText + "</div>" + 
+				"<div id=\"middle_post\" class=\"movement-rating_post_box_three_wide\">" + 
+					document.getElementById(the_id+"_post_m").innerText + "</div>" + 
+				"<div id=\"right_pre\" class=\"movement-rating_pre_box_three_wide\">" + 
+					document.getElementById(the_id+"_pre_r").innerText + "</div>" + 					
+				"<div id=\"right_post\" class=\"movement-rating_post_box_three_wide\">" + 
+					document.getElementById(the_id+"_post_r").innerText + "</div>";
+		}
+		else if (movement_number == 2 || movement_number == 27 || movement_number == 28) {
+			document.getElementById('movement_dialog_score_boxes').innerHTML = 
+				"<div id=\"middle_pre\" class=\"movement-rating_pre_box_single\">" + 
+					document.getElementById(the_id+"_pre_m").innerText + "</div>" + 
+				"<div id=\"middle_post\" class=\"movement-rating_post_box_single\">" + 
+					document.getElementById(the_id+"_post_m").innerText + "</div>"; 			
+		}
+		else {
+			document.getElementById('movement_dialog_score_boxes').innerHTML = 
+				"<div id=\"left_pre\" class=\"movement-rating_pre_box_two_wide\">" + 
+					document.getElementById(the_id+"_pre_l").innerText + "</div>" + 
+				"<div id=\"left_post\" class=\"movement-rating_post_box_two_wide\">" + 
+					document.getElementById(the_id+"_post_l").innerText + "</div>" + 
+				"<div id=\"right_pre\" class=\"movement-rating_pre_box_two_wide\">" + 
+					document.getElementById(the_id+"_pre_r").innerText + "</div>" + 
+				"<div id=\"right_post\" class=\"movement-rating_post_box_two_wide\">" + 
+					document.getElementById(the_id+"_post_r").innerText + "</div>";
+		}
+        //document.getElementById('left_pre').innerText = document.getElementById(the_id+"_pre_l").innerText;
+		//document.getElementById('left_post').innerText = document.getElementById(the_id+"_post_l").innerText;
+		//document.getElementById('right_pre').innerText = document.getElementById(the_id+"_pre_r").innerText;
+		//document.getElementById('right_post').innerText = document.getElementById(the_id+"_post_r").innerText;
+    	var mousedowntime;
 	    var presstime;
-	    $(".movement-rating_pre_box_two_wide").mousedown(function() {
+	    $(".movement-rating_pre_box_two_wide, .movement-rating_pre_box_three_wide, .movement-rating_pre_box_single").bind("touchstart", function() {
 	        var d = new Date();
 	        mousedowntime = d.getTime();
 	    });
 	    
-	    $(".movement-rating_pre_box_two_wide").mouseup(function() {
+	    $(".movement-rating_pre_box_two_wide, .movement-rating_pre_box_three_wide, .movement-rating_pre_box_single").bind("touchend", function() {
 	        var d = new Date();
 	        presstime = d.getTime() - mousedowntime;
 	        if (presstime < 350) {
-				var old = this.innerText; 
-				old++;
-				var mod = old % 11;
+				var old = this.innerText;
+				var mod;
+				
+				if (old == "" || old == " ") {
+					mod = 0;
+				}
+				else if (old == 10) {
+					mod = " ";
+				}
+				else {
+					old++; 
+					mod = old % 11;
+				}
+					
 				this.innerText = mod;
 	        }
 	        else {
 				var old = this.innerText; 
 				var mod;
-				if (old != 0) {
-					old--;
-					mod = old % 11;
+				if (old == "" || old == " " || old == null) {
+					mod = "10";
+				} 
+				else if (old == 0) {
+					mod = " ";
 				}
 				else {
-					mod = 10;
+					old--;
+					mod = old % 11;
 				}
 				
 				this.innerText = mod;
 	        }
 	    });
-    	
-         //var old_text = $("#dialog").html(); // Changed text to html in this line and next so html tags aren't stripped
-         //$("#dialog").html("CLASS = " + the_class + " ID = " + the_id);
 	     
-
-/*
-		xmlhttp=new XMLHttpRequest();
-		alert(xmlhttp.open("GET","books.xml",true));
-		try {
-			xmlhttp.send();
-		}
-		catch (error) {
-			alert(error);
-		}
-		
-		//alert("got here");
-		
-		xmlDoc=xmlhttp.responseXML; 
-		xmlDoc.getElementsByTagName("title")[0].childNodes[0].nodeValue;
-		alert(txt);
-*/
-
-		$.ajax({
-		    type: "GET",
-			url: "file:///books.xml",
-			dataType: "xml",
-			success: function(xml) {
-		 		alert("SUCCESS");
-			},
-			error: function(result) {     
-      			alert("FAILED : " + result.status + ' ' + result.statusText);  
-			}
-		});
-	     
-/*	     
-	    $.ajax({
-		    url: "books.json",
-		    dataType: "json",
-		    async: false,
-		    success: function (returndata){
-		        alert('Load was performed.');
-		    },
-		    error: function(result) {     
-      			alert("FAILED : " + result.status + ' ' + result.statusText);  
-			}  
-		}); 
-*/	     
 	}
+
+
+
 
   </script>
   
