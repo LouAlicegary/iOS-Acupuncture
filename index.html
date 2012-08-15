@@ -1,153 +1,152 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>M-Test Acupuncture Application</title>
-    
-    <script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
-    
-    <!-- The Web Marmalade library must be loaded before any scripts that call its methods. To be safe, load it in the page head -->
-    <script type="text/javascript" charset="utf-8" src="js/wm.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/support.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/db_patient.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/dialogs.js"></script>
-    
-    <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="css/patient_info_form.css" type="text/css" media="all" /> 
-    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/themes/cupertino/jquery-ui.css" type="text/css" media="all" />
-
-    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
-    <meta name="format-detection" content="telephone=no" />   
-    
-    
+    <head>
+        <title>M-Test Acupuncture Application</title>
+        
+        <script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
+        
+        <!-- The Web Marmalade library must be loaded before any scripts that call its methods. To be safe, load it in the page head -->
+        <script type="text/javascript" charset="utf-8" src="cordova-2.0.0.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/support.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/db_patient.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/dialogs.js"></script>
+        
+        <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="css/patient_info_form.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/themes/cupertino/jquery-ui.css" type="text/css" media="all" />
+        
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
+        <meta name="format-detection" content="telephone=no" />
+        
+        
 		<script type="text/javascript" src="js/jquery.dataTables.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			$(document).ready(function() {
-				$('#example').dataTable();
-			} );
-		</script>    
+                              $('#example').dataTable();
+                              } );
+            </script>
 		
 		<style type="text/css" title="currentStyle">
 			@import "css/demo_page.css";
 			@import "css/demo_table.css";
 			tr { height: 75px; font-size: 28px; line-height: 72px;}
-		</style>
-    
-    
-</head>
-<body>
-  	<div id="YourPageContainer">
-		<div class="patient_sheet">
-	      	<div class="patient_mtest_header">
-	      		M-Test (Meridian Test) <br />
-	      		by Yoshito Mukaino, M.D.
-	      	</div>
-	      	<div id="new_patient_button" class="patient_button"><img src="button_new_patient.png"></div>
-	      	<div id="existing_patient_button" class="patient_button"><img src="button_existing_patient.png"></div>
-		</div>
-	</div>
-
-	<div id="new_patient_dialog" style="display:none">
-		<div class="patient_info_header">Patient Information</div>
-		<div id="form1" class="form_container">
-			<!--Onfocus events prevent scrolling when input clicked--> 
-			<!--(iOS wants to scroll b/c KB decreases effective window height)-->
-			<fieldset class="image_fieldset">
-				<img src="patient_photo.png">
-			</fieldset>
-			<fieldset>
-				<p class="first">
+            </style>
+        
+        
+    </head>
+    <body>
+        <div id="YourPageContainer">
+            <div class="patient_sheet">
+                <div class="patient_mtest_header">
+                    M-Test (Meridian Test) <br />
+                    by Yoshito Mukaino, M.D.
+                </div>
+                <div id="new_patient_button" class="patient_button"><img src="button_new_patient.png"></div>
+                <div id="existing_patient_button" class="patient_button"><img src="button_existing_patient.png"></div>
+            </div>
+        </div>
+        
+        <div id="new_patient_dialog" style="display:none">
+            <div class="patient_info_header">Patient Information</div>
+            <div id="form1" class="form_container">
+                <!--Onfocus events prevent scrolling when input clicked-->
+                <!--(iOS wants to scroll b/c KB decreases effective window height)-->
+                <fieldset class="image_fieldset">
+                    <img src="patient_photo.png">
+                        </fieldset>
+                <fieldset>
+                    <p class="first">
 					<label for="name">First Name</label>
 					<input type="text" name="firstname" id="firstname" onfocus="window.scrollTo(0, 0);" tabindex="1" value="Lou"/>
-				</p>
-				<p>
+                    </p>
+                    <p>
 					<label for="dob">Date of Birth</label>
 					<input type="text" name="dob" id="dob" placeholder="(MM/DD/YYYY)" onfocus="window.scrollTo(0, 0);" tabindex="3" value="10/09/1979"/>
-				</p>
-				<p>
+                    </p>
+                    <p>
 					<label for="phone">Phone Number</label>
 					<input type="text" name="phone" id="phone" onfocus="window.scrollTo(0, 0);" tabindex="6" value="(313) 776-1457"/>
-				</p>															
-			</fieldset>
-			<fieldset>																		
-				<p>
+                    </p>
+                </fieldset>
+                <fieldset>
+                    <p>
 					<label for="email">Last Name</label>
 					<input type="text" name="lastname" id="lastname" onfocus="window.scrollTo(0, 0);" tabindex="2" value="Alicegary"/>
-				</p>								
-				<p>
+                    </p>
+                    <p>
 					<label for="sex">Sex</label>
 					<label for="male" class="radio_label">Male</label>
 					<input type="radio" id="male" name="sex" value="male" onfocus="window.scrollTo(0, 0);" tabindex="4" />
 					<label for="female" class="radio_label">Female</label>
 					<input type="radio" id="female" name="sex" value="female" onfocus="window.scrollTo(0, 0);" tabindex="5" checked="checked" / >
-				</p>	
-				<p>
-					<label for="email">E-Mail Address</label>
-					<input type="text" name="email" id="email" onfocus="window.scrollTo(0, 0);" tabindex="7" value="haggis@hotmail.com"/>
-				</p>														
-			</fieldset>
-			<fieldset class="large_fieldset">
-				<p>
+                        </p>
+                        <p>
+                        <label for="email">E-Mail Address</label>
+                        <input type="text" name="email" id="email" onfocus="window.scrollTo(0, 0);" tabindex="7" value="haggis@hotmail.com"/>
+                        </p>
+                        </fieldset>
+                <fieldset class="large_fieldset">
+                    <p>
 					<label for="disorder">Disorder</label>
 					<input type="text" class="large_input" name="disorder" id="disorder" onfocus="window.scrollTo(0, 0);" tabindex="8" value="General anxiety"/>
-				</p>
-				<p>
+                    </p>
+                    <p>
 					<label for="chiefcomplaint">Chief Complaint</label>
 					<input type="text" class="large_input" name="chiefcomplaint" id="chiefcomplaint" onfocus="window.scrollTo(0, 0);"  tabindex="9" value="Patient never wants to leave the house"/>
-				</p>
-				<p>
+                    </p>
+                    <p>
 					<label for="notes">Notes</label>
 					<textarea name="notes" id="notes" cols="50" rows="3" onfocus="window.scrollTo(0, 0);" tabindex="10">What a buster, this guy.</textarea>
-				</p>				
-			</fieldset>																										
-		</div>
-	</div>
-
-	<div id="patient_list_dialog" style="display:none">
-		<div class="patient_info_header">List of Patients</div>
-		<div id="demo">&nbsp;</div>
-	</div>
-
-  <!-- Load your app script here. -->
-  <script type="text/javascript" charset="utf-8">
-    
-    // The entry point for your app
-    function onDeviceReady() {
-      	// Now safe to use the Web Marmalade API
-      	
-      	//Prevent scrolling when dialog pops up
-      	document.addEventListener('touchmove', function(e) { e.preventDefault(); }, false);
-      
-      	initPatientDatabase();
-      
-        //Open dialog if "new patient" button clicked
-		$("#new_patient_button").click(function(event) {
-			popUpPatientDialog(0);
-    	})
-    	
-    	//Open sheet.html if "existing patient" button clicked
-		$("#existing_patient_button").click(function(event) {
-			popUpPatientListDialog();
-    	})
-    			
-		$('#example tbody tr').live('click', function (event) {
-			var id = $(this).text();
-			id = id.substr(0, 10);
-			//alert(id);
-			window.name = getWindowNameByID(id);
-			setTimeout(function(){window.location="sheet.html";}, 250)
-		});
-    	
-    }
-    
-	// MOVED DIALOG SCRIPTS TO SEPARATE JS FILE
-
-  </script>
-  
-  <!-- Set the event listener that signals initialisation complete. Your app can now be run. -->
-  <script>document.addEventListener("deviceready", onDeviceReady, false);
-  	//onDeviceReady(); //I used this for debugging on non-mobile device
-  </script>
-  
-</body>
+                    </p>
+                </fieldset>
+            </div>
+        </div>
+        
+        <div id="patient_list_dialog" style="display:none">
+            <div class="patient_info_header">List of Patients</div>
+            <div id="demo">&nbsp;</div>
+        </div>
+        
+        <!-- Load your app script here. -->
+        <script type="text/javascript" charset="utf-8">
+            
+            // The entry point for your app
+            function deviceready() {
+                // Now safe to use the Web Marmalade API
+                
+                //Prevent scrolling when dialog pops up
+                document.addEventListener('touchmove', function(e) { e.preventDefault(); }, false);
+                initPatientDatabase();
+                
+                //Open dialog if "new patient" button clicked
+                $("#new_patient_button").click(function(event) {
+                    popUpPatientDialog(0);
+                });
+                
+                //Open sheet.html if "existing patient" button clicked
+                $("#existing_patient_button").click(function(event) {
+                    popUpPatientListDialog();
+                });
+                
+                $('#example tbody tr').live('click', function (event) {
+                    var id = $(this).text();
+                    id = id.substr(0, 10);
+                    //alert(id);
+                    window.name = getWindowNameByID(id);
+                    setTimeout(function(){window.location="sheet.html";}, 250)
+                });
+                
+            }
+            
+            // MOVED DIALOG SCRIPTS TO SEPARATE JS FILE
+            
+            </script>
+        
+        <!-- Set the event listener that signals initialisation complete. Your app can now be run. -->
+        <script>document.addEventListener("deviceready", this.deviceready, false);
+            //onDeviceReady(); //I used this for debugging on non-mobile device
+            </script>
+        
+    </body>
 </html>

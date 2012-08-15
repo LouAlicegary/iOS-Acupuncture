@@ -7,7 +7,7 @@
     <script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
     
     <!-- The Web Marmalade library must be loaded before any scripts that call its methods. To be safe, load it in the page head -->
-    <script type="text/javascript" charset="utf-8" src="js/wm.js"></script>
+    <script type="text/javascript" charset="utf-8" src="cordova-2.0.0.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/support.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/db_patient.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/dialogs.js"></script>
@@ -42,6 +42,7 @@
 									var day = currentTime.getDate();
 									var year = currentTime.getFullYear();
 									document.write(month + "/" + day + "/" + year);
+                                    console.log("date");
 								</script>
 							</div>	
 						</div>					
@@ -437,30 +438,31 @@
    
   <!-- Load your app script here. -->
   <script type="text/javascript" charset="utf-8">
-    
-    // The entry point for your app
-    function onDeviceReady() {
-      // Now safe to use the Web Marmalade API
-      //alert("Web Marmalade Ready!");
       
-      	record_id = window.name.substr(0,10);
+      console.log("pre device ready");
+      
+    // The entry point for your app
+    function deviceready() {
+      // Now safe to use the Web Marmalade API
+      	
+        record_id = window.name.substr(0,10);
       	//alert("record id: " + record_id);
       	fillInPatientInfo(record_id);
-      
+        
       	$("#patient_info_box").click(function(event) {
 			popUpPatientDialog(1);
 			//repopulatePatientInfoDialog(window.name);	
-    	})
+        });
       
         //Runs popUpDialog() function below on 1-30 if clicked
 		$(".grid-anterior_column_middle_rows, .grid-anterior_column_middle_rows2, .grid-upper_anterior_column_top_row, .grid-lower_anterior_column_bottom_row, .grid-medial_lateral_column_middle_fat_short, .grid-medial_lateral_column_middle_fat_tall, .grid-lower_anterior_column_bottom_row2L , .grid-lower_anterior_column_bottom_row2R ").click(function(event) {
 			popUpMovementDialog(this.className, this.id);
-    	})
+        });
     	
     	
     	$("#back_button").click(function(event) {
 			window.history.back();
-    	})
+        });
     	
     }
     
@@ -613,7 +615,10 @@
   </script>
   
   <!-- Set the event listener that signals initialisation complete. Your app can now be run. -->
-  <script>document.addEventListener("deviceready", onDeviceReady, false);</script>
+  <script>
+      document.addEventListener("deviceready", this.deviceready, false);
+      console.log("event listener call for deviceready");
+  </script>
   
 </body>
 </html>
