@@ -172,44 +172,36 @@
                 $("#options_button").click(function(event) {
                     //popUpPatientListDialog();
                 });
+             
+                   
+   //FUNCTIONS BELOW EDITED TO ALLOW FOR DELETION OF RECORDS (BUT COMMENTED OUT RIGHT NOW)
+
+
+                var mousedowntime;
+                var presstime;
+                $('#example tbody tr').live("touchstart", function(event) {
+                    var d = new Date();
+                    mousedowntime = d.getTime();
+                });
                 
-
-
-
-    var mousedowntime;
-    var presstime;
-    $('#example tbody tr').live("touchstart", function(event) {
-        var d = new Date();
-        mousedowntime = d.getTime();
-    });
-    
-    $('#example tbody tr').live("touchend", function(event) {
-        var d = new Date();
-        presstime = d.getTime() - mousedowntime;
-        patient_id = $(this).text();
-        patient_id = patient_id.substr(0, 10);
-        
-        if (presstime < 1000) {
-            console.log("window.name 0");
-            window.name = getWindowNameByID(patient_id, "0000000000000"); //0000000000000 for new visit, visit_id for old
-            setTimeout(function(){window.location="sheet.html";}, 250)
-        }
-        else {
-            deleteRecordInPatientDB(patient_id);
-            //alert("DELETED");
-            
-        }
-    });
-
-                /*
-                $('#example tbody tr').live('click', function (event) {
+                $('#example tbody tr').live("touchend", function(event) {
+                    var d = new Date();
+                    presstime = d.getTime() - mousedowntime;
                     patient_id = $(this).text();
                     patient_id = patient_id.substr(0, 10);
-                    console.log("window.name 0");
-                    window.name = getWindowNameByID(patient_id, "0000000000000"); //0000000000000 for new visit, visit_id for old
-                    setTimeout(function(){window.location="sheet.html";}, 250)
+                    
+                    if (presstime < 1000) {
+                        console.log("window.name 0");
+                        window.name = getWindowNameByID(patient_id, "0000000000000"); //0000000000000 for new visit, visit_id for old
+                        setTimeout(function(){window.location="sheet.html";}, 250)
+                    }
+                    else {
+                        //deleteRecordInPatientDB(patient_id);
+                        //alert("DELETED");
+                        
+                    }
                 });
-                */
+
 
                 $('#patient_visit_list tbody tr').live('click', function (event) {
                     var patient_name = "";
@@ -268,15 +260,6 @@
                     }
                 });
     
-                /*
-                $('#patient_visit_list2 tbody tr').live('click', function (event) {
-                    visit_id = $(this).text();
-                    visit_id = visit_id.substr(0, 13);
-                    console.log("#patient_visit_list2 DB row click handler. Visit_id = " + visit_id);
-                    window.name = getWindowNameByID(patient_id, visit_id); //0000000000000 for new visit, visit_id for old
-                    setTimeout(function(){window.location="sheet.html";}, 250); //NEED TO CHANGE THIS SO IT LOADS PREEXISTING DATA
-                });
-                */
                 
                 //console.log("index.html : deviceready() end");
             }
