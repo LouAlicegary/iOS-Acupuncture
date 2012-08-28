@@ -3,18 +3,20 @@
     <head>
         <title>M-Test Acupuncture Application</title>
         
-        <script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-        <script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/jquery.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/jquery-ui.min.js"></script>
         
         <!-- The Web Marmalade library must be loaded before any scripts that call its methods. To be safe, load it in the page head -->
-        <script type="text/javascript" charset="utf-8" src="cordova-2.0.0.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/cordova-2.0.0.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/SQLitePlugin.js"></script>
         <script type="text/javascript" charset="utf-8" src="js/support.js"></script>
         <script type="text/javascript" charset="utf-8" src="js/db_patient.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/db_visit.js"></script>
         <script type="text/javascript" charset="utf-8" src="js/dialogs.js"></script>
         
+        <link rel="stylesheet" href="css/jquery-ui.css" type="text/css" media="all" />
         <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
         <link rel="stylesheet" href="css/patient_info_form.css" type="text/css" media="all" />
-        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/themes/cupertino/jquery-ui.css" type="text/css" media="all" />
         
         <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
         <meta name="format-detection" content="telephone=no" />
@@ -23,14 +25,17 @@
 		<script type="text/javascript" src="js/jquery.dataTables.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			$(document).ready(function() {
-                              $('#example').dataTable();
-                              } );
-            </script>
+                $('#example').dataTable();
+                
+                $('#patient_visit_list').dataTable();
+                
+            });
+        </script>
 		
 		<style type="text/css" title="currentStyle">
 			@import "css/demo_page.css";
 			@import "css/demo_table.css";
-			tr { height: 75px; font-size: 28px; line-height: 72px;}
+			tr { height: 70px; font-size: 28px; line-height: 67px;}
             </style>
         
         
@@ -42,8 +47,23 @@
                     M-Test (Meridian Test) <br />
                     by Yoshito Mukaino, M.D.
                 </div>
-                <div id="new_patient_button" class="patient_button"><img src="button_new_patient.png"></div>
-                <div id="existing_patient_button" class="patient_button"><img src="button_existing_patient.png"></div>
+                
+                <!--<div id="new_patient_button" class="patient_button"><img src="images/button_new_patient.png"></div>
+                <div id="existing_patient_button" class="patient_button"><img src="images/button_existing_patient.png"></div>-->
+                
+                <div class="patient_button_row"><button id="new_patient_button" class="jquery_button">Start Visit with New Patient</button></div>
+                <div class="patient_button_row"><button id="existing_patient_button" class="jquery_button">Start Visit with Existing Patient</button></div>
+                <div class="patient_button_row"><button id="view_patient_records_button" class="jquery_button">View Patient Records</button></div>
+                <!--<div class="patient_button_row"><button id="options_button" class="jquery_button">Options</button></div>-->
+                
+                
+                <!--<button id="existing_patient_button" class="jquery_button"></button>-->
+                
+                <!--<script>
+                $("#existing_patient_button").button({ text: true });
+                $("#existing_patient_button").button( "option", "label", "kiss it" );
+                </script>-->
+                
             </div>
         </div>
         
@@ -52,27 +72,27 @@
             <div id="form1" class="form_container">
                 <!--Onfocus events prevent scrolling when input clicked-->
                 <!--(iOS wants to scroll b/c KB decreases effective window height)-->
-                <fieldset class="image_fieldset">
-                    <img src="patient_photo.png">
-                        </fieldset>
+                <fieldset id="image_fieldset" class="image_fieldset">
+                    <img id="patient_image" src="images/patient_photo.png">
+                </fieldset>
                 <fieldset>
                     <p class="first">
 					<label for="name">First Name</label>
-					<input type="text" name="firstname" id="firstname" onfocus="window.scrollTo(0, 0);" tabindex="1" value="Lou"/>
+					<input type="text" name="firstname" id="firstname" onfocus="window.scrollTo(0, 0);" tabindex="1" value=""/>
                     </p>
                     <p>
 					<label for="dob">Date of Birth</label>
-					<input type="text" name="dob" id="dob" placeholder="(MM/DD/YYYY)" onfocus="window.scrollTo(0, 0);" tabindex="3" value="10/09/1979"/>
+					<input type="text" name="dob" id="dob" placeholder="(MM/DD/YYYY)" onfocus="window.scrollTo(0, 0);" tabindex="3" value=""/>
                     </p>
                     <p>
 					<label for="phone">Phone Number</label>
-					<input type="text" name="phone" id="phone" onfocus="window.scrollTo(0, 0);" tabindex="6" value="(313) 776-1457"/>
+					<input type="text" name="phone" id="phone" onfocus="window.scrollTo(0, 0);" tabindex="6" value=""/>
                     </p>
                 </fieldset>
                 <fieldset>
                     <p>
 					<label for="email">Last Name</label>
-					<input type="text" name="lastname" id="lastname" onfocus="window.scrollTo(0, 0);" tabindex="2" value="Alicegary"/>
+					<input type="text" name="lastname" id="lastname" onfocus="window.scrollTo(0, 0);" tabindex="2" value=""/>
                     </p>
                     <p>
 					<label for="sex">Sex</label>
@@ -83,21 +103,21 @@
                         </p>
                         <p>
                         <label for="email">E-Mail Address</label>
-                        <input type="text" name="email" id="email" onfocus="window.scrollTo(0, 0);" tabindex="7" value="haggis@hotmail.com"/>
+                        <input type="text" name="email" id="email" onfocus="window.scrollTo(0, 0);" tabindex="7" value=""/>
                         </p>
                         </fieldset>
                 <fieldset class="large_fieldset">
                     <p>
 					<label for="disorder">Disorder</label>
-					<input type="text" class="large_input" name="disorder" id="disorder" onfocus="window.scrollTo(0, 0);" tabindex="8" value="General anxiety"/>
+					<input type="text" class="large_input" name="disorder" id="disorder" onfocus="window.scrollTo(0, 0);" tabindex="8" value=""/>
                     </p>
                     <p>
 					<label for="chiefcomplaint">Chief Complaint</label>
-					<input type="text" class="large_input" name="chiefcomplaint" id="chiefcomplaint" onfocus="window.scrollTo(0, 0);"  tabindex="9" value="Patient never wants to leave the house"/>
+					<input type="text" class="large_input" name="chiefcomplaint" id="chiefcomplaint" onfocus="window.scrollTo(0, 0);"  tabindex="9" value=""/>
                     </p>
                     <p>
 					<label for="notes">Notes</label>
-					<textarea name="notes" id="notes" cols="50" rows="3" onfocus="window.scrollTo(0, 0);" tabindex="10">What a buster, this guy.</textarea>
+					<textarea name="notes" id="notes" cols="50" rows="3" onfocus="window.scrollTo(0, 0);" tabindex="10"></textarea>
                     </p>
                 </fieldset>
             </div>
@@ -107,46 +127,168 @@
             <div class="patient_info_header">List of Patients</div>
             <div id="demo">&nbsp;</div>
         </div>
-        
+
+        <div id="patient_visit_list_dialog" style="display:none">
+            <div class="patient_info_header">List of Patients</div>
+            <div id="pvl_container">&nbsp;</div>
+        </div>
+ 
+        <div id="patient_visit_list_dialog2" style="display:none">
+            <div id="patient_info_header_visits" class="patient_info_header">List of Patient Visits</div>
+            <div id="pvl_container2">&nbsp;</div>
+        </div>        
+                      
         <!-- Load your app script here. -->
         <script type="text/javascript" charset="utf-8">
             
             // The entry point for your app
             function deviceready() {
-                // Now safe to use the Web Marmalade API
                 
+                //console.log("index.html : deviceready() start");
+
+                var patient_id = "";
+                var patient_id_int = 0;
+
                 //Prevent scrolling when dialog pops up
                 document.addEventListener('touchmove', function(e) { e.preventDefault(); }, false);
                 initPatientDatabase();
-                
+
                 //Open dialog if "new patient" button clicked
                 $("#new_patient_button").click(function(event) {
                     popUpPatientDialog(0);
                 });
-                
+
                 //Open sheet.html if "existing patient" button clicked
                 $("#existing_patient_button").click(function(event) {
                     popUpPatientListDialog();
                 });
-                
-                $('#example tbody tr').live('click', function (event) {
-                    var id = $(this).text();
-                    id = id.substr(0, 10);
-                    //alert(id);
-                    window.name = getWindowNameByID(id);
-                    setTimeout(function(){window.location="sheet.html";}, 250)
+
+
+                $("#view_patient_records_button").click(function(event) {
+                    popUpPatientVisitListDialog();
                 });
                 
+
+                $("#options_button").click(function(event) {
+                    //popUpPatientListDialog();
+                });
+                
+
+
+
+    var mousedowntime;
+    var presstime;
+    $('#example tbody tr').live("touchstart", function(event) {
+        var d = new Date();
+        mousedowntime = d.getTime();
+    });
+    
+    $('#example tbody tr').live("touchend", function(event) {
+        var d = new Date();
+        presstime = d.getTime() - mousedowntime;
+        patient_id = $(this).text();
+        patient_id = patient_id.substr(0, 10);
+        
+        if (presstime < 1000) {
+            console.log("window.name 0");
+            window.name = getWindowNameByID(patient_id, "0000000000000"); //0000000000000 for new visit, visit_id for old
+            setTimeout(function(){window.location="sheet.html";}, 250)
+        }
+        else {
+            deleteRecordInPatientDB(patient_id);
+            //alert("DELETED");
+            
+        }
+    });
+
+                /*
+                $('#example tbody tr').live('click', function (event) {
+                    patient_id = $(this).text();
+                    patient_id = patient_id.substr(0, 10);
+                    console.log("window.name 0");
+                    window.name = getWindowNameByID(patient_id, "0000000000000"); //0000000000000 for new visit, visit_id for old
+                    setTimeout(function(){window.location="sheet.html";}, 250)
+                });
+                */
+
+                $('#patient_visit_list tbody tr').live('click', function (event) {
+                    var patient_name = "";
+                    patient_id = $(this).text();
+                    patient_id = patient_id.substr(0, 10);
+                    patient_id_int = parseInt(patient_id, 10);
+                    
+                    patient_db = sqlitePlugin.openDatabase('MTESTDB', '1.0', 'MTest DB', 100000);
+    
+                    patient_db.transaction(
+                        function (tx) {
+                            tx.executeSql("SELECT * FROM patients WHERE id=?;", [patient_id_int], patientNameDataHandler33, function(e){});
+                        }
+                    );		
+
+                    function patientNameDataHandler33(transaction, results){
+                        //console.log("get patient name: " + results.rows.length + " rows");
+                        var row = results.rows.item(0);
+                        patient_name = row['firstname'] + " " + row['lastname'];
+                        //console.log("name inside = " + patient_name);
+                    }
+                                        
+                    setTimeout(function(){popUpPatientVisitListDialog2(patient_id, patient_name);}, 200);
+                    //console.log("name outside = " + patient_name);
+                    
+                });
+
+
+
+                //var mousedowntime;
+                //var presstime;
+                $('#patient_visit_list2 tbody tr').live("touchstart", function(event) {
+                    var d = new Date();
+                    mousedowntime = d.getTime();
+                });
+                
+                $('#patient_visit_list2 tbody tr').live("touchend", function(event) {
+                    //console.log("fire");
+                    var d = new Date();
+                    presstime = d.getTime() - mousedowntime;
+                    visit_id = $(this).text();
+                    visit_id = visit_id.substr(0, 13);
+                    
+                    if (presstime < 1000) {
+
+                        console.log("#patient_visit_list2 DB row click handler. Visit_id = " + visit_id);
+                        window.name = getWindowNameByID(patient_id, visit_id); //0000000000000 for new visit, visit_id for old
+                        setTimeout(function(){window.location="sheet.html";}, 250); //NEED TO CHANGE THIS SO IT LOADS PREEXISTING DATA
+                    }
+                    else {
+                        //console.log("Delete visit record. Visit_id = " + visit_id);
+                        //alert("RECORD DELETED");
+                        deleteRecordInVisitDB(visit_id);
+                        //alert("no");
+                        
+                    }
+                });
+    
+                /*
+                $('#patient_visit_list2 tbody tr').live('click', function (event) {
+                    visit_id = $(this).text();
+                    visit_id = visit_id.substr(0, 13);
+                    console.log("#patient_visit_list2 DB row click handler. Visit_id = " + visit_id);
+                    window.name = getWindowNameByID(patient_id, visit_id); //0000000000000 for new visit, visit_id for old
+                    setTimeout(function(){window.location="sheet.html";}, 250); //NEED TO CHANGE THIS SO IT LOADS PREEXISTING DATA
+                });
+                */
+                
+                //console.log("index.html : deviceready() end");
             }
             
-            // MOVED DIALOG SCRIPTS TO SEPARATE JS FILE
+        // MOVED DIALOG SCRIPTS TO SEPARATE JS FILE
             
-            </script>
+        </script>
         
         <!-- Set the event listener that signals initialisation complete. Your app can now be run. -->
-        <script>document.addEventListener("deviceready", this.deviceready, false);
-            //onDeviceReady(); //I used this for debugging on non-mobile device
-            </script>
+        <script>
+            document.addEventListener("deviceready", this.deviceready, false);
+        </script>
         
     </body>
 </html>

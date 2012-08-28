@@ -38,7 +38,15 @@
 	background-color: white;	
 }
 
-.movement_dialog_image_description{
+.movement_dialog_image_description_one{
+	width:100%;
+	height:30px;
+	line-height:30px;
+	font-size:20px;
+	background-color: lightgreen;
+	float: left;	
+}
+.movement_dialog_image_description_two{
 	width:50%;
 	height:30px;
 	line-height:30px;
@@ -46,6 +54,15 @@
 	background-color: lightgreen;
 	float: left;	
 }
+.movement_dialog_image_description_three{
+	width:33%;
+	height:30px;
+	line-height:30px;
+	font-size:20px;
+	background-color: lightgreen;
+	float: left;	
+}
+
 
 .movement_dialog_score_boxes {
 	width:100%;

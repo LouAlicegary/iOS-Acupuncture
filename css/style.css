@@ -112,7 +112,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   float: left;
   width: 100%;
   height: 387px;
-  background: pink;
+  background: white;
   color: white;
   /*text-align: center;*/
 }
@@ -248,10 +248,10 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 
 .grid-rating_pre_box_jammed_together_tall_left {
   float: left;
-  width: 17px;
+  width: 19px;
   height: 22px;
   margin-top: 17px;
-  margin-left: 15px;
+  margin-left: 0px;
   margin-bottom: 17px;
   margin-right: 0px;
   border-style:solid;
@@ -263,16 +263,18 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   color:black;
   background-color:white;
   font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
 }
 
 .grid-rating_post_box_jammed_together_tall_left {
   float: left;
-  width: 17px;
+  width: 19px;
   height: 22px;
   margin-top: 17px;
   margin-left: 0px;
   margin-bottom: 17px;
-  margin-right: 0px;
+  margin-right: 11px;
   border-style:solid;
   border-top-width:2px;
   border-bottom-width:2px;
@@ -282,14 +284,16 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   color:black;
   background-color:white;
   font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
 }
 
 .grid-rating_pre_box_jammed_together_short_left {
   float: left;
-  width: 17px;
+  width: 19px;
   height: 22px;
   margin-top: 7px;
-  margin-left: 15px;
+  margin-left: 0px;
   margin-bottom: 7px;
   margin-right: 0px;
   border-style:solid;
@@ -301,16 +305,18 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   color:black;
   background-color:white;
   font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
 }
 
 .grid-rating_post_box_jammed_together_short_left {
   float: left;
-  width: 17px;
+  width: 19px;
   height: 22px;
   margin-top: 7px;
   margin-left: 0px;
   margin-bottom: 7px;
-  margin-right: 0px;
+  margin-right: 11px;
   border-style:solid;
   border-top-width:2px;
   border-bottom-width:2px;
@@ -320,14 +326,16 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   color:black;
   background-color:white;
   font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
 }
 
 .grid-rating_pre_box_jammed_together_tall_right {
   float: left;
-  width: 17px;
+  width: 19px;
   height: 22px;
   margin-top: 17px;
-  margin-left: 0px;
+  margin-left: 11px;
   margin-bottom: 17px;
   margin-right: 0px;
   border-style:solid;
@@ -339,16 +347,18 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   color:black;
   background-color:white;
   font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
 }
 
 .grid-rating_post_box_jammed_together_tall_right {
   float: left;
-  width: 17px;
+  width: 19px;
   height: 22px;
   margin-top: 17px;
   margin-left: 0px;
   margin-bottom: 17px;
-  margin-right: 15px;
+  margin-right: 0px;
   border-style:solid;
   border-top-width:2px;
   border-bottom-width:2px;
@@ -358,14 +368,16 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   color:black;
   background-color:white;
   font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
 }
 
 .grid-rating_pre_box_jammed_together_short_right {
   float: left;
-  width: 17px;
+  width: 19px;
   height: 22px;
   margin-top: 7px;
-  margin-left: 0px;
+  margin-left: 11px;
   margin-bottom: 7px;
   margin-right: 0px;
   border-style:solid;
@@ -377,16 +389,18 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   color:black;
   background-color:white;
   font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
 }
 
 .grid-rating_post_box_jammed_together_short_right {
   float: left;
-  width: 17px;
+  width: 19px;
   height: 22px;
   margin-top: 7px;
   margin-left: 0px;
   margin-bottom: 7px;
-  margin-right: 15px;
+  margin-right: 0px;
   border-style:solid;
   border-top-width:2px;
   border-bottom-width:2px;
@@ -396,14 +410,16 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   color:black;
   background-color:white;
   font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
 }
 
 .grid-rating_pre_box {
   float: left;
-  width: 17px;
+  width: 19px;
   height: 22px;
   margin-top: 2px;
-  margin-left: 25px;
+  margin-left: 23px;
   margin-bottom: 2px;
   border-style:solid;
   border-top-width:2px;
@@ -414,14 +430,18 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   color:black;
   background-color:white;
   font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  padding: 0px;
 }
 
 .grid-rating_post_box {
   float: left;
-  width: 17px;
+  width: 19px;
   height: 22px;
   margin-top: 2px;
-  margin-right: 25px;
+  margin-right: 23px;
   margin-bottom: 2px;
   border-style:solid;
   border-top-width:2px;
@@ -432,14 +452,19 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   color:black;
   background-color:white;
   font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  padding: 0px;
+  
 }
 
 .grid-rating_pre_box_two_wide {
   float: left;
-  width: 17px;
+  width: 19px;
   height: 22px;
   margin-top: 2px;
-  margin-left: 70px;
+  margin-left: 68px;
   margin-bottom: 2px;
   border-style:solid;
   border-top-width:2px;
@@ -450,14 +475,16 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   color:black;
   background-color:white;
   font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
 }
 
 .grid-rating_post_box_two_wide {
   float: left;
-  width: 17px;
+  width: 19px;
   height: 22px;
   margin-top: 2px;
-  margin-right: 70px;
+  margin-right: 68px;
   margin-bottom: 2px;
   border-style:solid;
   border-top-width:2px;
@@ -468,14 +495,16 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   color:black;
   background-color:white;
   font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
 }
 
 .grid-rating_pre_box_two_wide {
   float: left;
-  width: 17px;
+  width: 19px;
   height: 22px;
   margin-top: 2px;
-  margin-left: 70px;
+  margin-left: 68px;
   margin-bottom: 2px;
   border-style:solid;
   border-top-width:2px;
@@ -486,14 +515,16 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   color:black;
   background-color:white;
   font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
 }
 
 .grid-rating_post_box_two_wide {
   float: left;
-  width: 17px;
+  width: 19px;
   height: 22px;
   margin-top: 2px;
-  margin-right: 70px;
+  margin-right: 68px;
   margin-bottom: 2px;
   border-style:solid;
   border-top-width:2px;
@@ -504,14 +535,16 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   color:black;
   background-color:white;
   font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
 }
 
 .grid-rating_pre_box_three_narrow {
   float: left;
-  width: 17px;
+  width: 19px;
   height: 22px;
   margin-top: 2px;
-  margin-left: 10px;
+  margin-left: 8px;
   margin-bottom: 2px;
   border-style:solid;
   border-top-width:2px;
@@ -522,14 +555,16 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   color:black;
   background-color:white;
   font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
 }
 
 .grid-rating_post_box_three_narrow {
   float: left;
-  width: 17px;
+  width: 19px;
   height: 22px;
   margin-top: 2px;
-  margin-right: 10px;
+  margin-right: 8px;
   margin-bottom: 2px;
   border-style:solid;
   border-top-width:2px;
@@ -540,6 +575,8 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   color:black;
   background-color:white;
   font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
 }
 
 .grid-upper_anterior_column_top_row {
@@ -655,7 +692,22 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   border-bottom-right-radius: 10px;
 }
 
-
+.grid-bottom_bar_button_two {
+  float: left;
+  width: 90px;
+  height: 100%;
+  background: pink;
+  color: black;
+  text-align: center;
+  margin-left: 111px;
+  margin-right: 111px;
+  font-size: 26px;
+  line-height: 1.6em;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
 
 
 
@@ -792,32 +844,30 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 
 .heading-patient_information_right_box_pre {
   float: left;
-  width: 20px;
+  width: 40px;
   height: 25px;
   margin-top: 20px;
-  margin-left: 15px;
-  margin-right: 15px;
+  margin-left: 5px;
+  margin-right: 5px;
   margin-bottom: 10px;
-  background: white;
   color: black;
   text-align: center;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 24px;
 }
 
 .heading-patient_information_right_box_post {
   float: left;
-  width: 20px;
+  width: 38px;
   height: 25px;
   margin-top: 20px;
-  margin-left: 15px;
-  margin-right: 15px;
+  margin-left: 5px;
+  margin-right: 5px;
   margin-bottom: 10px;
-  background: white;
   color: black;
-  text-align:center;
+  text-align: center;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 24px;
 }
 
 .heading-vertical_margin {
@@ -872,4 +922,126 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   /*font-weight:bold;*/
   display:inline;
   vertical-align:middle;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.patient_sheet {
+	width: 768px;
+  	height: 1004px;
+  	font-family: Verdana, Geneva, sans-serif;
+  	-webkit-text-size-adjust: none;
+  	line-height: 1;  /*This is necessary or else line-height won't work elsewhere due to block/inline relationship*/
+  	background: black;
+  	font-size: 12px;
+  	color: white;
+    text-align: center
+}
+
+.patient_mtest_header {
+	float: left;
+	width: 100%;
+  	height: 100px;
+  	font-family: Verdana, Geneva, sans-serif;
+  	-webkit-text-size-adjust: none;
+  	line-height: 1;  /*This is necessary or else line-height won't work elsewhere due to block/inline relationship*/
+  	background: black;
+  	color: white;
+  	font-size: 22px;
+  	font-weight: bold;
+  	text-align: center;
+    margin-bottom: 200px;
+}
+
+.patient_button {
+  float: left;
+  width: 210px;
+  height: 83px;
+  margin-top: 400px;
+  margin-left: 100px;
+  margin-bottom: 200px;
+  border-style:solid;
+  border-top-width:2px;
+  border-bottom-width:2px;
+  border-left-width:2px;
+  border-right-width:2px;
+  border-color:black;
+  color:black;
+  background-color:white;
+  font-weight: bold;
+}
+
+.patient_button_row {
+  float: left;
+  width: 100%;
+  height: 150px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  color:black;
+  background-color:black;
+  font-weight: bold;
+}
+
+
+.jquery_button {
+    line-height: 40px;
+    font-size: 36px;
+}
+
+
+
+
+.notes_midsection {
+  float: left;
+  width: 100%;
+  height: 799px;
+  background: white;
+}
+
+.notes_index_row {
+  float: left;
+  width: 100%;
+  height: 25px;
+  background: white;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.notes_index_row_odd {
+  float: left;
+  width: 100%;
+  height: 25px;
+  background: lightblue;
+  line-height: 25px;
+}
+
+.notes_index_row_even {
+  float: left;
+  width: 100%;
+  height: 25px;
+  background: lightgreen;
+  line-height: 25px;
 }

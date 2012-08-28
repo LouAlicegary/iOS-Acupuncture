@@ -2,374 +2,370 @@
 <html>
 <head>
     <title>M-Test Acupuncture Application</title>
-
-    <script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
     
-    <!-- The Web Marmalade library must be loaded before any scripts that call its methods. To be safe, load it in the page head -->
-    <script type="text/javascript" charset="utf-8" src="cordova-2.0.0.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/jquery-ui.min.js"></script>
+    
+    <script type="text/javascript" charset="utf-8" src="js/cordova-2.0.0.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/SQLitePlugin.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/Screenshot.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/support.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/db_patient.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/db_visit.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/dialogs.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/data.js"></script>
     
     <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
     <link rel="stylesheet" href="css/movement_dialog.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/point_dialog.css" type="text/css" media="all" />
     <link rel="stylesheet" href="css/patient_info_form.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/themes/cupertino/jquery-ui.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/jquery-ui.css" type="text/css" media="all" />
     
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
     <meta name="format-detection" content="telephone=no" />
     
 </head>
 <body>
+    
+    
+    
   	<div id="YourPageContainer">
-		<div class="grid">
-			<div class="grid-top_bar">
-				<div class="heading-top_spacer">&nbsp;</div>
-				<div class="heading-main_part">
-					<div class="heading-top_of_main_part">
-						<div class="heading-vertical_margin">&nbsp;</div>
-						<div class="heading-mtest_label">M-Test Patient Consultation Sheet</div>	
-						<div class="heading-mtest_label_right_gutter">&nbsp;</div>
-						<div class="heading-date">
-							<div class="heading-date_label">date: </div>
-							<div class="heading-date_content">
-								<!--07/09/2012-->
-								<script type="text/javascript">
-									var currentTime = new Date();
-									var month = currentTime.getMonth() + 1;
-									var day = currentTime.getDate();
-									var year = currentTime.getFullYear();
-									document.write(month + "/" + day + "/" + year);
-                                    console.log("date");
-								</script>
-							</div>	
-						</div>					
-						<div class="heading-vertical_margin">&nbsp;</div>
-					</div>
-					<div class="heading-horizontal_gutter">&nbsp;</div>
-					<div class="heading-bottom_of_main_part"> 
-						<div class="heading-vertical_margin">&nbsp;</div>
-						<div class="heading-left_margin">&nbsp;</div>
-						<div class="heading-ratings_explanation">
-							<img src="images\ratings_explanation.png">
-						</div>
-						<div class="heading-bottom_of_main_part_gutter">&nbsp;</div>
+        <div class="grid">
+            <div class="grid-top_bar">
+                <div class="heading-top_spacer">&nbsp;</div>
+                <div class="heading-main_part">
+                    <div class="heading-top_of_main_part">
+                        <div class="heading-vertical_margin">&nbsp;</div>
+                        <div class="heading-mtest_label">M-Test Patient Consultation Sheet</div>
+                        <div class="heading-mtest_label_right_gutter">&nbsp;</div>
+                        <div class="heading-date">
+                            <div class="heading-date_label">date: </div>
+                            <div id="heading-date_content" class="heading-date_content">X</div>
+                        </div>
+                        <div class="heading-vertical_margin">&nbsp;</div>
+                    </div>
+                    <div class="heading-horizontal_gutter">&nbsp;</div>
+                    <div class="heading-bottom_of_main_part">
+                        <div class="heading-vertical_margin">&nbsp;</div>
+                        <div class="heading-left_margin">&nbsp;</div>
+                        <div class="heading-ratings_explanation">
+                            <img src="images\ratings_explanation.png">
+                                </div>
+                        <div class="heading-bottom_of_main_part_gutter">&nbsp;</div>
 						<div id="patient_info_box" class="heading-patient_information_left_box">
 							<div class="heading-patient_information_label">Name: </div><div id="patient_name" class="heading-patient_information_content">XXXXXXXX, XXXXX</div>&nbsp;&nbsp;<div class="heading-patient_information_label">Sex: </div><div id="patient_sex" class="heading-patient_information_content">X</div>&nbsp;&nbsp;<div class="heading-patient_information_label">Age: </div><div id="patient_age" class="heading-patient_information_content">XXX</div><br/>
 							<div class="heading-patient_information_label">Disorder: </div><div id="patient_disorder" class="heading-patient_information_content">XXXXXX</div><br/>
 							<div class="heading-patient_information_label">C.C.: </div><div id="patient_chiefcomplaint" class="heading-patient_information_content">XXXXXXXXXXXXXXXXX</div>
 						</div>
-						<div class="heading-bottom_of_main_part_gutter">&nbsp;</div>
-						<div class="heading-patient_information_right_box">
-							<div class="heading-patient_information_right_box_pre">10</div>
-							<div class="heading-patient_information_right_box_post">8</div>	
-						</div>
-						<div class="heading-vertical_margin">&nbsp;</div>
-					</div>
-				</div>
-				<div class="heading-bottom_spacer">&nbsp;</div>	
-			</div>
-			
-			<div class="grid-body_section_horizontal_labels">
-				<div class="grid-vertical_margin">&nbsp;</div>
-				<div class="grid-body_top_left_corner">&nbsp;</div>
-				<div class="grid-vertical_gutter">&nbsp;</div>
-			 	<div class="grid-anterior_column">Anterior</div>
-			  	<div class="grid-vertical_gutter">&nbsp;</div>
-			  	<div class="grid-posterior_column">Posterior</div>
-			  	<div class="grid-vertical_gutter">&nbsp;</div>
-			  	<div class="grid-lateral_medial_column">Lateral-Medial</div>
-			  	<div class="grid-vertical_margin">&nbsp;</div>			
-			</div>
-			
-			<div class="grid-upper_body">
-				<div class="grid-vertical_margin">&nbsp;</div>
-				<div class="grid-body_section_vertical_labels">U<br/>P<br/>P<br/>E<br/>R</div>
-				<div class="grid-vertical_gutter">&nbsp;</div>
-			 	<div class="grid-anterior_column">
-			    	<div id="q01" class="grid-upper_anterior_column_top_row">
-			    		<div class="grid-body_image_short"><img src="images\01.png"></div>
-			    		<div id="q01_pre_l" class="grid-rating_pre_box_three_narrow"> </div>
-			    		<div id="q01_post_l" class="grid-rating_post_box_three_narrow"> </div>
-			    		<div id="q01_pre_m" class="grid-rating_pre_box_three_narrow"> </div>
-			    		<div id="q01_post_m" class="grid-rating_post_box_three_narrow"> </div>
-			    		<div id="q01_pre_r" class="grid-rating_pre_box_three_narrow"> </div>
-			    		<div id="q01_post_r" class="grid-rating_post_box_three_narrow"> </div>			    	
-			    	</div>
-			    	<div id="q04"class="grid-anterior_column_middle_rows">
-			    		<div class="grid-body_image_short"><img src="images\04.png"></div>
-			    		<div id="q04_pre_l" class="grid-rating_pre_box"> </div>
-			    		<div id="q04_post_l" class="grid-rating_post_box"> </div>
-			    		<div id="q04_pre_r" class="grid-rating_pre_box"> </div>
-			    		<div id="q04_post_r" class="grid-rating_post_box"> </div>
-			    	</div>
-			    	<div id="q05" class="grid-anterior_column_middle_rows">
-			    		<div class="grid-body_image_short"><img src="images\05.png"></div>
-			    		<div id="q05_pre_l" class="grid-rating_pre_box"> </div>
-			    		<div id="q05_post_l" class="grid-rating_post_box"> </div>
-			    		<div id="q05_pre_r" class="grid-rating_pre_box"> </div>
-			    		<div id="q05_post_r" class="grid-rating_post_box"> </div>
-			    	</div>
-			    	<div id="q12" class="grid-anterior_column_middle_rows">
-			    		<div class="grid-body_image_short"><img src="images\12.png"></div>
-			    		<div id="q12_pre_l" class="grid-rating_pre_box"> </div>
-			    		<div id="q12_post_l" class="grid-rating_post_box"> </div>
-			    		<div id="q12_pre_r" class="grid-rating_pre_box"> </div>
-			    		<div id="q12_post_r" class="grid-rating_post_box"> </div>
-			    	</div>
-			    	<div class="grid-upper_anterior_column_bottom_row">
-			    		LU (LU5, LU9)<br/> 
-			    		LI (LI11, LI2)
-			    	</div>
-			  	</div>
-			  	<div class="grid-vertical_gutter">&nbsp;</div>
-			  	<div class="grid-posterior_column">
-			    	<div id="q02" class="grid-upper_anterior_column_top_row">
-						<div class="grid-body_image_short"><img src="images\02.png"></div>
-			    		<div id="q02_pre_m" class="grid-rating_pre_box_two_wide"> </div>
-			    		<div id="q02_post_m" class="grid-rating_post_box_two_wide"> </div>	
-			    	</div>
-			    	<div id="q06" class="grid-anterior_column_middle_rows">
-			    		<div class="grid-body_image_short"><img src="images\06.png"></div>
-			    		<div id="q06_pre_l" class="grid-rating_pre_box"> </div>
-			    		<div id="q06_post_l" class="grid-rating_post_box"> </div>
-			    		<div id="q06_pre_r" class="grid-rating_pre_box"> </div>
-			    		<div id="q06_post_r" class="grid-rating_post_box"> </div>
-			    	</div>
-			    	<div id="q07" class="grid-anterior_column_middle_rows">
-			    		<div class="grid-body_image_short"><img src="images\07.png"></div>
-			    		<div id="q07_pre_l" class="grid-rating_pre_box"> </div>
-			    		<div id="q07_post_l" class="grid-rating_post_box"> </div>
-			    		<div id="q07_pre_r" class="grid-rating_pre_box"> </div>
-			    		<div id="q07_post_r" class="grid-rating_post_box"> </div>
-			    	</div>
-			    	<div id="q13" class="grid-anterior_column_middle_rows">
-			    		<div class="grid-body_image_short"><img src="images\13.png"></div>
-			    		<div id="q13_pre_l" class="grid-rating_pre_box"> </div>
-			    		<div id="q13_post_l" class="grid-rating_post_box"> </div>
-			    		<div id="q13_pre_r" class="grid-rating_pre_box"> </div>
-			    		<div id="q13_post_r" class="grid-rating_post_box"> </div>
-			    	</div>
-			    	<div class="grid-upper_anterior_column_bottom_row">
-			    		HT (HT9, HT7)<br/> 
-			    		SI (SI3, SI8)
-			    	</div>
-			  	</div>
-			  	<div class="grid-vertical_gutter">&nbsp;</div>
-			  	<div class="grid-lateral_medial_column">
-			    	<div id="q03" class="grid-upper_anterior_column_top_row">
-			    		<div class="grid-body_image_short"><img src="images\03.png"></div>
-			    		<div id="q03_pre_l" class="grid-rating_pre_box_two_wide"> </div>
-			    		<div id="q03_post_l" class="grid-rating_post_box_two_wide"> </div>
-			    		<div id="q03_pre_r" class="grid-rating_pre_box_two_wide"> </div>
-			    		<div id="q03_post_r" class="grid-rating_post_box_two_wide"> </div>		    		
-			    	</div>
-			    	<div id="q08" class="grid-anterior_column_middle_rows2">
-			    		<div class="grid-body_image_short"><img src="images\08.png"></div>
-			    		<div id="q08_pre_l" class="grid-rating_pre_box"> </div>
-			    		<div id="q08_post_l" class="grid-rating_post_box"> </div>
-			    		<div id="q08_pre_r" class="grid-rating_pre_box"> </div>
-			    		<div id="q08_post_r" class="grid-rating_post_box"> </div>		    		
-			    	</div>
-			    	<div id="q10" class="grid-anterior_column_middle_rows2">
-			    		<div class="grid-body_image_short"><img src="images\10.png"></div>
-			    		<div id="q10_pre_l" class="grid-rating_pre_box"> </div>
-			    		<div id="q10_post_l" class="grid-rating_post_box"> </div>
-			    		<div id="q10_pre_r" class="grid-rating_pre_box"> </div>
-			    		<div id="q10_post_r" class="grid-rating_post_box"> </div>	    		
-			    	</div>
-			    	<div id="q09" class="grid-anterior_column_middle_rows2">
-			    		<div class="grid-body_image_short"><img src="images\09.png"></div>
-			    		<div id="q09_pre_l" class="grid-rating_pre_box"> </div>
-			    		<div id="q09_post_l" class="grid-rating_post_box"> </div>
-			    		<div id="q09_pre_r" class="grid-rating_pre_box"> </div>
-			    		<div id="q09_post_r" class="grid-rating_post_box"> </div>	    		
-			    	</div>
-			    	<div id="q11" class="grid-anterior_column_middle_rows2">
-			    		<div class="grid-body_image_short"><img src="images\11.png"></div>
-			    		<div id="q11_pre_l" class="grid-rating_pre_box"> </div>
-			    		<div id="q11_post_l" class="grid-rating_post_box"> </div>
-			    		<div id="q11_pre_r" class="grid-rating_pre_box"> </div>
-			    		<div id="q11_post_r" class="grid-rating_post_box"> </div>		    		
-			    	</div>
-			    	<div id="q14" class="grid-anterior_column_middle_rows2">
-			    		<div class="grid-body_image_short"><img src="images\14.png"></div>
-			    		<div id="q14_pre_l" class="grid-rating_pre_box"> </div>
-			    		<div id="q14_post_l" class="grid-rating_post_box"> </div>
-			    		<div id="q14_pre_r" class="grid-rating_pre_box"> </div>
-			    		<div id="q14_post_r" class="grid-rating_post_box"> </div>		    		
-			    	</div>
-			    	<div id="q15" class="grid-anterior_column_middle_rows2">
-			    		<div class="grid-body_image_short"><img src="images\15.png"></div>
-			    		<div id="q15_pre_l" class="grid-rating_pre_box"> </div>
-			    		<div id="q15_post_l" class="grid-rating_post_box"> </div>
-			    		<div id="q15_pre_r" class="grid-rating_pre_box"> </div>
-			    		<div id="q15_post_r" class="grid-rating_post_box"> </div>		    		
-			    	</div>			  
-			    	<div class="grid-upper_anterior_column_bottom_row">
-			    		PC (PC9, PC7)<br/> 
-			    		TE (TE3, TE10)
-			    	</div>
-			  	</div>
-			  	<div class="grid-vertical_margin">&nbsp;</div>			
-			</div>
-
-			<div class="grid-horizontal_divider">&nbsp;</div>
-
-			<div class="grid-lower_body">
-				<div class="grid-vertical_margin">&nbsp;</div>
-				<div class="grid-body_section_vertical_labels">L<br/>O<br/>W<br/>E<br/>R</div>
-				<div class="grid-vertical_gutter">&nbsp;</div>
-			 	<div class="grid-anterior_column">
-			    	<div class="grid-lower_anterior_column_top_row">
-			    		SP (SP2, SP5)<br/> 
-			    		ST (ST41, ST45)
-			    	</div>
-			    	<div id="q16" class="grid-anterior_column_middle_rows">
-			    		<div class="grid-body_image_short"><img src="images\16.png"></div>
-			    		<div id="q16_pre_l" class="grid-rating_pre_box"> </div>
-			    		<div id="q16_post_l" class="grid-rating_post_box"> </div>
-			    		<div id="q16_pre_r" class="grid-rating_pre_box"> </div>
-			    		<div id="q16_post_r" class="grid-rating_post_box"> </div>	
-			    	</div>
-			    	<div id="q17" class="grid-anterior_column_middle_rows">
-			    		<div class="grid-body_image_short"><img src="images\17.png"></div>
-			    		<div id="q17_pre_l" class="grid-rating_pre_box"> </div>
-			    		<div id="q17_post_l" class="grid-rating_post_box"> </div>
-			    		<div id="q17_pre_r" class="grid-rating_pre_box"> </div>
-			    		<div id="q17_post_r" class="grid-rating_post_box"> </div>	
-			    	</div>
-			    	<div id="q23" class="grid-anterior_column_middle_rows">
-			    		<div class="grid-body_image_short"><img src="images\23.png"></div>
-			    		<div id="q23_pre_l" class="grid-rating_pre_box"> </div>
-			    		<div id="q23_post_l" class="grid-rating_post_box"> </div>
-			    		<div id="q23_pre_r" class="grid-rating_pre_box"> </div>
-			    		<div id="q23_post_r" class="grid-rating_post_box"> </div>	
-			    	</div>
-			    	<div id="q27" class="grid-lower_anterior_column_bottom_row">
-			    		<div class="grid-body_image_tall"><img src="images\27.png"></div>
-			    		<div id="q27_pre_m" class="grid-rating_pre_box_two_wide"> </div>
-			    		<div id="q27_post_m" class="grid-rating_post_box_two_wide"> </div>	
-			    	</div>
-			  	</div>
-			  	<div class="grid-vertical_gutter">&nbsp;</div>
-			  	<div class="grid-posterior_column">
-					<div class="grid-lower_anterior_column_top_row">
-			    		KI (KI7, KI1)<br/> 
-			    		BL (BL67, BL65)
-			    	</div>
-			    	<div id="q18" class="grid-anterior_column_middle_rows">
-			    		<div class="grid-body_image_short"><img src="images\18.png"></div>
-			    		<div id="q18_pre_l" class="grid-rating_pre_box"> </div>
-			    		<div id="q18_post_l" class="grid-rating_post_box"> </div>
-			    		<div id="q18_pre_r" class="grid-rating_pre_box"> </div>
-			    		<div id="q18_post_r" class="grid-rating_post_box"> </div>	
-			    	</div>
-			    	<div id="q19" class="grid-anterior_column_middle_rows">
-			    		<div class="grid-body_image_short"><img src="images\19.png"></div>
-			    		<div id="q19_pre_l" class="grid-rating_pre_box"> </div>
-			    		<div id="q19_post_l" class="grid-rating_post_box"> </div>
-			    		<div id="q19_pre_r" class="grid-rating_pre_box"> </div>
-			    		<div id="q19_post_r" class="grid-rating_post_box"> </div>	
-			    	</div>
-			    	<div id="q24" class="grid-anterior_column_middle_rows">
-			    		<div class="grid-body_image_short"><img src="images\24.png"></div>
-			    		<div id="q24_pre_l" class="grid-rating_pre_box"> </div>
-			    		<div id="q24_post_l" class="grid-rating_post_box"> </div>
-			    		<div id="q24_pre_r" class="grid-rating_pre_box"> </div>
-			    		<div id="q24_post_r" class="grid-rating_post_box"> </div>	
-			    	</div>
-					<div id="q28" class="grid-lower_anterior_column_bottom_row">
-						<div class="grid-body_image_tall"><img src="images\28.png"></div>
-			    		<div id="q28_pre_m" class="grid-rating_pre_box_two_wide"> </div>
-			    		<div id="q28_post_m" class="grid-rating_post_box_two_wide"> </div>	
-					</div>
-			  	</div>
-			  	<div class="grid-vertical_gutter">&nbsp;</div>
-			  	<div class="grid-lateral_medial_column">
-			    	<div class="grid-lower_anterior_column_top_row">
-			    		LR (LR8, LR2)<br/> 
-			    		GB (GB43, GB38)
-			    	</div>
-			    	<div id="q20" class="grid-medial_lateral_column_middle_fat_tall">
-			    		<div class="grid-body_image_fat_tall"><img src="images\20a.png"></div>
-			    		<div id="q20_pre_l" class="grid-rating_pre_box_jammed_together_tall_left"> </div>
-			    		<div id="q20_post_l" class="grid-rating_post_box_jammed_together_tall_left"> </div>
-			    		<div class="grid-number_fat_tall"><img src="images\20_number.png"></div>
-			    		<div id="q20_pre_r" class="grid-rating_pre_box_jammed_together_tall_right"> </div>
-			    		<div id="q0_post_r" class="grid-rating_post_box_jammed_together_tall_right"> </div>
-			    		<div class="grid-body_image_fat_tall"><img src="images\20b.png"></div>
-			    	</div>
-			    	<div id="q21" class="grid-medial_lateral_column_middle_fat_short">
-			    		<div class="grid-body_image_fat_tall"><img src="images\21a.png"></div>
-			    		<div id="q21_pre_l" class="grid-rating_pre_box_jammed_together_short_left"> </div>
-			    		<div id="q21_post_l"class="grid-rating_post_box_jammed_together_short_left"> </div>
-			    		<div class="grid-number_fat_tall"><img src="images\21_number.png"></div>
-			    		<div id="q21_pre_r" class="grid-rating_pre_box_jammed_together_short_right"> </div>
-			    		<div id="q21_post_r" class="grid-rating_post_box_jammed_together_short_right"> </div>
-			    		<div class="grid-body_image_fat_tall"><img src="images\21b.png"></div>				    		
-			    	</div>
-			    	<div id="q22" class="grid-medial_lateral_column_middle_fat_tall">
-			    		<div class="grid-body_image_fat_tall"><img src="images\22a.png"></div>
-			    		<div id="q22_pre_l" class="grid-rating_pre_box_jammed_together_tall_left"> </div>
-			    		<div id="q22_post_l" class="grid-rating_post_box_jammed_together_tall_left"> </div>
-			    		<div class="grid-number_fat_tall"><img src="images\22_number.png"></div>
-			    		<div id="q22_pre_r" class="grid-rating_pre_box_jammed_together_tall_right"> </div>
-			    		<div id="q22_post_r" class="grid-rating_post_box_jammed_together_tall_right"> </div>
-			    		<div class="grid-body_image_fat_tall"><img src="images\22b.png"></div>	
-			    	</div>
-			    	<div id="q25" class="grid-anterior_column_middle_rows2">
-			    		<div class="grid-body_image_short"><img src="images\25.png"></div>
-			    		<div id="q25_pre_l" class="grid-rating_pre_box"> </div>
-			    		<div id="q25_post_l" class="grid-rating_post_box"> </div>
-			    		<div id="q25_pre_r" class="grid-rating_pre_box"> </div>
-			    		<div id="q25_post_r" class="grid-rating_post_box"> </div>			    		
-			    	</div>
-			    	<div id="q26" class="grid-anterior_column_middle_rows2">
-			    		<div class="grid-body_image_short"><img src="images\26.png"></div>
-			    		<div id="q26_pre_l" class="grid-rating_pre_box"> </div>
-			    		<div id="q26_post_l" class="grid-rating_post_box"> </div>
-			    		<div id="q26_pre_r" class="grid-rating_pre_box"> </div>
-			    		<div id="q26_post_r" class="grid-rating_post_box"> </div>		    		
-			    	</div>
-			    	<div id="q29" class="grid-lower_anterior_column_bottom_row2L">
-			    		<div class="grid-body_image_tall"><img src="images\29.png"></div>
-			    		<div id="q29_pre_l" class="grid-rating_pre_box"> </div>
-			    		<div id="q29_post_l" class="grid-rating_post_box"> </div>
-			    		<div id="q29_pre_r" class="grid-rating_pre_box"> </div>
-			    		<div id="q29_post_r" class="grid-rating_post_box"> </div>		    		
-			    	</div>
-			    	<div id="q30" class="grid-lower_anterior_column_bottom_row2R">
-			    		<div class="grid-body_image_tall"><img src="images\30.png"></div>
-			    		<div id="q30_pre_l" class="grid-rating_pre_box"> </div>
-			    		<div id="q30_post_l" class="grid-rating_post_box"> </div>
-			    		<div id="q30_pre_r" class="grid-rating_pre_box"> </div>
-			    		<div id="q30_post_r" class="grid-rating_post_box"> </div>			    		
-			    	</div>
-			  	</div>
-			  	<div class="grid-vertical_margin">&nbsp;</div>			
-			</div>
-			
-			<div class="grid-horizontal_divider">&nbsp;</div>
-			
-			<div class="grid-bottom_bar">
-				<div class="grid-bottom_bar_button_strip">
-					<div id="back_button" class="grid-bottom_bar_button">Back</div>
-					<div class="grid-bottom_bar_button">Save</div>
-					<div class="grid-bottom_bar_button">Print</div>
-				</div>
-			</div>			
-	   	</div>  	
-  </div>
+                        <div class="heading-bottom_of_main_part_gutter">&nbsp;</div>
+                        <div id="q00" class="heading-patient_information_right_box">
+                            <div id="q00_pre_m" class="heading-patient_information_right_box_pre"></div>
+                            <div id="q00_post_m" class="heading-patient_information_right_box_post"></div>
+                        </div>
+                        <div class="heading-vertical_margin">&nbsp;</div>
+                    </div>
+                </div>
+                <div class="heading-bottom_spacer">&nbsp;</div>
+            </div>
+            
+            <div class="grid-body_section_horizontal_labels">
+                <div class="grid-vertical_margin">&nbsp;</div>
+                <div class="grid-body_top_left_corner">&nbsp;</div>
+                <div class="grid-vertical_gutter">&nbsp;</div>
+                <div class="grid-anterior_column">Anterior</div>
+                <div class="grid-vertical_gutter">&nbsp;</div>
+                <div class="grid-posterior_column">Posterior</div>
+                <div class="grid-vertical_gutter">&nbsp;</div>
+                <div class="grid-lateral_medial_column">Lateral-Medial</div>
+                <div class="grid-vertical_margin">&nbsp;</div>
+            </div>
+            
+            <div class="grid-upper_body">
+                <div class="grid-vertical_margin">&nbsp;</div>
+                <div class="grid-body_section_vertical_labels">U<br/>P<br/>P<br/>E<br/>R</div>
+                <div class="grid-vertical_gutter">&nbsp;</div>
+                <div class="grid-anterior_column">
+                    <div id="q01" class="grid-upper_anterior_column_top_row">
+                        <div class="grid-body_image_short"><img src="images\01.png"></div>
+                        <div id="q01_pre_l" class="grid-rating_pre_box_three_narrow"> </div>
+                        <div id="q01_post_l" class="grid-rating_post_box_three_narrow"> </div>
+                        <div id="q01_pre_m" class="grid-rating_pre_box_three_narrow"> </div>
+                        <div id="q01_post_m" class="grid-rating_post_box_three_narrow"> </div>
+                        <div id="q01_pre_r" class="grid-rating_pre_box_three_narrow"> </div>
+                        <div id="q01_post_r" class="grid-rating_post_box_three_narrow"> </div>
+                    </div>
+                    <div id="q04"class="grid-anterior_column_middle_rows">
+                        <div class="grid-body_image_short"><img src="images\04.png"></div>
+                        <div id="q04_pre_l" class="grid-rating_pre_box"> </div>
+                        <div id="q04_post_l" class="grid-rating_post_box"> </div>
+                        <div id="q04_pre_r" class="grid-rating_pre_box"> </div>
+                        <div id="q04_post_r" class="grid-rating_post_box"> </div>
+                    </div>
+                    <div id="q05" class="grid-anterior_column_middle_rows">
+                        <div class="grid-body_image_short"><img src="images\05.png"></div>
+                        <div id="q05_pre_l" class="grid-rating_pre_box"> </div>
+                        <div id="q05_post_l" class="grid-rating_post_box"> </div>
+                        <div id="q05_pre_r" class="grid-rating_pre_box"> </div>
+                        <div id="q05_post_r" class="grid-rating_post_box"> </div>
+                    </div>
+                    <div id="q12" class="grid-anterior_column_middle_rows">
+                        <div class="grid-body_image_short"><img src="images\12.png"></div>
+                        <div id="q12_pre_l" class="grid-rating_pre_box"> </div>
+                        <div id="q12_post_l" class="grid-rating_post_box"> </div>
+                        <div id="q12_pre_r" class="grid-rating_pre_box"> </div>
+                        <div id="q12_post_r" class="grid-rating_post_box"> </div>
+                    </div>
+                    <div id="LU_LI" class="grid-upper_anterior_column_bottom_row">
+                        LU (LU5, LU9)<br/>
+                        LI (LI11, LI2)
+                    </div>
+                </div>
+                <div class="grid-vertical_gutter">&nbsp;</div>
+                <div class="grid-posterior_column">
+                    <div id="q02" class="grid-upper_anterior_column_top_row">
+                        <div class="grid-body_image_short"><img src="images\02.png"></div>
+                        <div id="q02_pre_m" class="grid-rating_pre_box_two_wide"> </div>
+                        <div id="q02_post_m" class="grid-rating_post_box_two_wide"> </div>
+                    </div>
+                    <div id="q06" class="grid-anterior_column_middle_rows">
+                        <div class="grid-body_image_short"><img src="images\06.png"></div>
+                        <div id="q06_pre_l" class="grid-rating_pre_box"> </div>
+                        <div id="q06_post_l" class="grid-rating_post_box"> </div>
+                        <div id="q06_pre_r" class="grid-rating_pre_box"> </div>
+                        <div id="q06_post_r" class="grid-rating_post_box"> </div>
+                    </div>
+                    <div id="q07" class="grid-anterior_column_middle_rows">
+                        <div class="grid-body_image_short"><img src="images\07.png"></div>
+                        <div id="q07_pre_l" class="grid-rating_pre_box"> </div>
+                        <div id="q07_post_l" class="grid-rating_post_box"> </div>
+                        <div id="q07_pre_r" class="grid-rating_pre_box"> </div>
+                        <div id="q07_post_r" class="grid-rating_post_box"> </div>
+                    </div>
+                    <div id="q13" class="grid-anterior_column_middle_rows">
+                        <div class="grid-body_image_short"><img src="images\13.png"></div>
+                        <div id="q13_pre_l" class="grid-rating_pre_box"> </div>
+                        <div id="q13_post_l" class="grid-rating_post_box"> </div>
+                        <div id="q13_pre_r" class="grid-rating_pre_box"> </div>
+                        <div id="q13_post_r" class="grid-rating_post_box"> </div>
+                    </div>
+                    <div id="HT_SI" class="grid-upper_anterior_column_bottom_row">
+                        HT (HT9, HT7)<br/>
+                        SI (SI3, SI8)
+                    </div>
+                </div>
+                <div class="grid-vertical_gutter">&nbsp;</div>
+                <div class="grid-lateral_medial_column">
+                    <div id="q03" class="grid-upper_anterior_column_top_row">
+                        <div class="grid-body_image_short"><img src="images\03.png"></div>
+                        <div id="q03_pre_l" class="grid-rating_pre_box_two_wide"> </div>
+                        <div id="q03_post_l" class="grid-rating_post_box_two_wide"> </div>
+                        <div id="q03_pre_r" class="grid-rating_pre_box_two_wide"> </div>
+                        <div id="q03_post_r" class="grid-rating_post_box_two_wide"> </div>
+                    </div>
+                    <div id="q08" class="grid-anterior_column_middle_rows2">
+                        <div class="grid-body_image_short"><img src="images\08.png"></div>
+                        <div id="q08_pre_l" class="grid-rating_pre_box"> </div>
+                        <div id="q08_post_l" class="grid-rating_post_box"> </div>
+                        <div id="q08_pre_r" class="grid-rating_pre_box"> </div>
+                        <div id="q08_post_r" class="grid-rating_post_box"> </div>
+                    </div>
+                    <div id="q10" class="grid-anterior_column_middle_rows2">
+                        <div class="grid-body_image_short"><img src="images\10.png"></div>
+                        <div id="q10_pre_l" class="grid-rating_pre_box"> </div>
+                        <div id="q10_post_l" class="grid-rating_post_box"> </div>
+                        <div id="q10_pre_r" class="grid-rating_pre_box"> </div>
+                        <div id="q10_post_r" class="grid-rating_post_box"> </div>
+                    </div>
+                    <div id="q09" class="grid-anterior_column_middle_rows2">
+                        <div class="grid-body_image_short"><img src="images\09.png"></div>
+                        <div id="q09_pre_l" class="grid-rating_pre_box"> </div>
+                        <div id="q09_post_l" class="grid-rating_post_box"> </div>
+                        <div id="q09_pre_r" class="grid-rating_pre_box"> </div>
+                        <div id="q09_post_r" class="grid-rating_post_box"> </div>
+                    </div>
+                    <div id="q11" class="grid-anterior_column_middle_rows2">
+                        <div class="grid-body_image_short"><img src="images\11.png"></div>
+                        <div id="q11_pre_l" class="grid-rating_pre_box"> </div>
+                        <div id="q11_post_l" class="grid-rating_post_box"> </div>
+                        <div id="q11_pre_r" class="grid-rating_pre_box"> </div>
+                        <div id="q11_post_r" class="grid-rating_post_box"> </div>
+                    </div>
+                    <div id="q14" class="grid-anterior_column_middle_rows2">
+                        <div class="grid-body_image_short"><img src="images\14.png"></div>
+                        <div id="q14_pre_l" class="grid-rating_pre_box"> </div>
+                        <div id="q14_post_l" class="grid-rating_post_box"> </div>
+                        <div id="q14_pre_r" class="grid-rating_pre_box"> </div>
+                        <div id="q14_post_r" class="grid-rating_post_box"> </div>
+                    </div>
+                    <div id="q15" class="grid-anterior_column_middle_rows2">
+                        <div class="grid-body_image_short"><img src="images\15.png"></div>
+                        <div id="q15_pre_l" class="grid-rating_pre_box"> </div>
+                        <div id="q15_post_l" class="grid-rating_post_box"> </div>
+                        <div id="q15_pre_r" class="grid-rating_pre_box"> </div>
+                        <div id="q15_post_r" class="grid-rating_post_box"> </div>
+                    </div>
+                    <div id="PC_TE" class="grid-upper_anterior_column_bottom_row">
+                        PC (PC9, PC7)<br/>
+                        TE (TE3, TE10)
+                    </div>
+                </div>
+                <div class="grid-vertical_margin">&nbsp;</div>
+            </div>
+            
+            <div class="grid-horizontal_divider">&nbsp;</div>
+            
+            <div class="grid-lower_body">
+                <div class="grid-vertical_margin">&nbsp;</div>
+                <div class="grid-body_section_vertical_labels">L<br/>O<br/>W<br/>E<br/>R</div>
+                <div class="grid-vertical_gutter">&nbsp;</div>
+                <div class="grid-anterior_column">
+                    <div id="SP_ST" class="grid-lower_anterior_column_top_row">
+                        SP (SP2, SP5)<br/>
+                        ST (ST41, ST45)
+                    </div>
+                    <div id="q16" class="grid-anterior_column_middle_rows">
+                        <div class="grid-body_image_short"><img src="images\16.png"></div>
+                        <div id="q16_pre_l" class="grid-rating_pre_box"> </div>
+                        <div id="q16_post_l" class="grid-rating_post_box"> </div>
+                        <div id="q16_pre_r" class="grid-rating_pre_box"> </div>
+                        <div id="q16_post_r" class="grid-rating_post_box"> </div>
+                    </div>
+                    <div id="q17" class="grid-anterior_column_middle_rows">
+                        <div class="grid-body_image_short"><img src="images\17.png"></div>
+                        <div id="q17_pre_l" class="grid-rating_pre_box"> </div>
+                        <div id="q17_post_l" class="grid-rating_post_box"> </div>
+                        <div id="q17_pre_r" class="grid-rating_pre_box"> </div>
+                        <div id="q17_post_r" class="grid-rating_post_box"> </div>
+                    </div>
+                    <div id="q23" class="grid-anterior_column_middle_rows">
+                        <div class="grid-body_image_short"><img src="images\23.png"></div>
+                        <div id="q23_pre_l" class="grid-rating_pre_box"> </div>
+                        <div id="q23_post_l" class="grid-rating_post_box"> </div>
+                        <div id="q23_pre_r" class="grid-rating_pre_box"> </div>
+                        <div id="q23_post_r" class="grid-rating_post_box"> </div>
+                    </div>
+                    <div id="q27" class="grid-lower_anterior_column_bottom_row">
+                        <div class="grid-body_image_tall"><img src="images\27.png"></div>
+                        <div id="q27_pre_m" class="grid-rating_pre_box_two_wide"> </div>
+                        <div id="q27_post_m" class="grid-rating_post_box_two_wide"> </div>
+                    </div>
+                </div>
+                <div class="grid-vertical_gutter">&nbsp;</div>
+                <div class="grid-posterior_column">
+                    <div id="KI_BL" class="grid-lower_anterior_column_top_row">
+                        KI (KI7, KI1)<br/>
+                        BL (BL67, BL65)
+                    </div>
+                    <div id="q18" class="grid-anterior_column_middle_rows">
+                        <div class="grid-body_image_short"><img src="images\18.png"></div>
+                        <div id="q18_pre_l" class="grid-rating_pre_box"> </div>
+                        <div id="q18_post_l" class="grid-rating_post_box"> </div>
+                        <div id="q18_pre_r" class="grid-rating_pre_box"> </div>
+                        <div id="q18_post_r" class="grid-rating_post_box"> </div>
+                    </div>
+                    <div id="q19" class="grid-anterior_column_middle_rows">
+                        <div class="grid-body_image_short"><img src="images\19.png"></div>
+                        <div id="q19_pre_l" class="grid-rating_pre_box"> </div>
+                        <div id="q19_post_l" class="grid-rating_post_box"> </div>
+                        <div id="q19_pre_r" class="grid-rating_pre_box"> </div>
+                        <div id="q19_post_r" class="grid-rating_post_box"> </div>
+                    </div>
+                    <div id="q24" class="grid-anterior_column_middle_rows">
+                        <div class="grid-body_image_short"><img src="images\24.png"></div>
+                        <div id="q24_pre_l" class="grid-rating_pre_box"> </div>
+                        <div id="q24_post_l" class="grid-rating_post_box"> </div>
+                        <div id="q24_pre_r" class="grid-rating_pre_box"> </div>
+                        <div id="q24_post_r" class="grid-rating_post_box"> </div>
+                    </div>
+                    <div id="q28" class="grid-lower_anterior_column_bottom_row">
+                        <div class="grid-body_image_tall"><img src="images\28.png"></div>
+                        <div id="q28_pre_m" class="grid-rating_pre_box_two_wide"> </div>
+                        <div id="q28_post_m" class="grid-rating_post_box_two_wide"> </div>
+                    </div>
+                </div>
+                <div class="grid-vertical_gutter">&nbsp;</div>
+                <div class="grid-lateral_medial_column">
+                    <div id="LR_GB" class="grid-lower_anterior_column_top_row">
+                        LR (LR8, LR2)<br/>
+                        GB (GB43, GB38)
+                    </div>
+                    <div id="q20" class="grid-medial_lateral_column_middle_fat_tall">
+                        <div class="grid-body_image_fat_tall"><img src="images\20a.png"></div>
+                        <div id="q20_pre_l" class="grid-rating_pre_box_jammed_together_tall_left"> </div>
+                        <div id="q20_post_l" class="grid-rating_post_box_jammed_together_tall_left"> </div>
+                        <div class="grid-number_fat_tall"><img src="images\20_number.png"></div>
+                        <div id="q20_pre_r" class="grid-rating_pre_box_jammed_together_tall_right"> </div>
+                        <div id="q20_post_r" class="grid-rating_post_box_jammed_together_tall_right"> </div>
+                        <div class="grid-body_image_fat_tall"><img src="images\20b.png"></div>
+                    </div>
+                    <div id="q21" class="grid-medial_lateral_column_middle_fat_short">
+                        <div class="grid-body_image_fat_tall"><img src="images\21a.png"></div>
+                        <div id="q21_pre_l" class="grid-rating_pre_box_jammed_together_short_left"> </div>
+                        <div id="q21_post_l"class="grid-rating_post_box_jammed_together_short_left"> </div>
+                        <div class="grid-number_fat_tall"><img src="images\21_number.png"></div>
+                        <div id="q21_pre_r" class="grid-rating_pre_box_jammed_together_short_right"> </div>
+                        <div id="q21_post_r" class="grid-rating_post_box_jammed_together_short_right"> </div>
+                        <div class="grid-body_image_fat_tall"><img src="images\21b.png"></div>
+                    </div>
+                    <div id="q22" class="grid-medial_lateral_column_middle_fat_tall">
+                        <div class="grid-body_image_fat_tall"><img src="images\22a.png"></div>
+                        <div id="q22_pre_l" class="grid-rating_pre_box_jammed_together_tall_left"> </div>
+                        <div id="q22_post_l" class="grid-rating_post_box_jammed_together_tall_left"> </div>
+                        <div class="grid-number_fat_tall"><img src="images\22_number.png"></div>
+                        <div id="q22_pre_r" class="grid-rating_pre_box_jammed_together_tall_right"> </div>
+                        <div id="q22_post_r" class="grid-rating_post_box_jammed_together_tall_right"> </div>
+                        <div class="grid-body_image_fat_tall"><img src="images\22b.png"></div>
+                    </div>
+                    <div id="q25" class="grid-anterior_column_middle_rows2">
+                        <div class="grid-body_image_short"><img src="images\25.png"></div>
+                        <div id="q25_pre_l" class="grid-rating_pre_box"> </div>
+                        <div id="q25_post_l" class="grid-rating_post_box"> </div>
+                        <div id="q25_pre_r" class="grid-rating_pre_box"> </div>
+                        <div id="q25_post_r" class="grid-rating_post_box"> </div>
+                    </div>
+                    <div id="q26" class="grid-anterior_column_middle_rows2">
+                        <div class="grid-body_image_short"><img src="images\26.png"></div>
+                        <div id="q26_pre_l" class="grid-rating_pre_box"> </div>
+                        <div id="q26_post_l" class="grid-rating_post_box"> </div>
+                        <div id="q26_pre_r" class="grid-rating_pre_box"> </div>
+                        <div id="q26_post_r" class="grid-rating_post_box"> </div>
+                    </div>
+                    <div id="q29" class="grid-lower_anterior_column_bottom_row2L">
+                        <div class="grid-body_image_tall"><img src="images\29.png"></div>
+                        <div id="q29_pre_l" class="grid-rating_pre_box"> </div>
+                        <div id="q29_post_l" class="grid-rating_post_box"> </div>
+                        <div id="q29_pre_r" class="grid-rating_pre_box"> </div>
+                        <div id="q29_post_r" class="grid-rating_post_box"> </div>
+                    </div>
+                    <div id="q30" class="grid-lower_anterior_column_bottom_row2R">
+                        <div class="grid-body_image_tall"><img src="images\30.png"></div>
+                        <div id="q30_pre_l" class="grid-rating_pre_box"> </div>
+                        <div id="q30_post_l" class="grid-rating_post_box"> </div>
+                        <div id="q30_pre_r" class="grid-rating_pre_box"> </div>
+                        <div id="q30_post_r" class="grid-rating_post_box"> </div>
+                    </div>
+                </div>
+                <div class="grid-vertical_margin">&nbsp;</div>
+            </div>
+            
+            <div class="grid-horizontal_divider">&nbsp;</div>
+            
+            <div class="grid-bottom_bar">
+                <div class="grid-bottom_bar_button_strip">
+                    <div id="back_button" class="grid-bottom_bar_button">Back</div>
+                    <div id="save_button" class="grid-bottom_bar_button">Save</div>
+                    <div id="notes_button" class="grid-bottom_bar_button">Notes</div>
+                </div>
+            </div>
+        </div>
+    </div>
   
   	<div id="new_movement_dialog" class="movement_dialog" title="Dialog Title" style="display:none">
   		<div id="movement_dialog_header" class="movement_dialog_header">..........</div>
-  		<div id="movement_dialog_image" class="movement_dialog_image"><img src="images/02-big.png"></div>
-  		<div class="movement_dialog_image_description_container">
-  			<div class="movement_dialog_image_description">Left Arm</div>
-  			<div class="movement_dialog_image_description">Right Arm</div>
+  		<div id="movement_dialog_image" class="movement_dialog_image"></div>
+  		<div id="movement_dialog_image_description_container" class="movement_dialog_image_description_container">
+  			<div class="movement_dialog_image_description_two">Left Arm</div>
+  			<div class="movement_dialog_image_description_two">Right Arm</div>
   		</div>
   		<div id="movement_dialog_score_boxes" class="movement_dialog_score_boxes">
   			<!--<div id="left_pre" class="movement-rating_pre_box_two_wide"></div>
@@ -379,15 +375,22 @@
   		</div>
   		<div class="movement_dialog_notes_box"><textarea name="notes" id="movement_notes" placeholder="Insert notes here" rows="3" onfocus="window.scrollTo(0, 0);"></textarea></div>	
   	</div>
-   
+
+
+  	<div id="new_point_dialog" class="new_point_dialog" title="Dialog Title" style="display:none">
+  		<div id="point_dialog_header" class="point_dialog_header">Location of XX and XX points</div>
+  		<div id="point_dialog_image" class="point_dialog_image"><img src="images/LR_GB.png"></div>
+  	</div>
+    
+    
 	<div id="new_patient_dialog" style="display:none">
 		<div class="patient_info_header">Patient Information</div>
 		<div id="form1" class="form_container">
 			<!--Onfocus events prevent scrolling when input clicked--> 
 			<!--(iOS wants to scroll b/c KB decreases effective window height)-->
-			<fieldset class="image_fieldset">
-				<img src="patient_photo.png">
-			</fieldset>
+            <fieldset id="image_fieldset" class="image_fieldset">
+                <img id="patient_image" src="images/patient_photo.png">
+            </fieldset>
 			<fieldset>
 				<p class="first">
 					<label for="name">First Name</label>
@@ -439,178 +442,62 @@
   <!-- Load your app script here. -->
   <script type="text/javascript" charset="utf-8">
       
-      console.log("pre device ready");
-      
-    // The entry point for your app
     function deviceready() {
-      // Now safe to use the Web Marmalade API
-      	
-        record_id = window.name.substr(0,10);
-      	//alert("record id: " + record_id);
-      	fillInPatientInfo(record_id);
+        //console.log("sheet.html window.name = " + window.name);
+        visit_id = window.name.substr(0,13);
+        //console.log(visit_id);
+        patient_id = window.name.substr(16,10);
+      	fillInPatientInfo(patient_id);
+        
+        if (visit_id == "0000000000000") {
+            initVisitDatabase();
+            visit_id = writeVisitToDb(patient_id);
+            console.log("Write Visit to DB = " + visit_id);
+        }
+        else {
+            console.log("writeVisitToDB() not called. Visit id = " + visit_id);
+            outputVisitFromDbToScreen(visit_id);
+        }
+        
+        
+        fillInVisitDate(visit_id);
+        
         
       	$("#patient_info_box").click(function(event) {
 			popUpPatientDialog(1);
-			//repopulatePatientInfoDialog(window.name);	
         });
       
         //Runs popUpDialog() function below on 1-30 if clicked
 		$(".grid-anterior_column_middle_rows, .grid-anterior_column_middle_rows2, .grid-upper_anterior_column_top_row, .grid-lower_anterior_column_bottom_row, .grid-medial_lateral_column_middle_fat_short, .grid-medial_lateral_column_middle_fat_tall, .grid-lower_anterior_column_bottom_row2L , .grid-lower_anterior_column_bottom_row2R ").click(function(event) {
-			popUpMovementDialog(this.className, this.id);
+			popUpMovementDialog(this.className, this.id, visit_id);
         });
     	
-    	
+        $(".heading-patient_information_right_box").click(function(event) {
+            popUpMovementDialog(this.className, this.id, visit_id);                                             
+        });
+        
+        $(".grid-lower_anterior_column_top_row, .grid-upper_anterior_column_bottom_row").click(function(event) {
+            popUpPointDialog(this.className, this.id);
+        });
+        
     	$("#back_button").click(function(event) {
 			window.history.back();
         });
-    	
+        
+        $("#save_button").click(function(event) {
+            
+            var cordovaRef = window.PhoneGap || window.Cordova || window.cordova; // old to new fallbacks
+            console.log(cordovaRef);
+            cordovaRef.exec(null, null, "Screenshot", "saveScreenshot", []);
+            console.log("Take screenshot");
+            
+        });
+
+    	$("#notes_button").click(function(event) {
+			setTimeout(function(){window.location="notes.html";}, 250)
+        });
     }
     
- 
-    function popUpMovementDialog(the_class, the_id) {
-    	
-    	$("#new_movement_dialog").dialog({
-	     	modal: true,
-	     	height: 550,
-	     	width: 634,
-	     	autoOpen: false,
-	     	resizable: false,
-    		buttons: [{
-        		text: "OK", 
-        		id: "btnOk",
-        		click: function () {
-            		//okCallback();
-			        var movement_number = the_id.substr(1);    		
-					if (movement_number == 1) {
-						document.getElementById(the_id+"_pre_l").innerText = document.getElementById('left_pre').innerText;
-	            		document.getElementById(the_id+"_post_l").innerText = document.getElementById('left_post').innerText;
-	            		document.getElementById(the_id+"_pre_m").innerText = document.getElementById('middle_pre').innerText;
-	            		document.getElementById(the_id+"_post_m").innerText = document.getElementById('middle_post').innerText;
-	            		document.getElementById(the_id+"_pre_r").innerText = document.getElementById('right_pre').innerText;
-	            		document.getElementById(the_id+"_post_r").innerText = document.getElementById('right_post').innerText;			
-					}
-					else if (movement_number == 2 || movement_number == 27 || movement_number == 28) {
-	            		document.getElementById(the_id+"_pre_m").innerText = document.getElementById('middle_pre').innerText;
-	            		document.getElementById(the_id+"_post_m").innerText = document.getElementById('middle_post').innerText;						
-					}
-					else {
-						document.getElementById(the_id+"_pre_l").innerText = document.getElementById('left_pre').innerText;
-	            		document.getElementById(the_id+"_post_l").innerText = document.getElementById('left_post').innerText;
-	            		document.getElementById(the_id+"_pre_r").innerText = document.getElementById('right_pre').innerText;
-	            		document.getElementById(the_id+"_post_r").innerText = document.getElementById('right_post').innerText;
-					}            		
-            		
-            		$(this).dialog('destroy');
-        		}, }, {
-        		text: "Cancel",
-        		click: function () {
-            		//cancelCallback();
-            		//document.getElementById('textinput').value="";
-            		$(this).dialog('close');
-        		},
-    		}]
-	     });
-	     
-	     $("#new_movement_dialog").dialog('open');
-	     
-	     //$('.ui-dialog-title').hide(); //hides title but keeps thin bar with 'X' close button
-	     $('.ui-widget-header').hide(); //completely hides title bar
-         $('.ui-dialog :button').blur(); // Remove focus on all buttons within the div with class ui-dialog
-         $('.ui-dialog :input').blur(); // Remove initial focus on input elements within the div class ui-dialog KEEP THIS LINE OR NO?
-
-		//alert(the_id); //the_id contains a string like "q04" which would refer to movement 4
-		var movement_number = the_id.substr(1);
-		
-
-		document.getElementById('movement_dialog_image').innerHTML = "<img src=\"images/" + movement_number + "_big.png\">";
-		document.getElementById('movement_dialog_header').innerText = Movement_Descriptions[movement_number-1];
-
-		if (movement_number == 1) {
-			document.getElementById('movement_dialog_score_boxes').innerHTML = 
-				"<div id=\"left_pre\" class=\"movement-rating_pre_box_three_wide\">" + 
-					document.getElementById(the_id+"_pre_l").innerText + "</div>" + 
-				"<div id=\"left_post\" class=\"movement-rating_post_box_three_wide\">" + 
-					document.getElementById(the_id+"_post_l").innerText + "</div>" + 
-				"<div id=\"middle_pre\" class=\"movement-rating_pre_box_three_wide\">" + 
-					document.getElementById(the_id+"_pre_m").innerText + "</div>" + 
-				"<div id=\"middle_post\" class=\"movement-rating_post_box_three_wide\">" + 
-					document.getElementById(the_id+"_post_m").innerText + "</div>" + 
-				"<div id=\"right_pre\" class=\"movement-rating_pre_box_three_wide\">" + 
-					document.getElementById(the_id+"_pre_r").innerText + "</div>" + 					
-				"<div id=\"right_post\" class=\"movement-rating_post_box_three_wide\">" + 
-					document.getElementById(the_id+"_post_r").innerText + "</div>";
-		}
-		else if (movement_number == 2 || movement_number == 27 || movement_number == 28) {
-			document.getElementById('movement_dialog_score_boxes').innerHTML = 
-				"<div id=\"middle_pre\" class=\"movement-rating_pre_box_single\">" + 
-					document.getElementById(the_id+"_pre_m").innerText + "</div>" + 
-				"<div id=\"middle_post\" class=\"movement-rating_post_box_single\">" + 
-					document.getElementById(the_id+"_post_m").innerText + "</div>"; 			
-		}
-		else {
-			document.getElementById('movement_dialog_score_boxes').innerHTML = 
-				"<div id=\"left_pre\" class=\"movement-rating_pre_box_two_wide\">" + 
-					document.getElementById(the_id+"_pre_l").innerText + "</div>" + 
-				"<div id=\"left_post\" class=\"movement-rating_post_box_two_wide\">" + 
-					document.getElementById(the_id+"_post_l").innerText + "</div>" + 
-				"<div id=\"right_pre\" class=\"movement-rating_pre_box_two_wide\">" + 
-					document.getElementById(the_id+"_pre_r").innerText + "</div>" + 
-				"<div id=\"right_post\" class=\"movement-rating_post_box_two_wide\">" + 
-					document.getElementById(the_id+"_post_r").innerText + "</div>";
-		}
-        //document.getElementById('left_pre').innerText = document.getElementById(the_id+"_pre_l").innerText;
-		//document.getElementById('left_post').innerText = document.getElementById(the_id+"_post_l").innerText;
-		//document.getElementById('right_pre').innerText = document.getElementById(the_id+"_pre_r").innerText;
-		//document.getElementById('right_post').innerText = document.getElementById(the_id+"_post_r").innerText;
-    	var mousedowntime;
-	    var presstime;
-	    $(".movement-rating_pre_box_two_wide, .movement-rating_pre_box_three_wide, .movement-rating_pre_box_single").bind("touchstart", function() {
-	        var d = new Date();
-	        mousedowntime = d.getTime();
-	    });
-	    
-	    $(".movement-rating_pre_box_two_wide, .movement-rating_pre_box_three_wide, .movement-rating_pre_box_single").bind("touchend", function() {
-	        var d = new Date();
-	        presstime = d.getTime() - mousedowntime;
-	        if (presstime < 350) {
-				var old = this.innerText;
-				var mod;
-				
-				if (old == "" || old == " ") {
-					mod = 0;
-				}
-				else if (old == 10) {
-					mod = " ";
-				}
-				else {
-					old++; 
-					mod = old % 11;
-				}
-					
-				this.innerText = mod;
-	        }
-	        else {
-				var old = this.innerText; 
-				var mod;
-				if (old == "" || old == " " || old == null) {
-					mod = "10";
-				} 
-				else if (old == 0) {
-					mod = " ";
-				}
-				else {
-					old--;
-					mod = old % 11;
-				}
-				
-				this.innerText = mod;
-	        }
-	    });
-	     
-	}
-
-
-
 
   </script>
   

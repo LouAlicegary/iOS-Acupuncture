@@ -1,9 +1,9 @@
 var patient_db;
 var patientDataArray = [];
 
-var shortName = 'PATIENTDB';
+var shortName = 'MTESTDB';
 var version = '1.0';
-var displayName = 'Patient DB';
+var displayName = 'MTest DB';
 var maxSize = 100000; // in bytes
 
 function initPatientDatabase() {
@@ -11,12 +11,12 @@ function initPatientDatabase() {
 	//alert("init db");
 	
 	try {
-	    if (!window.openDatabase) {
+	    if (!window.sqlitePlugin.openDatabase) {
 	        alert('Local Databases are not supported by your browser. Please use a Webkit browser for this demo');
 	    } 
 	    else {
-	    	//alert("db open");
-	        patient_db = openDatabase(shortName, version, displayName, maxSize);
+	    	//console.log("open patient db");
+	        patient_db = sqlitePlugin.openDatabase(shortName, version, displayName, maxSize);
 	        //alert("db open 2");
 			createPatientTable();
 			//prePopulatePatientDB();
@@ -37,10 +37,9 @@ function initPatientDatabase() {
 
 function createPatientTable(){
 	 
-		//alert("db create");
 		patient_db.transaction(
 			function (tx) {
-				tx.executeSql('CREATE TABLE IF NOT EXISTS patients (id INTEGER NOT NULL PRIMARY KEY, firstname TEXT NOT NULL, lastname TEXT NOT NULL, dob TEXT, sex TEXT, phone TEXT, email TEXT, disorder TEXT, chiefcomplaint TEXT, notes TEXT);', [], patientNullDataHandler, patientErrorHandler);
+				tx.executeSql('CREATE TABLE IF NOT EXISTS patients (id INTEGER NOT NULL PRIMARY KEY, firstname TEXT NOT NULL, lastname TEXT NOT NULL, dob TEXT, sex TEXT, phone TEXT, email TEXT, disorder TEXT, chiefcomplaint TEXT, notes TEXT, imageurl TEXT);', [], patientNullDataHandler, patientErrorHandler);
 	        	//alert("db create 3");
 	        }
 	    );
@@ -51,21 +50,24 @@ function createPatientTable(){
 
 function patientNullDataHandler(){
 	//alert("null data handler");
+    //console.log("Create patient table (if necessary)");
 }
 
 function patientErrorHandler(transaction, error) {	
- 	alert("error handler");
+ 	console.log("error handler");
  	if (error.code==1){
  		// DB Table already exists
+        console.log("DB Table already exists");
  	}
  	else{
-	    alert('Oops.  Error was ' + error.message + ' (Code ' + error.code + ')'); 	
+	    console.log('patientErrorHandler.  Error was ' + error.message + ' (Code ' + error.code + ')');
    	}
     return false;
 }
 
 function writePatientToDb(inString) {
-		var id = Math.round(new Date().getTime()/1000.0);
+        console.log("write patient to db");
+        var id = Math.round(new Date().getTime()/1000.0);
 		inString = id + ":::" + inString;
 		var data = inString.split(":::");
 		addRecordToPatientDB(data);
@@ -75,14 +77,14 @@ function writePatientToDb(inString) {
 
 function addRecordToPatientDB(data){
 
-	//alert("add record to patient db: " + data);
-	patient_db = openDatabase(shortName, version, displayName, maxSize);
+	//console.log("add record to patient db: " + data);
+	patient_db = sqlitePlugin.openDatabase(shortName, version, displayName, maxSize);
 	
 	//alert ("OK");
 	
 	patient_db.transaction(
     	function (tx) {
-			tx.executeSql("INSERT INTO patients(id, firstname, lastname, dob, sex, phone, email, disorder, chiefcomplaint, notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ? )", [data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9]]);
+			tx.executeSql("INSERT INTO patients(id, firstname, lastname, dob, sex, phone, email, disorder, chiefcomplaint, notes, imageurl) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )", [data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10]]);
     		//alert ("OK2");
     	}
 	);	
@@ -91,20 +93,44 @@ function addRecordToPatientDB(data){
 
 function updateRecordInPatientDB(data){
 
-	//alert("add record to patient db: " + data);
-	patient_db = openDatabase(shortName, version, displayName, maxSize);
+	console.log("update record in patient db: " + data);
+	patient_db = sqlitePlugin.openDatabase(shortName, version, displayName, maxSize);
 	
 	patient_db.transaction(
     	function (tx) {
-			tx.executeSql("UPDATE patients SET firstname=?, lastname=?, dob=?, sex=?, phone=?, email=?, disorder=?, chiefcomplaint=?, notes=? WHERE id = ?", [data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[0]], patientNullDataHandler, patientErrorHandler);
-    		//alert("booyah");
+			tx.executeSql("UPDATE patients SET firstname=?, lastname=?, dob=?, sex=?, phone=?, email=?, disorder=?, chiefcomplaint=?, notes=?, imageurl=? WHERE id = ?", [data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], data[1]],
+                function(res) {
+                    //console.log("insertId: " + res.insertId + " -- probably 1");
+                    console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
+                },
+                function(e) {
+                    return console.log("ERROR: " + e.message);
+                });
     	}
 	);	
 
 }
 
 
+function deleteRecordInPatientDB(patient_id){
 
+	console.log("delete record in patient db: " + patient_id);
+	patient_db = sqlitePlugin.openDatabase(shortName, version, displayName, maxSize);
+	
+	patient_db.transaction(
+    	function (tx) {
+			tx.executeSql("DELETE FROM patients WHERE id = ?", [patient_id],
+                function(res) {
+                    //console.log("insertId: " + res.insertId + " -- probably 1");
+                    console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
+                },
+                function(e) {
+                    return console.log("ERROR: " + e.message);
+                });
+    	}
+	);	
+
+}
 	
 	
 /*
@@ -124,7 +150,7 @@ function prePopulatePatientDB(){
 function selectAllPatients(){ 
 
 	//alert("db select ");
-	patient_db = openDatabase(shortName, version, displayName, maxSize);
+	patient_db = sqlitePlugin.openDatabase(shortName, version, displayName, maxSize);
 	//alert("db select ");
 	patient_db.transaction(
 	    function (tx) {
