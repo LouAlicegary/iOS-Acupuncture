@@ -1,0 +1,159 @@
+
+
+/* form 1 */
+	.patient_info_header{
+		display:block;
+		text-align:center;
+		width:768px;
+		font-weight:bold;
+  		font-size:24px;
+  		line-height:1;
+	}
+	.form_container{
+		display:block;
+		width:747px;
+        margin-left: 21px;
+	}
+	#form1{
+		margin:12px 15px;
+		}
+	#form1 img{
+		width:160px;
+		height:200px;
+		border:1px solid #ddd;
+        border-radius: 5px;
+        margin-top: .5em;
+		}
+	#form1 fieldset{
+		margin:0 5px;
+		padding:0;
+		border:none;	
+		float:left;
+		display:inline;
+		width:230px;
+		}		
+	#form1 fieldset.image_fieldset{
+		margin:0 5px;
+		padding:0;
+		border:none;	
+		float:left;
+		display:inline;
+		width:170px;
+        font-size: 20px;
+        font-family: HelveticaNeue-Light, HelveticaNeue, Cabin-Medium;
+		}			
+	#form1 fieldset.large_fieldset{
+		margin:0 5px;
+		padding:0;
+		border:none;	
+		float:left;
+		display:inline;
+		width:724px;
+		}			
+	#form1 p {
+		margin: .5em 0;
+		}	
+	#form1 label{
+		display:block;
+        font-size: 18px;
+        font-family: HelveticaNeue, HelveticaNeue-Light, Cabin-Medium;
+        text-align: left;
+    }	
+    #form1 input {
+        height: 32px;
+        margin-bottom: 2px;
+    }
+    #form1 input, #form1 textarea {
+        font-size: 24px;
+        font-family: HelveticaNeue-Light, HelveticaNeue, Cabin-Medium;
+        color: #cfbdc0;
+        background-color: #504d3b;
+    }
+	#form1 input.first_name, #form1 input.DOB {		
+		width:222px;
+		border:1px solid #ddd;
+		padding:3px;
+		display:inline;
+		}								
+	#form1 input.last_name{		
+		width:304px;
+		border:1px solid #ddd;
+		padding:3px;
+		display:inline;
+		}
+	#form1 input.email{
+		width:544px;
+		border:1px solid #ddd;
+		padding:3px;
+		display:inline;
+		resize: none;
+		}
+    #form1 input.large_input, #form1 textarea{ 
+		width:724px;
+		border:1px solid #ddd;
+		padding:3px;
+		display:inline;
+		resize: none;
+		}
+
+	#labelset {
+        display: block;
+        width: 304px;
+        height: 32px;
+        text-align: right;
+		border:1px solid #ddd;
+        border-radius: 5px;
+        margin: 0px;
+        padding: 3px;
+        margin-bottom: 8px;
+        background-color: #504d3b
+		}
+
+	#form1 .radio_label { 
+        height:32px;
+        width:65px;
+        display:inline;
+        padding-bottom: 0px;
+		margin: 0px 0px 0px 20px;
+        line-height: 32px;
+        float: left;
+        text-align: right;
+		}
+
+	#female, #male {
+        height: 26px;
+        width: 26px;
+        display:inline;
+		margin: 0px 30px 0px 5px; 
+        float: left;
+		}
+
+    #new_patient_back_button {
+        float: left;
+        height: 40px;
+        width: 230px;
+        color: #cfbdc0;
+        background-color: #504d3b;
+        font-size: 24px;
+        line-height: 40px;
+        font-family: HelveticaNeue-Light, HelveticaNeue, Cabin-Medium;
+        border-radius: 5px;
+        margin-left: 6px;
+    }
+    
+    #new_patient_continue_button {
+        float: right;
+        height: 40px;
+        width: 230px;
+        color: #cfbdc0;
+        background-color: #504d3b;
+        font-size: 24px;
+        line-height: 40px;
+        font-family: HelveticaNeue-Light, HelveticaNeue, Cabin-Medium;
+        border-radius: 5px;
+        margin-right: 10px;
+    }
+
+
+
+/* // form 1 */

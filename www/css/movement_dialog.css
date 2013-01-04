@@ -1,0 +1,227 @@
+/* Added user-select code to prevent highlighting on double-click*/
+
+#new_movement_dialog {
+	text-align: center;
+	-webkit-user-select: none;
+    background-color: #dddddd;
+}
+
+#new_movement_dialog .ui-dialog {
+	-webkit-user-select: none;
+    background-color: #dddddd;
+}
+
+#new_movement_dialog .ui-dialog-buttonpane, .ui-widget-content {
+    border: 1px solid #504d3b; 
+    background: #dddddd;
+}
+
+
+#new_movement_dialog .ui-widget button {
+    background-color: #504d3b;
+    color: #9f9a79;
+}
+
+
+#new_movement_dialog textarea {
+	width: 100%;
+	resize:none;
+    border:none;
+    background-color: #dddddd;
+}
+
+
+.movement_dialog_header {
+	width:524px;
+    padding: 10px 54px;
+	height:60px;
+    text-align: left;
+}
+
+.movement_dialog_image {
+	width:100%;
+	height:150px;
+	border:none;
+}
+
+.movement_dialog_image_description_container{
+	width:100%;
+	height:30px;	
+}
+
+.movement_dialog_image_description_one{
+	width:100%;
+	height:30px;
+	line-height:30px;
+	font-size:20px;
+	background-color: lightgreen;
+	float: left;	
+}
+.movement_dialog_image_description_two{
+	width:50%;
+	height:30px;
+	line-height:30px;
+	font-size:20px;
+	background-color: lightgreen;
+	float: left;	
+}
+.movement_dialog_image_description_three{
+	width:33.33%;
+	height:30px;
+	line-height:30px;
+	font-size:20px;
+	background-color: lightgreen;
+	float: left;	
+}
+
+
+.movement_dialog_score_boxes {
+	width:100%;
+	height:95px;	
+	background-color: blue;
+	float: left;
+	-webkit-user-select: none;
+}
+
+
+.movement-rating_pre_box_single {
+  float: left;
+  width: 50px;
+  height: 70px;
+  line-height: 70px;
+  font-size: 36px;
+  font-family: Verdana, Geneva, sans-serif;
+  -webkit-text-size-adjust: none;
+  margin-top: 10px;
+  margin-left: 264px;
+  margin-bottom: 10px;
+  border-style:solid;
+  border-top-width:2px;
+  border-bottom-width:2px;
+  border-left-width:2px;
+  border-right-width:1px;
+  border-color:black;
+  color:black;
+  background-color:white;
+  font-weight: bold;
+}
+
+.movement-rating_post_box_single {
+  float: left;
+  width: 50px;
+  height: 70px;
+  line-height: 70px;
+  font-size: 36px;
+  font-family: Verdana, Geneva, sans-serif;
+  -webkit-text-size-adjust: none;
+  margin-top: 10px;
+  margin-right: 264px;
+  margin-bottom: 10px;
+  border-style:solid;
+  border-top-width:2px;
+  border-bottom-width:2px;
+  border-right-width:2px;
+  border-left-width:1px;
+  border-color:black;
+  color:black;
+  background-color:white;
+  font-weight: bold;
+}
+
+
+
+.movement-rating_pre_box_two_wide {
+  float: left;
+  width: 50px;
+  height: 70px;
+  line-height: 70px;
+  font-size: 36px;
+  font-family: Verdana, Geneva, sans-serif;
+  -webkit-text-size-adjust: none;
+  margin-top: 10px;
+  margin-left: 105px;
+  margin-bottom: 10px;
+  border-style:solid;
+  border-top-width:2px;
+  border-bottom-width:2px;
+  border-left-width:2px;
+  border-right-width:1px;
+  border-color:black;
+  color:black;
+  background-color:white;
+  font-weight: bold;
+}
+
+.movement-rating_post_box_two_wide {
+  float: left;
+  width: 50px;
+  height: 70px;
+  line-height: 70px;
+  font-size: 36px;
+  font-family: Verdana, Geneva, sans-serif;
+  -webkit-text-size-adjust: none;
+  margin-top: 10px;
+  margin-right: 105px;
+  margin-bottom: 10px;
+  border-style:solid;
+  border-top-width:2px;
+  border-bottom-width:2px;
+  border-right-width:2px;
+  border-left-width:1px;
+  border-color:black;
+  color:black;
+  background-color:white;
+  font-weight: bold;
+}
+
+.movement-rating_pre_box_three_wide {
+  float: left;
+  width: 50px;
+  height: 70px;
+  line-height: 70px;
+  font-size: 36px;
+  font-family: Verdana, Geneva, sans-serif;
+  -webkit-text-size-adjust: none;
+  margin-top: 10px;
+  margin-left: 52.67px;
+  margin-bottom: 10px;
+  border-style:solid;
+  border-top-width:2px;
+  border-bottom-width:2px;
+  border-left-width:2px;
+  border-right-width:1px;
+  border-color:black;
+  color:black;
+  background-color:white;
+  font-weight: bold;
+}
+
+.movement-rating_post_box_three_wide {
+  float: left;
+  width: 50px;
+  height: 70px;
+  line-height: 70px;
+  font-size: 36px;
+  font-family: Verdana, Geneva, sans-serif;
+  -webkit-text-size-adjust: none;
+  margin-top: 10px;
+  margin-right: 52.67px;
+  margin-bottom: 10px;
+  border-style:solid;
+  border-top-width:2px;
+  border-bottom-width:2px;
+  border-right-width:2px;
+  border-left-width:1px;
+  border-color:black;
+  color:black;
+  background-color:white;
+  font-weight: bold;
+}
+
+
+
+.movement_dialog_notes_box {
+	width:100%;
+	height:75px;	
+	background-color: #dddddd;
+}

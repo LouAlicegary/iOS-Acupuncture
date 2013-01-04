@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>M-Test Acupuncture Application</title>
+
+        <script type="text/javascript" charset="utf-8" src="js/jquery.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/jquery-ui.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/jquery.dataTables.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/jquery.slides.min.js"></script>
+        
+        <script type="text/javascript" charset="utf-8" src="js/cordova-2.2.0.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/SQLitePlugin.js"></script>
+        
+        <script type="text/javascript" charset="utf-8" src="js/support.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/db_patient.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/db_visit.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/dialogs.js"></script>
+                
+        <link rel="stylesheet" href="css/jquery-ui.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="css/patient_info_form.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="css/demo_table.css" type="text/css" media="all" />
+        
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
+        <meta name="format-detection" content="telephone=no" />
+        
+    </head>
+    
+    <body>
+        <div class="patient_sheet">
+            <div class="patient_frontpage_main_header">M-Test</div>
+            <div class="slides">
+                <div class="slides_container">
+                    <div class="Level_1">
+                        <div class="patient_frontpage_subheader" id="subheader1">by Dr. Yoshito Mukaino</div>
+                        <div class="patient_frontpage_middle">
+                            <div class="patient_frontpage_middle_button" id="new_patient_button">First-Time Patient</div>
+                            <div class="patient_frontpage_middle_button" id="existing_patient_button">Existing Patient</div>
+                            <div class="patient_frontpage_middle_button" id="options_button">Options</div>
+                            <div class="patient_frontpage_middle_dialog" style="display:none">
+                                <div class="dialog_header">Select the patient whose visit you wish to view.</div>
+                                <div class="pvl_container" id="pvl_container">&nbsp;</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Level_2">
+                        <div class="patient_frontpage_subheader" id="subheader2_1" style="display:none"><a href='#1' class='link' id='2-1-1' style='text-decoration:none; color: #9f9a79'>Main > </a>First-Time Patient</div>
+                        <div class="patient_frontpage_subheader" id="subheader2_2" style="display:none"><a href='#1' class='link' id='2-1-2' style='text-decoration:none; color: #9f9a79'>Main > </a>Existing Patient</div>
+                        <div class="patient_frontpage_subheader" id="subheader2_3" style="display:none"><a href='#1' class='link' id='2-1-3' style='text-decoration:none; color: #9f9a79'>Main > </a>Options</div>
+                        <div class="patient_frontpage_middle">
+                            <div class="patient_frontpage_middle_button" id="options_priorvisit_button">View Prior Visit</div>
+                            <div class="patient_frontpage_middle_button" id="options_db_button">Database Management</div>
+                            <div class="patient_frontpage_middle_button" id="options_language_button">Language</div>
+                            <div class="patient_frontpage_middle_dialog">
+                                <div class="dialog_header">Select the patient whose visit you wish to view.</div>
+                                <div class="pvl_container" id="pvl_container2">&nbsp;</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Level_3">
+                        <div class="patient_frontpage_subheader" id="subheader3_1" style="display:none"><a href='#1' class='link' id='3-1-1' style='text-decoration:none; color: #9f9a79'>Main > </a><a href='#2' class='link' id='3-2-1' style='text-decoration:none; color: #9f9a79'>Options > </a>Prior Visit</div>
+                        <div class="patient_frontpage_subheader" id="subheader3_2" style="display:none"><a href='#1' class='link' id='3-1-2' style='text-decoration:none; color: #9f9a79'>Main > </a><a href='#2' class='link' id='3-2-2' style='text-decoration:none; color: #9f9a79'>Options > </a>DB</div>
+                        <div class="patient_frontpage_subheader" id="subheader3_3" style="display:none"><a href='#1' class='link' id='3-1-3' style='text-decoration:none; color: #9f9a79'>Main > </a><a href='#2' class='link' id='3-2-3' style='text-decoration:none; color: #9f9a79'>Options > </a>Language</div>
+                        <div class="patient_frontpage_subheader" id="subheader3_4" style="display:none"><a href='#1' class='link' id='3-1-4' style='text-decoration:none; color: #9f9a79'>Main > </a><a href='#2' class='link' id='3-2-4' style='text-decoration:none; color: #9f9a79'>Options > </a><a href='#3' class='link' id='3-3-4' style='text-decoration:none; color: #9f9a79'>Prior Visit</a></div>
+                        <div class="patient_frontpage_middle">
+                            <div class="patient_frontpage_middle_button" id="options_db_deletepatient_button">Delete Patient</div>
+                            <div class="patient_frontpage_middle_button" id="options_db_deletevisit_button">Delete Visit</div>
+                            <div class="patient_frontpage_middle_button" id="options_language_english_button">English</div>
+                            <div class="patient_frontpage_middle_dialog" style="display:none"></a>
+                                <div class="dialog_header">Select the patient whose visit you wish to view.</div>
+                                <div class="pvl_container" id="pvl_container3">&nbsp;</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Level_4">
+                        <div class="patient_frontpage_subheader" id="subheader4_1" style="display:none"><a href='#1' class='link' id='4-1-1' style='text-decoration:none; color: #9f9a79'>Main > </a><a href='#2' class='link' id='4-2-1' style='text-decoration:none; color: #9f9a79'>Options > </a><a href='#3' class='link' id='4-3-1' style='text-decoration:none; color: #9f9a79'>DB > </a>Delete</div>
+                        <div class="patient_frontpage_subheader" id="subheader4_2" style="display:none"><a href='#1' class='link' id='4-1-2' style='text-decoration:none; color: #9f9a79'>Main > </a><a href='#2' class='link' id='4-2-2' style='text-decoration:none; color: #9f9a79'>Options > </a><a href='#3' class='link' id='4-3-2' style='text-decoration:none; color: #9f9a79'>DB > </a>Delete</div>
+                        <div class="patient_frontpage_subheader" id="subheader4_3" style="display:none"><a href='#1' class='link' id='4-1-3' style='text-decoration:none; color: #9f9a79'>Main > </a><a href='#2' class='link' id='4-2-3' style='text-decoration:none; color: #9f9a79'>Options > </a><a href='#3' class='link' id='4-3-3' style='text-decoration:none; color: #9f9a79'>DB > </a><a href='#4' class='link' id='4-4-3' style='text-decoration:none; color: #9f9a79'>Delete</a></div>
+                        <div class="patient_frontpage_middle">
+                            <div class="patient_frontpage_middle_dialog" style="display:none">
+                                <div class="dialog_header">Select the patient whose visit you wish to view.</div>
+                                <div class="pvl_container" id="pvl_container4">&nbsp;</div>
+                            </div>
+                        </div>
+                        <div id="toast">ONE RECORD DELETED</div>
+                    </div>
+                    <div class="Level_5">
+                        <div class="patient_frontpage_subheader">by Dr. Yoshito Mukaino5</div>
+                        <div class="patient_frontpage_middle">
+                            <div class="patient_frontpage_middle_dialog" style="display:none">
+                                <div class="dialog_header">Select the patient whose visit you wish to view.</div>
+                                <div class="pvl_container" id="pvl_container5">&nbsp;</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="patient_frontpage_bottom">&nbsp;</div>
+        </div>
+    
+                      
+        <!-- Load your app script here. -->
+        <script type="text/javascript" charset="utf-8">
+            
+            // The entry point for your app
+            function deviceready() {
+                console.log("index.html : deviceready() start");
+                
+                
+                //because i call these later on individually, i dont think i need to have these here
+                //$('#existing_patient_table').dataTable();
+                //$('#prior_visit_patient_table').dataTable();
+                //$('#prior_visit_patient_table2').dataTable();
+                //$('#delete_patient_table').dataTable();
+                //$('#delete_visit_patient_table').dataTable();
+                //$('#delete_visit_table').dataTable();
+                
+                initPatientDatabase();
+                
+                $(function() {
+                    // Set starting slide to 1
+                    var startSlide = 1;
+                    // Get slide number if it exists
+                    if (window.location.hash) {
+                        startSlide = window.location.hash.replace('#','');
+                    }
+                  
+                    // Initialize Slides
+                    $('.slides').slides({
+                        next: 'patient_frontpage_middle_button',
+                        start: startSlide,
+                        animationComplete: function(current){
+                            window.location.hash = '#' + current; //Set the slide number as a hash
+                        }
+                    });
+                });
+
+                // Prevent scrolling when dialog pops up (prevents default behavior (scrolling whole page) on touchmove event)
+                document.addEventListener('touchmove', function(e) {
+                    e.preventDefault();
+                });
+                
+                // Prevent scrolling when clicking on input box
+                $("input").live("focus", function(event) {
+                    window.scrollTo(0, 0);
+                    document.documentElement.scrollTop = 0;
+                });
+                
+
+                // Open dialog if "new patient" button clicked
+                $("#new_patient_button").click(function(event) {
+                    popUpNewPatientDialog(0);
+                });
+       
+                // Open sheet.html if "existing patient" button clicked
+                $("#existing_patient_button").click(function(event) {
+                    popUpExistingPatientDialog();
+                });
+
+                $("#options_button").click(function(event) {
+                    popUpOptionsDialog();
+                });
+
+                $("#options_priorvisit_button").click(function(event) {
+                    popUpPriorVisitPatientDialog();
+                });
+                
+                $("#options_db_button").click(function(event) {
+                    popUpDBDialog();
+                });
+                
+                $("#options_language_button").click(function(event) {
+                    popUpLanguageDialog();
+                });
+
+                $("#options_db_deletepatient_button").click(function(event) {
+                    popUpDeletePatientDialog();
+                });
+                
+                $("#options_db_deletevisit_button").click(function(event) {
+                    popUpDeleteVisitPatientDialog();
+                });
+                
+                $("#options_language_english_button").click(function(event) {
+                    //does nothing right now but return to main menu
+                    window.location = 'index.html';
+                });
+
+
+                $("#2-1-1, #2-1-2, #2-1-3, #3-1-1, #3-1-2, #3-1-3, #3-1-4, #4-1-1, #4-1-2").live("touchend myCustomEvent", function(event) {
+                    popUpMainDialog();
+                });
+                
+                $("#3-2-1, #3-2-2, #3-2-3, #3-2-4, #4-2-1, #4-2-2").live("touchend myCustomEvent", function(event) {
+                    popUpOptionsDialog();
+                });
+
+                $("#3-3-4").live("touchend myCustomEvent", function(event) {
+                    popUpPriorVisitPatientDialog();
+                });
+                
+                $("#4-3-3, #4-3-1, #4-3-2").live("touchend myCustomEvent", function(event) {
+                    popUpDBDialog();
+                });
+                
+                $("#4-4-3").live("touchend myCustomEvent", function(event) {
+                    popUpDeleteVisitPatientDialog();
+                });
+                
+                
+
+    
+                var xPos_start = 0;
+                var xPos_moving = 0;
+                var xDiff = 0;
+                var mousedowntime = 0;
+                var presstime = 0;
+
+                $('.patient_sheet').live("touchstart", function(event) {
+                    xPos_start = event.originalEvent.touches[0].pageX;
+                    //console.log("start sheet xPos: " + xPos_start);
+                });
+                
+                $('.patient_sheet').live("touchmove", function(event) {
+                    xPos_moving = event.originalEvent.touches[0].pageX;
+                    xDiff = xPos_moving - xPos_start;
+                    
+                    if (xDiff > 125) {
+                        xPos_start = 99999;
+
+                        var linkstring = $('.patient_frontpage_subheader:visible').html();
+                        //console.log("link string = " + linkstring);
+                        var the_id = linkstring.substr(linkstring.lastIndexOf("id=") + 4, 5);
+                        
+                        fakeClick(event, document.getElementById(the_id)); // fakeClick defined in support.js
+                    }
+                });
+                
+                
+                var patient_id = "";
+                var patient_id_int = 0;
+
+                $('#existing_patient_table tbody tr').live("touchstart", function(event) {
+                    xPos_start = event.originalEvent.touches[0].pageX;
+                    //console.log("start row xPos: " + xPos_start);
+                });
+                
+                $('#existing_patient_table tbody tr').live("touchend", function(event) {
+                    var d = new Date();
+                    presstime = d.getTime() - mousedowntime;
+                    xPos_moving = event.originalEvent.changedTouches[0].pageX;
+                    //console.log("aaa");
+                    xDiff = xPos_moving - xPos_start;
+                    //console.log(xPos_start + " -> " + xPos_moving + " (" + xDiff + ")");
+                    
+                    if ((xDiff < 125) && (xPos_start != 99999)) {
+                        patient_id = $(this).html();
+                        var front_index = patient_id.lastIndexOf("<div id=") + 9;
+                        patient_id = patient_id.substr(front_index, 10);
+                        patient_id_int = parseInt(patient_id, 10);
+                        
+                        //console.log("#existing_patient_table click handler: window.name 0");
+                        window.name = getWindowNameByID(patient_id, "0000000000000"); //0000000000000 for new visit, visit_id for old
+                        setTimeout(function(){window.location="sheet.html";}, 250);                    
+                    }
+                });
+
+
+                $('#prior_visit_patient_table tbody tr').live("touchstart", function(event) {
+                    xPos_start = event.originalEvent.touches[0].pageX;
+                    //console.log("start row xPos: " + xPos_start);
+                });
+                
+                $('#prior_visit_patient_table tbody tr').live("touchend", function(event) {                    
+                    xPos_moving = event.originalEvent.changedTouches[0].pageX;
+                    xDiff = xPos_moving - xPos_start;
+                    if ((xDiff < 125) && (xPos_start != 99999)) {
+                        var patient_name = "";
+                        patient_id = $(this).html();
+                        var front_index = patient_id.lastIndexOf("<div id=") + 9;
+                        patient_id = patient_id.substr(front_index, 10);
+                        patient_id_int = parseInt(patient_id, 10);
+                        
+                        var patient_db = sqlitePlugin.openDatabase('MTESTDB', '1.0', 'MTest DB', 100000);
+        
+                        patient_db.transaction(
+                            function (tx) {
+                                tx.executeSql("SELECT * FROM patients WHERE id=?;", [patient_id_int], patientNameDataHandler33, function(e){});
+                            }
+                        );		
+
+                        function patientNameDataHandler33(transaction, results){
+                            //console.log("get patient name: " + results.rows.length + " rows");
+                            var row = results.rows.item(0);
+                            patient_name = row['firstname'] + " " + row['lastname'];
+                            //console.log("name inside = " + patient_name);
+                            popUpPriorVisitDialog(patient_id, patient_name);
+                        }                   
+                    }
+                });
+               
+                $('#prior_visit_table tbody tr').live("touchstart", function(event) {
+                    xPos_start = event.originalEvent.touches[0].pageX;
+                    //console.log("start row xPos: " + xPos_start);
+                });
+                
+                $('#prior_visit_table tbody tr').live("touchend", function(event) {
+                    xPos_moving = event.originalEvent.changedTouches[0].pageX;
+                    xDiff = xPos_moving - xPos_start;
+                    if ((xDiff < 125) && (xPos_start != 99999)) {
+                        visit_id = $(this).html();
+                        var front_index = visit_id.lastIndexOf("<div id=") + 9;
+                        visit_id = visit_id.substr(front_index, 13);
+                        visit_id_int = parseInt(visit_id, 13);
+                        
+                        if (presstime < 1000) {
+                            //console.log("#priorvisittable DB row click handler. Visit_id = " + visit_id);
+                            window.name = getWindowNameByID(patient_id, visit_id); //0000000000000 for new visit, visit_id for old
+                            setTimeout(function(){window.location="sheet.html";}, 250); //NEED TO CHANGE THIS SO IT LOADS PREEXISTING DATA
+                        }
+                        else {
+                            deleteRecordInVisitDB(visit_id); 
+                        }                  
+                    }
+                });             
+
+
+                $('#delete_patient_table tbody tr').live("touchstart", function(event) {
+                    xPos_start = event.originalEvent.touches[0].pageX;
+                    //console.log("start row xPos: " + xPos_start);
+                });
+                
+                $('#delete_patient_table tbody tr').live("touchend", function(event) {                    
+                    xPos_moving = event.originalEvent.changedTouches[0].pageX;
+                    xDiff = xPos_moving - xPos_start;
+                    if ((xDiff < 125) && (xPos_start != 99999)) {
+                        var patient_name = "";
+                        var patient_id = $(this).html();
+                        var front_index = patient_id.lastIndexOf("<div id=") + 9;
+                        patient_id = patient_id.substr(front_index, 10);
+                        patient_id_int = parseInt(patient_id, 10);
+                        
+                        deleteRecordInPatientDB(patient_id);
+                        
+                        setTimeout(function() {
+                            popUpDeletePatientDialog();
+                            showToast();
+                        }, 200);               
+                    }
+                });   
+
+
+                $('#delete_visit_patient_table tbody tr').live("touchstart", function(event) {
+                    xPos_start = event.originalEvent.touches[0].pageX;
+                    //console.log("start row xPos: " + xPos_start);
+                });
+                
+                $('#delete_visit_patient_table tbody tr').live("touchend", function(event) {                    
+                    xPos_moving = event.originalEvent.changedTouches[0].pageX;
+                    xDiff = xPos_moving - xPos_start;
+                    if ((xDiff < 125) && (xPos_start != 99999)) {
+                        var patient_name;
+                        patient_id = $(this).html();
+                        var front_index = patient_id.lastIndexOf("<div id=") + 9;
+                        patient_id = patient_id.substr(front_index, 10);
+                        patient_id_int = parseInt(patient_id, 10);
+                        
+                        var patient_db = sqlitePlugin.openDatabase('MTESTDB', '1.0', 'MTest DB', 100000);
+        
+                        patient_db.transaction(
+                            function (tx) {
+                                tx.executeSql("SELECT * FROM patients WHERE id=?;", [patient_id_int], patientNameDataHandler33, function(e){});
+                            }
+                        );		
+
+                        function patientNameDataHandler33(transaction, results){
+                            var row = results.rows.item(0);
+                            patient_name = row['firstname'] + " " + row['lastname'];
+                            popUpDeleteVisitDialog(patient_id, patient_name);
+                        }              
+                    }
+                });   
+                
+                
+                $('#delete_visit_patient_table tbody tr').live("touchstart", function(event) {
+                    xPos_start = event.originalEvent.touches[0].pageX;
+                    //console.log("start row xPos: " + xPos_start);
+                });
+                
+                $('#delete_visit_patient_table tbody tr').live("touchend", function(event) {                    
+                    xPos_moving = event.originalEvent.changedTouches[0].pageX;
+                    xDiff = xPos_moving - xPos_start;
+                    if ((xDiff < 125) && (xPos_start != 99999)) {
+                        visit_id = $(this).html();
+                        patient_id = $(this).html();
+                        //console.log("Contents of visit_id = " + visit_id);
+                        
+                        var front_index = visit_id.lastIndexOf("<div id=") + 9;
+                        visit_id = visit_id.substr(front_index, 13);
+                        visit_id_int = parseInt(visit_id, 13);
+                        
+                        var p_front_index = patient_id.indexOf("<div id=") + 9;
+                        patient_id = patient_id.substr(p_front_index, 10);
+                        patient_id_int = parseInt(patient_id, 10);
+                        
+                        deleteRecordInVisitDB(visit_id);
+                        setTimeout(function() {
+                            popUpDeleteVisitDialog(patient_id, "the patient");
+                            showToast(); // showToast() is in support.js
+                        }, 200);            
+                    }
+                });                 
+                
+                
+                
+                
+                
+                
+                //console.log("index.html : deviceready() end");
+            }
+            
+           
+            
+        </script>
+        
+        <!-- Set the event listener that signals initialisation complete. Your app can now be run. -->
+        <script>
+            document.addEventListener("deviceready", this.deviceready, false);
+        </script>
+        
+    </body>
+</html>

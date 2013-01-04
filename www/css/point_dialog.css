@@ -1,0 +1,34 @@
+/* Added user-select code to prevent highlighting on double-click*/
+
+#new_point_dialog {
+	text-align: center;
+	-webkit-user-select: none;
+    background-color: #dddddd;
+}
+
+.ui-dialog-buttonpane {
+	-webkit-user-select: none;
+}
+
+.ui-dialog {
+	-webkit-user-select: none;
+}
+
+#new_point_dialog textarea {
+	width: 99%;
+	resize:none;
+}
+
+
+.point_dialog_header {
+	width:100%;
+	height:50px;
+}
+
+.point_dialog_image {
+	width:100%;
+	height:500px;
+	border:none;
+}
+
+
