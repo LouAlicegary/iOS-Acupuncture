@@ -184,7 +184,6 @@
 			isa = PBXGroup;
 			children = (
 				301BF56E109A69640062928A /* www */,
-				D4CE09031689574300E67EB2 /* libsqlite3.dylib */,
 				301BF52D109A57CC0062928A /* CordovaLib.xcodeproj */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -209,6 +208,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D4CE09031689574300E67EB2 /* libsqlite3.dylib */,
 				D48C6B37168FD6E100D2CD4A /* Cabin-Medium.ttf */,
 				30A0434214DC770100060A13 /* de.lproj */,
 				30A0434514DC770100060A13 /* se.lproj */,

@@ -2,98 +2,123 @@ var patient_data_array;
 
 
 function popUpMainDialog() {
-    console.log("popUpMainDialog() start");
-    $(".patient_frontpage_subheader").hide();
-    $("#subheader1").show();
-    $("#subheader1").css("background-color", "#9f9a79");
-    $("#subheader1").css("color", "#ffffff");
+    //console.log("popUpMainDialog() start");
+    //$(".patient_frontpage_subheader").hide();
     $(".patient_frontpage_middle_button").hide();
     $(".patient_frontpage_middle_dialog").hide();
-    $("#new_patient_button").show();
-    $("#existing_patient_button").show();
-    $("#options_button").show();
+    
+    setTimeout(function(){
+        $("#subheader1").css("background-color", "#9f9a79");
+        $("#subheader1").css("color", "#ffffff");
+        $("#subheader1").show();
+        $("#new_patient_button").show();
+        $("#existing_patient_button").show();
+        $("#options_button").show();
+        $(".patient_frontpage_middle").show();    
+    }, 200);
+    
 }
 
 function popUpNewPatientDialog(calling_page) { // 0 = index.html ; 1 = sheet.html <----obsolete now w/ diff bet divs and dialogs
     
     $('.patient_frontpage_middle_button').hide();
-    $('.patient_frontpage_middle_dialog').show();
-    $('#pvl_container2').load('new_patient.html', function() {});
-    $('.dialog_header').html("Enter the new patient's information.");
-    
-    $(".patient_frontpage_subheader").css("background-color", "#504d3b");
-    //$(".patient_frontpage_subheader").html("<a href='javascript: popUpMainDialog();' style='text-decoration:none; color: #9f9a79'>Main > </a>First-Time Patient");
 
-    $("#subheader2_1").show();
-    $("#subheader2_2").hide();
-    $("#subheader2_3").hide();
-    
-    $(".image_fieldset").live("touchend", function(event) {
 
-        // navigator.camera.getPicture( cameraSuccess, cameraError, [ cameraOptions ] );
-        navigator.camera.getPicture(getPhoto, onFail, {
-            quality: 50,
-            destinationType: Camera.DestinationType.FILE_URI, // // Return image file URI
-            sourceType:Camera.PictureSourceType.CAMERA,
-            targetWidth:160,  // Width in pixels to scale image. Aspect ratio is maintained. Required targetHeight.
-            targetHeight:200  // Height in pixels to scale image. Aspect ratio is maintained. Required targetWidth.
+    $('.patient_frontpage_middle_dialog').show();//$('.patient_frontpage_middle_dialog').hide();
+    //$('.patient_frontpage_subheader').hide(); //css("background-color", "#9F9A79");
+    $('#pvl_container2').load('./html/first_time_patient.html', function() {
+    
+    
+        $('.dialog_header').html("Enter the new patient's information:");
+        $('#first_time_patient input').css('background-color', '#504D3B');
+        $('#first_time_patient input').css('color', '#EEEEEE');
+        $('#first_time_patient textarea').css('background-color', '#504D3B');
+        $('#first_time_patient textarea').css('color', '#EEEEEE');
+        $('#labelset').css('background-color', '#504D3B');
+        $('#first_time_patient .radio_label').css('color', '#EEEEEE');
+        $('#first_time_patient img').css('background-color', '#9F9A79');
+        
+        $('.patient_frontpage_subheader').css("background-color", "#504d3b");
+        $('#subheader2_1').show();
+        $('#subheader2_2').hide();
+        $('#subheader2_3').hide();
+        //$('.patient_frontpage_middle_dialog').show();
+        
+        $('.image_fieldset').live("touchend", function(event) {
+
+            // navigator.camera.getPicture( cameraSuccess, cameraError, [ cameraOptions ] );
+            navigator.camera.getPicture(getPhoto, onFail, {
+                quality: 50,
+                destinationType: Camera.DestinationType.FILE_URI, // // Return image file URI
+                sourceType:Camera.PictureSourceType.CAMERA,
+                targetWidth:160,  // Width in pixels to scale image. Aspect ratio is maintained. Required targetHeight.
+                targetHeight:200  // Height in pixels to scale image. Aspect ratio is maintained. Required targetWidth.
+            });
+            
+            /* navigator.camera.getPicture success function */
+            function getPhoto(imageData)
+            {
+                //console.log("gets here");
+                var cameraImage = document.getElementById('image_fieldset');
+                cameraImage.innerHTML = "<img id=\"patient_image\" src=\"" + imageData + "\">";
+                //cameraImage.src = imageData;
+                //console.log("getPhoto() - cameraImage.src: " + imageData);
+            }
+            /* navigator.camera.getPicture fail function */
+            function onFail(message)
+            {
+                //console.log("camera fail");
+                alert('Failed because: ' + message);
+            }
+                
         });
         
-        /* navigator.camera.getPicture success function */
-        function getPhoto(imageData)
-        {
-            var cameraImage = document.getElementById('image_fieldset');
-            cameraImage.innerHTML = "<img id=\"patient_image\" src=\"" + imageData + "\">";
-            //cameraImage.src = imageData;
-            console.log("getPhoto() - cameraImage.src: " + imageData);
-        }
-        /* navigator.camera.getPicture fail function */
-        function onFail(message)
-        {
-            alert('Failed because: ' + message);
-        }
-            
-    });
-    
-    $("#new_patient_continue_button").live("touchend", function(event) {
-        
-        //DATE PARSER
-        var raw_date = document.getElementById('dob').value;
-        fixed_date = dateParser(raw_date);
-        
-        if (calling_page == 0) {
-            var id;
-            //blank values inserted by me to fill roles of phone and disorder, which were deleted
-            var dataString = document.getElementById('firstname').value + ":::" + document.getElementById('lastname').value + ":::" + fixed_date + ":::" + getSex() + ":::" + "0" + ":::" + document.getElementById('email').value + ":::" + "" + ":::" + document.getElementById('chiefcomplaint').value + ":::" + document.getElementById('notes').value + ":::" + document.getElementById('patient_image').src;
-            id = writePatientToDb(dataString);
-            dataString = "0000000000000" + ":::" + id + ":::" + dataString;
-            window.name = dataString;
-        }
-        else {
-            var data_array = window.name.split(":::");
-            var visit_id = data_array[0];
-            var patient_id = data_array[1];
-            console.log(data_array);
-            
-            var dataString = visit_id + ":::" + patient_id + ":::" + document.getElementById('firstname').value + ":::" + document.getElementById('lastname').value + ":::" + fixed_date + ":::" + getSex() + ":::" + "0" + ":::" + document.getElementById('email').value + ":::" + "" + ":::" + document.getElementById('chiefcomplaint').value + ":::" + document.getElementById('notes').value + ":::" + document.getElementById('patient_image').src;
-            data_array = dataString.split(":::");
-            window.name = dataString;
-            updateRecordInPatientDB(data_array);
-        }
+        $("#new_patient_continue_button").live("touchend", function(event) {
+            //console.log("here?");
+            var calling_page = 0;
+            //DATE PARSER
+            var raw_date = document.getElementById('dob').value;
+            //console.log("raw_date: " + raw_date);
+            fixed_date = dateParser(raw_date);
+            if (calling_page == 0) { //blank values inserted by me to fill roles of phone and disorder, which were deleted
+                //console.log("gets here 1 eventhandler");
+                var dataString = document.getElementById('firstname').value + ":::" + document.getElementById('lastname').value + ":::" + fixed_date + ":::" + getSex('') + ":::" + "0" + ":::" + document.getElementById('email').value + ":::" + "" + ":::" + document.getElementById('chiefcomplaint').value + ":::" + document.getElementById('notes').value + ":::" + document.getElementById('patient_image').src;
+                //console.log("gets here 2 eventhandler");
+                var id = writePatientToDb(dataString);
+                //console.log("dataString pre: " + dataString);
+                dataString = "0000000000000" + ":::" + id + ":::" + dataString;
+                window.name = dataString;
+            }
+            else {
+                //console.log("HOW DID THIS GET CALLED!?!?!?");
+                /*
+                var data_array = window.name.split(":::");
+                var visit_id = data_array[0];
+                var patient_id = data_array[1];
+                //console.log(data_array);
+                
+                var dataString = visit_id + ":::" + patient_id + ":::" + document.getElementById('firstname').value + ":::" + document.getElementById('lastname').value + ":::" + fixed_date + ":::" + getSex('') + ":::" + "0" + ":::" + document.getElementById('email').value + ":::" + "" + ":::" + document.getElementById('chiefcomplaint').value + ":::" + document.getElementById('notes').value + ":::" + document.getElementById('patient_image').src;
+                data_array = dataString.split(":::");
+                window.name = dataString;
+                updateRecordInPatientDB(data_array);
+                */
+            }
 
-        setTimeout(function(){window.location="sheet.html";}, 250);
-    });
+            setTimeout(function(){window.location="./html/sheet.html";}, 250);
+        });
+        
+        $("#new_patient_back_button").live("touchend", function(event) {
+            //does nothing right now but return to main menu
+            //setTimeout(function(){popUpMainDialog();}, 500);
+            setTimeout(function(){window.location = 'index.html';}, 500);
+        });
+        
+        //Prevents scrolling on click of input box
+        $(document).scroll(function(){
+            window.scrollTo(0, 0);
+            document.documentElement.scrollTop = 0;
+        });
     
-    $("#new_patient_back_button").live("touchend", function(event) {
-        //does nothing right now but return to main menu
-        //setTimeout(function(){popUpMainDialog();}, 500);
-        setTimeout(function(){window.location = 'index.html';}, 500);
-    });
-    
-    //Prevents scrolling on click of input box
-    $(document).scroll(function(){
-        window.scrollTo(0, 0);
-        document.documentElement.scrollTop = 0;
     });
     
 }
@@ -102,7 +127,7 @@ function popUpNewPatientDialog(calling_page) { // 0 = index.html ; 1 = sheet.htm
 
 function popUpExistingPatientDialog() {
     	
-    console.log("popUpExistingPatientDialog() start");
+    //console.log("popUpExistingPatientDialog() start");
 
     $(".patient_frontpage_subheader").css("background-color", "#504d3b");
     $(".patient_frontpage_subheader").css("color", "#ffffff");
@@ -128,10 +153,10 @@ function popUpExistingPatientDialog() {
 		}
 	);
     
-    //setTimeout(function() { patient_db.close(function(){console.log('Close PatientListDialog db success.');}, function(e){console.log("Close PatientListDialog db error: " + e);}); console.log("closed db");  }, 1000);
+    //setTimeout(function() { patient_db.close(function(){//console.log('Close PatientListDialog db success.');}, function(e){//console.log("Close PatientListDialog db error: " + e);}); //console.log("closed db");  }, 1000);
     
     function errorHandler3(transaction, error) {
-        console.log('popUpExistingPatientDialog() Error Handler.  Error was ' + error.message + ' (Code ' + error.code + ')');
+        //console.log('popUpExistingPatientDialog() Error Handler.  Error was ' + error.message + ' (Code ' + error.code + ')');
     }
     
 
@@ -163,7 +188,7 @@ function popUpExistingPatientDialog() {
 					var sReturn = obj.aData[ obj.iDataColumn ];
                     var patient_id = sReturn.substr(1, 10);
                     var sex = sReturn.substr(0,1);
-                    //patient_id_int = parseInt(patient_id, 10);
+                    //patient_id_int = parseInt(patient_id);
                     sReturn = "<div id='" + patient_id + "'>" + sex + "</div>";
 					return sReturn;
                     }
@@ -177,7 +202,7 @@ function popUpExistingPatientDialog() {
 
 
 function popUpOptionsDialog() {
-    console.log("popUpOptionsDialog() start");
+    //console.log("popUpOptionsDialog() start");
     $('.patient_frontpage_subheader').css("background-color", "#504d3b");
     //$(".patient_frontpage_subheader").empty().append("<a href='#1' class='link' id='2-1' style='text-decoration:none; color: #9f9a79'>Main > </a>Options");
     $(".patient_frontpage_middle_button").hide();
@@ -217,7 +242,7 @@ function popUpPriorVisitPatientDialog() {
 	);
  
     function errorHandler7(transaction, error) {
-        console.log('popUpPriorVisitPatientDialog() Error Handler.  Error was ' + error.message + ' (Code ' + error.code + ')');
+        //console.log('popUpPriorVisitPatientDialog() Error Handler.  Error was ' + error.message + ' (Code ' + error.code + ')');
     }
     
 	function patientDataSelectHandler7(transaction, results) {
@@ -245,7 +270,7 @@ function popUpPriorVisitPatientDialog() {
 					var sReturn = obj.aData[ obj.iDataColumn ];
                     var patient_id = sReturn.substr(1, 10);
                     var sex = sReturn.substr(0,1);
-                    //patient_id_int = parseInt(patient_id, 10);
+                    //patient_id_int = parseInt(patient_id);
                     sReturn = "<div id='" + patient_id + "'>" + sex + "</div>";
 					return sReturn;
 				} }
@@ -285,7 +310,7 @@ function popUpPriorVisitDialog(patient_id, patient_name) {
 	);
 
     function errorHandler9(transaction, error) {
-        console.log('popUpPriorVisitDialog() Error Handler.  Error was ' + error.message + ' (Code ' + error.code + ')');
+        //console.log('popUpPriorVisitDialog() Error Handler.  Error was ' + error.message + ' (Code ' + error.code + ')');
     }
     
     function patientDataSelectHandler9(transaction, results) {
@@ -295,10 +320,13 @@ function popUpPriorVisitDialog(patient_id, patient_name) {
         for (i=0; i < results.rows.length; i++) {
             row = results.rows.item(i);
             patientVisitDataArray2[i] = new Array(3);
+            //console.log("here for");
             patientVisitDataArray2[i][0] = row['id'];
+            //console.log("here for: " + row['date']);
             patientVisitDataArray2[i][1] = getMDYDate(row['date']);
+            //console.log("here for");
             patientVisitDataArray2[i][2] = getTimeFromDate(row['date'])+row['id'];
-            //console.log(patientVisitDataArray2[i]);
+            //console.log("for loop: " + patientVisitDataArray2[i]);
         }
 
         //console.log("results.rows.length = " + results.rows.length + " patientVisitDataArray/length = " + patientVisitDataArray2.length);
@@ -316,7 +344,7 @@ function popUpPriorVisitDialog(patient_id, patient_name) {
 					var sReturn = obj.aData[ obj.iDataColumn ];
                     var visit_id = sReturn.substr(5, 13);
                     var time = sReturn.substr(0,5);
-                    //patient_id_int = parseInt(patient_id, 10);
+                    //patient_id_int = parseInt(patient_id);
                     sReturn = "<div id='" + visit_id + "'>" + time + "</div>";
 					return sReturn; }
 				}
@@ -338,7 +366,7 @@ function popUpPriorVisitDialog(patient_id, patient_name) {
 
 
 function popUpDBDialog() {
-    console.log("popUpDBDialog() start");
+    //console.log("popUpDBDialog() start");
     $(".patient_frontpage_subheader").css("background-color", "#504d3b");
     //$(".patient_frontpage_subheader").css("color", "#9f9a79");
     //$(".patient_frontpage_subheader").css("font-size", "56px");
@@ -375,7 +403,7 @@ function popUpDeletePatientDialog() {
 	
 	patient_db.transaction(
 	    function (tx) {
-	    	console.log("popUpDeletePatientDialog() - SELECT * FROM patients (dialogs.js)");
+	    	//console.log("popUpDeletePatientDialog() - SELECT * FROM patients (dialogs.js)");
 			tx.executeSql("SELECT * FROM patients;", [], patientDataSelectHandler38, errorHandler38);
 			//setTimeout(function() { return patientDataArray[0];  }, 1000);	
 		}
@@ -383,7 +411,7 @@ function popUpDeletePatientDialog() {
 
 
     function errorHandler38(transaction, error) {
-        console.log('popUpPDeletePatientDialog() Error Handler.  Error was ' + error.message + ' (Code ' + error.code + ')');
+        //console.log('popUpPDeletePatientDialog() Error Handler.  Error was ' + error.message + ' (Code ' + error.code + ')');
     }
 
 	function patientDataSelectHandler38(transaction, results) {
@@ -420,7 +448,7 @@ function popUpDeletePatientDialog() {
 					var sReturn = obj.aData[ obj.iDataColumn ];
                     var patient_id = sReturn.substr(1, 10);
                     var sex = sReturn.substr(0,1);
-                    //patient_id_int = parseInt(patient_id, 10);
+                    //patient_id_int = parseInt(patient_id);
                     sReturn = "<div id='" + patient_id + "'>" + sex + "</div>";
 					return sReturn;
 				} }
@@ -435,8 +463,8 @@ function popUpDeletePatientDialog() {
         $('#delete_patient_table').dataTable().fnAddData(patientDataArray);
         
 	}
-    console.log("close patient_db");
-    patient_db.close();
+    //console.log("close patient_db");
+    //setTimeout(function(){patient_db.close();}, 250);
 }
 
 
@@ -466,7 +494,7 @@ function popUpDeleteVisitPatientDialog() {
 	);	
 
     function errorHandler75(transaction, error) {
-        console.log('popUpDeleteVisitPatientDialog() Error Handler.  Error was ' + error.message + ' (Code ' + error.code + ')');
+        //console.log('popUpDeleteVisitPatientDialog() Error Handler.  Error was ' + error.message + ' (Code ' + error.code + ')');
     }
     
 	function patientDataSelectHandler75(transaction, results) {
@@ -494,7 +522,7 @@ function popUpDeleteVisitPatientDialog() {
 					var sReturn = obj.aData[ obj.iDataColumn ];
                     var patient_id = sReturn.substr(1, 10);
                     var sex = sReturn.substr(0,1);
-                    //patient_id_int = parseInt(patient_id, 10);
+                    //patient_id_int = parseInt(patient_id);
                     sReturn = "<div id='" + patient_id + "'>" + sex + "</div>";
 					return sReturn;
 				} }
@@ -530,7 +558,7 @@ function popUpDeleteVisitDialog(patient_id, patient_name) {
 
 
     function errorHandler93(transaction, error) {
-        console.log('popUpPriorVisitDialog() Error Handler.  Error was ' + error.message + ' (Code ' + error.code + ')');
+        //console.log('popUpPriorVisitDialog() Error Handler.  Error was ' + error.message + ' (Code ' + error.code + ')');
     }
     
     function patientDataSelectHandler93(transaction, results) {
@@ -566,7 +594,7 @@ function popUpDeleteVisitDialog(patient_id, patient_name) {
 					var sReturn = obj.aData[ obj.iDataColumn ];
                     //var visit_id = sReturn.substr(5, 13);
                     //var time = sReturn.substr(0,5);
-                    //patient_id_int = parseInt(patient_id, 10);
+                    //patient_id_int = parseInt(patient_id);
                     //sReturn = "<div id='" + visit_id + "'>" + time + "</div>";
 					sReturn = "<div id='" + patient_id + "'>" + sReturn + "</div>";
                     return sReturn; }
@@ -575,7 +603,7 @@ function popUpDeleteVisitDialog(patient_id, patient_name) {
 					var sReturn = obj.aData[ obj.iDataColumn ];
                     var visit_id = sReturn.substr(5, 13);
                     var time = sReturn.substr(0,5);
-                    //patient_id_int = parseInt(patient_id, 10);
+                    //patient_id_int = parseInt(patient_id);
                     sReturn = "<div id='" + visit_id + "'>" + time + "</div>";
 					return sReturn; }
 				}
@@ -619,204 +647,94 @@ function popUpMovementDialog(the_class, the_id, visit_id) {
         width: 634,
         autoOpen: false,
         resizable: false,
-        buttons: [{
-            text: "OK", 
+        buttons: [
+        {
+            text: "Prev", 
+            id: "btnPrev",
+            click: function () {
+                //okCallback();
+                var movement_number = $(this).html();
+                movement_number = movement_number.substr(movement_number.indexOf("_big.png")-2, 2);
+                movement_number_int = parseInt(movement_number);
+                var the_id = "q" + movement_number;
+                
+                prev_movement_number_int = parseInt(movement_number) - 1;
+                
+                if (movement_number_int == 1) {
+                    prev_movement_number_int = 30;
+                }
+                else if (movement_number_int == 0) {
+                    prev_movement_number_int = 0;
+                }
+                
+                prev_movement_number = padZeros(prev_movement_number_int, 2);
+                prev_the_id = "q" + prev_movement_number;
+                //console.log("mn / vi / ti / pmn = " + movement_number + " " + visit_id + " " + the_id + " " + prev_movement_number);
+                saveMovementDialogInfo(movement_number, visit_id, the_id);
+                setTimeout(function(){populateMovementDialog(prev_movement_number, visit_id, prev_the_id);},250);                
+            }
+        },
+        {
+            text: "Next", 
+            id: "btnNext",
+            click: function () {
+                //okCallback();
+                var movement_number = $(this).html();
+                movement_number = movement_number.substr(movement_number.indexOf("_big.png")-2, 2);
+                movement_number_int = parseInt(movement_number);
+                var the_id = "q" + movement_number;
+                
+                next_movement_number_int = parseInt(movement_number) + 1;
+                
+                if (movement_number_int == 30) {
+                    next_movement_number_int = 1;
+                }
+                else if (movement_number_int == 0) {
+                    next_movement_number_int = 0;
+                }
+                
+                next_movement_number = padZeros(next_movement_number_int, 2);
+                next_the_id = "q" + next_movement_number;
+                //console.log("mn / vi / ti / nmn = " + movement_number + " " + visit_id + " " + the_id + " " + next_movement_number);
+                saveMovementDialogInfo(movement_number, visit_id, the_id);
+                setTimeout(function(){populateMovementDialog(next_movement_number, visit_id, next_the_id);},250);
+            }
+        },
+        {
+            text: "Return to Sheet", 
             id: "btnOk",
             click: function () {
                 //okCallback();
-                var movement_number = the_id.substr(1);    		
-                
-                if (movement_number == 0) {
-                    document.getElementById(the_id+"_pre_m").innerText = document.getElementById('middle_pre').innerText;
-                    document.getElementById(the_id+"_post_m").innerText = document.getElementById('middle_post').innerText;
-
-                    updateSingleRecordInVisitDB("overall_pre", [visit_id, document.getElementById('middle_pre').innerText]);
-                    updateSingleRecordInVisitDB("overall_post", [visit_id, document.getElementById('middle_post').innerText]);
-                    updateSingleRecordInVisitDB("overall_notes", [visit_id, document.getElementById('movement_notes').value]);
-
-                }
-                else if (movement_number == 1) {
-                    document.getElementById(the_id+"_pre_l").innerText = document.getElementById('left_pre').innerText;
-                    document.getElementById(the_id+"_post_l").innerText = document.getElementById('left_post').innerText;
-                    document.getElementById(the_id+"_pre_m").innerText = document.getElementById('middle_pre').innerText;
-                    document.getElementById(the_id+"_post_m").innerText = document.getElementById('middle_post').innerText;
-                    document.getElementById(the_id+"_pre_r").innerText = document.getElementById('right_pre').innerText;
-                    document.getElementById(the_id+"_post_r").innerText = document.getElementById('right_post').innerText;
-                  
-                    //var data = new Array(visit_id, document.getElementById('left_pre').innerText);
-                    updateSingleRecordInVisitDB("m01_pre", [visit_id, document.getElementById('left_pre').innerText]);
-                    updateSingleRecordInVisitDB("m01_post", [visit_id, document.getElementById('left_post').innerText]);
-                    updateSingleRecordInVisitDB("m01a_pre", [visit_id, document.getElementById('middle_pre').innerText]);
-                    updateSingleRecordInVisitDB("m01a_post", [visit_id, document.getElementById('middle_post').innerText]);
-                    updateSingleRecordInVisitDB("m01b_pre", [visit_id, document.getElementById('right_pre').innerText]);
-                    updateSingleRecordInVisitDB("m01b_post", [visit_id, document.getElementById('right_post').innerText]);
-                    updateSingleRecordInVisitDB("m01_notes", [visit_id, document.getElementById('movement_notes').value]);
-                }
-                else if (movement_number == 2 || movement_number == 27 || movement_number == 28) {
-                    document.getElementById(the_id+"_pre_m").innerText = document.getElementById('middle_pre').innerText;
-                    document.getElementById(the_id+"_post_m").innerText = document.getElementById('middle_post').innerText;
-                  
-                    updateSingleRecordInVisitDB("m" + movement_number + "_pre", [visit_id, document.getElementById('middle_pre').innerText]);
-                    updateSingleRecordInVisitDB("m" + movement_number + "_post", [visit_id, document.getElementById('middle_post').innerText]);
-                    updateSingleRecordInVisitDB("m" + movement_number + "_notes", [visit_id, document.getElementById('movement_notes').value]);
-                  
-                }
-                else {
-                    document.getElementById(the_id+"_pre_l").innerText = document.getElementById('left_pre').innerText;
-                    document.getElementById(the_id+"_post_l").innerText = document.getElementById('left_post').innerText;
-                    document.getElementById(the_id+"_pre_r").innerText = document.getElementById('right_pre').innerText;
-                    document.getElementById(the_id+"_post_r").innerText = document.getElementById('right_post').innerText;
-                  
-                    updateSingleRecordInVisitDB("m" + movement_number + "l_pre", [visit_id, document.getElementById('left_pre').innerText]);
-                    updateSingleRecordInVisitDB("m" + movement_number + "l_post", [visit_id, document.getElementById('left_post').innerText]);
-                    updateSingleRecordInVisitDB("m" + movement_number + "r_pre", [visit_id, document.getElementById('right_pre').innerText]);
-                    updateSingleRecordInVisitDB("m" + movement_number + "r_post", [visit_id, document.getElementById('right_post').innerText]);
-                    updateSingleRecordInVisitDB("m" + movement_number + "_notes", [visit_id, document.getElementById('movement_notes').value]);
-                  
-                  
-                }            		
+                var movement_number = $(this).html();
+                movement_number = movement_number.substr(movement_number.indexOf("_big.png")-2, 2);
+                var the_id = "q" + movement_number;
+       		
+                saveMovementDialogInfo(movement_number, visit_id, the_id);
                 
                 $(this).dialog('destroy');
-            }, }, {
-            text: "Cancel",
-            click: function () {
-                //cancelCallback();
-                //document.getElementById('textinput').value="";
-                $(this).dialog('close');
-            },
+            }
         }]
      });
      
-     $("#new_movement_dialog").dialog('open');
+    $("#new_movement_dialog").dialog('open');
      
-     $('.ui-dialog').css("top","130px"); //keeps dialog at top of screen to avoid keyboard
-     $('.ui-dialog').css("-webkit-tap-highlight-color","rgba(0,0,0,0)"); //stop entire dialog box from highlighting on click
-     
-     //$('.ui-dialog-title').hide(); //hides title but keeps thin bar with 'X' close button
-     $('.ui-widget-header').hide(); //completely hides title bar
-     $('.ui-dialog :button').blur(); // Remove focus on all buttons within the div with class ui-dialog
-     $('.ui-dialog :input').blur(); // Remove initial focus on input elements within the div class ui-dialog KEEP THIS LINE OR NO?
-
-    $('.ui-dialog :button').css("background-color", "#504d3b");
-    $('.ui-dialog :button').css("color", "#9f9a79");
+    $('.ui-dialog').css("top","130px"); //keeps dialog at top of screen to avoid keyboard
+    $('.ui-dialog').css("-webkit-tap-highlight-color","rgba(0,0,0,0)"); //stop entire dialog box from highlighting on click
+    $('.ui-widget-header').hide(); //completely hides title bar
+    $('.ui-dialog :button').blur(); // Remove focus on all buttons within the div with class ui-dialog
+    $('.ui-dialog :input').blur(); // Remove initial focus on input elements within the div class ui-dialog KEEP THIS LINE OR NO?
+    //$('.ui-dialog :button').css("background-color", "#ADD8E6");
+    $('.ui-dialog').css("background-color", "#EEEEEE");
+    $('.ui-dialog :button').css("color", "#FFFFFF");
 
 
     //the_id contains a string like "q04" which would refer to movement 4
     var movement_number = the_id.substr(1);
-    movement_number_int = parseInt(movement_number, 10);
-    console.log("Clicked on movement number: " + movement_number);
+    movement_number_int = parseInt(movement_number);
+    //console.log("Clicked on movement number: " + movement_number);
     
-    document.getElementById('movement_dialog_image').innerHTML = "<img src=\"images/" + movement_number + "_big.png\">";
-    document.getElementById('movement_dialog_header').innerText = Movement_Descriptions[movement_number_int];
+    populateMovementDialog(movement_number, visit_id, the_id);
 
-    //CREATE SCORE BOXES DYNAMICALLY
-    if (movement_number_int == 1) {
-        document.getElementById('movement_dialog_score_boxes').innerHTML = 
-            "<div id=\"left_pre\" class=\"movement-rating_pre_box_three_wide\">" + 
-                document.getElementById(the_id+"_pre_l").innerText + "</div>" + 
-            "<div id=\"left_post\" class=\"movement-rating_post_box_three_wide\">" + 
-                document.getElementById(the_id+"_post_l").innerText + "</div>" + 
-            "<div id=\"middle_pre\" class=\"movement-rating_pre_box_three_wide\">" + 
-                document.getElementById(the_id+"_pre_m").innerText + "</div>" + 
-            "<div id=\"middle_post\" class=\"movement-rating_post_box_three_wide\">" + 
-                document.getElementById(the_id+"_post_m").innerText + "</div>" + 
-            "<div id=\"right_pre\" class=\"movement-rating_pre_box_three_wide\">" + 
-                document.getElementById(the_id+"_pre_r").innerText + "</div>" + 					
-            "<div id=\"right_post\" class=\"movement-rating_post_box_three_wide\">" + 
-                document.getElementById(the_id+"_post_r").innerText + "</div>";
-        
-        getSingleNotes(visit_id, movement_number);
-        
-    }
-    else if (movement_number_int == 2 || movement_number_int == 27 || movement_number_int == 28 || movement_number_int == 0) {
-        document.getElementById('movement_dialog_score_boxes').innerHTML = 
-            "<div id=\"middle_pre\" class=\"movement-rating_pre_box_single\">" + 
-                document.getElementById(the_id+"_pre_m").innerText + "</div>" + 
-            "<div id=\"middle_post\" class=\"movement-rating_post_box_single\">" + 
-                document.getElementById(the_id+"_post_m").innerText + "</div>";
-             
-        getSingleNotes(visit_id, movement_number);           
-                                
-    }
-    else {
-        //console.log("here: " + getSingleScore(visit_id, "m03l_pre"));
-        
-        document.getElementById('movement_dialog_score_boxes').innerHTML = 
-            "<div id=\"left_pre\" class=\"movement-rating_pre_box_two_wide\">" + 
-                document.getElementById(the_id+"_pre_l").innerText + "</div>" + 
-            "<div id=\"left_post\" class=\"movement-rating_post_box_two_wide\">" + 
-                document.getElementById(the_id+"_post_l").innerText + "</div>" + 
-            "<div id=\"right_pre\" class=\"movement-rating_pre_box_two_wide\">" + 
-                document.getElementById(the_id+"_pre_r").innerText + "</div>" + 
-            "<div id=\"right_post\" class=\"movement-rating_post_box_two_wide\">" + 
-                document.getElementById(the_id+"_post_r").innerText + "</div>";
-                
-        getSingleNotes(visit_id, movement_number);
-        
-    }
-    
-    var categories = Movement_Categories[movement_number_int].split(";");
-    //console.log(categories);
-    if (categories.length == 1) {
-        document.getElementById('movement_dialog_image_description_container').innerHTML =
-            "<div class=\"movement_dialog_image_description_one\">" + categories[0] + "</div>";
-    }
-    else if (categories.length == 2) {
-        document.getElementById('movement_dialog_image_description_container').innerHTML =
-            "<div class=\"movement_dialog_image_description_two\">" + categories[0] + "</div>" +
-            "<div class=\"movement_dialog_image_description_two\">" + categories[1] + "</div>";
-    }
-    else {
-        document.getElementById('movement_dialog_image_description_container').innerHTML =
-            "<div class=\"movement_dialog_image_description_three\">" + categories[0] + "</div>" +
-            "<div class=\"movement_dialog_image_description_three\">" + categories[1] + "</div>" +
-            "<div class=\"movement_dialog_image_description_three\">" + categories[2] + "</div>";
-    }        
-
-    var mousedowntime;
-    var presstime;
-    $(".movement-rating_pre_box_two_wide, .movement-rating_pre_box_three_wide, .movement-rating_pre_box_single, .movement-rating_post_box_two_wide, .movement-rating_post_box_three_wide, .movement-rating_post_box_single").bind("touchstart", function() {
-        var d = new Date();
-        mousedowntime = d.getTime();
-    });
-    
-    $(".movement-rating_pre_box_two_wide, .movement-rating_pre_box_three_wide, .movement-rating_pre_box_single, .movement-rating_post_box_two_wide, .movement-rating_post_box_three_wide, .movement-rating_post_box_single").bind("touchend", function() {
-        var d = new Date();
-        presstime = d.getTime() - mousedowntime;
-        if (presstime < 350) {
-            var old = this.innerText;
-            var mod;
-            
-            if (old == "" || old == " ") {
-                mod = 0;
-            }
-            else if (old == 10) {
-                mod = " ";
-            }
-            else {
-                old++; 
-                mod = old % 11;
-            }
-                
-            this.innerText = mod;
-        }
-        else {
-            var old = this.innerText; 
-            var mod;
-            if (old == "" || old == " " || old == null) {
-                mod = "10";
-            } 
-            else if (old == 0) {
-                mod = " ";
-            }
-            else {
-                old--;
-                mod = old % 11;
-            }
-            
-            this.innerText = mod;
-        }
-    });
      
 }
     
@@ -843,7 +761,7 @@ function popUpPointDialog(the_class, the_id) {
     
     
     document.getElementById('point_dialog_header').innerHTML = "Location of " + the_id.substr(0,2) + " and " + the_id.substr(3,2) + " points";
-    document.getElementById('point_dialog_image').innerHTML = "<img src=\"images/" + the_id + ".png\">";
+    document.getElementById('point_dialog_image').innerHTML = "<img src=\"../images/" + the_id + ".png\">";
 
     
     $("#new_point_dialog").click(function(event) {
@@ -855,230 +773,100 @@ function popUpPointDialog(the_class, the_id) {
 
 function popUpMovementDialogFromNotes(the_class, the_id, visit_id) { //This can be combined with the other Movement dialog at some point with some small changes
     
-    $("#new_movement_dialog").dialog({
+    $("#new_notes_movement_dialog").dialog({
         modal: true,
         height: 550,
         width: 634,
         autoOpen: false,
         resizable: false,
-        buttons: [{
-            text: "OK", 
+        buttons: [
+        {
+            text: "Prev", 
+            id: "btnPrev",
+            click: function () {
+                //okCallback();
+                var movement_number = $(this).html();
+                movement_number = movement_number.substr(movement_number.indexOf("_big.png")-2, 2);
+                movement_number_int = parseInt(movement_number);
+                var the_id = "q" + movement_number;
+                
+                prev_movement_number_int = parseInt(movement_number) - 1;
+                
+                if (movement_number_int == 1) {
+                    prev_movement_number_int = 30;
+                }
+                else if (movement_number_int == 0) {
+                    prev_movement_number_int = 0;
+                }
+                
+                prev_movement_number = padZeros(prev_movement_number_int, 2);
+                prev_the_id = "q" + prev_movement_number;
+                //console.log("mn / vi / ti / pmn = " + movement_number + " " + visit_id + " " + the_id + " " + prev_movement_number);
+                saveNotesMovementDialogInfo(movement_number, visit_id, the_id);
+                setTimeout(function(){populateNotesMovementDialog(prev_movement_number, visit_id, prev_the_id);},250);                
+            }
+        },
+        {
+            text: "Next", 
+            id: "btnNext",
+            click: function () {
+                //okCallback();
+                var movement_number = $(this).html();
+                movement_number = movement_number.substr(movement_number.indexOf("_big.png")-2, 2);
+                movement_number_int = parseInt(movement_number);
+                var the_id = "q" + movement_number;
+                
+                next_movement_number_int = parseInt(movement_number) + 1;
+                
+                if (movement_number_int == 30) {
+                    next_movement_number_int = 1;
+                }
+                else if (movement_number_int == 0) {
+                    next_movement_number_int = 0;
+                }
+                
+                next_movement_number = padZeros(next_movement_number_int, 2);
+                next_the_id = "q" + next_movement_number;
+                //console.log("mn / vi / ti / nmn = " + movement_number + " " + visit_id + " " + the_id + " " + next_movement_number);
+                saveNotesMovementDialogInfo(movement_number, visit_id, the_id);
+                setTimeout(function(){populateNotesMovementDialog(next_movement_number, visit_id, next_the_id);},250);
+            }
+        },
+        {
+            text: "Return to Notes", 
             id: "btnOk",
             click: function () {
                 //okCallback();
-                var movement_number = the_id.substr(1);    		
-                
-                if (movement_number == 0) {
-                    /*document.getElementById(the_id+"_pre_m").innerText = document.getElementById('middle_pre').innerText;
-                    document.getElementById(the_id+"_post_m").innerText = document.getElementById('middle_post').innerText;*/
-
-                    updateSingleRecordInVisitDB("overall_pre", [visit_id, document.getElementById('middle_pre').innerText]);
-                    updateSingleRecordInVisitDB("overall_post", [visit_id, document.getElementById('middle_post').innerText]);
-                    updateSingleRecordInVisitDB("overall_notes", [visit_id, document.getElementById('movement_notes').value]);
-
-                }
-                else if (movement_number == 1) {
-                    /*document.getElementById(the_id+"_pre_l").innerText = document.getElementById('left_pre').innerText;
-                    document.getElementById(the_id+"_post_l").innerText = document.getElementById('left_post').innerText;
-                    document.getElementById(the_id+"_pre_m").innerText = document.getElementById('middle_pre').innerText;
-                    document.getElementById(the_id+"_post_m").innerText = document.getElementById('middle_post').innerText;
-                    document.getElementById(the_id+"_pre_r").innerText = document.getElementById('right_pre').innerText;
-                    document.getElementById(the_id+"_post_r").innerText = document.getElementById('right_post').innerText;*/
-                  
-                    //var data = new Array(visit_id, document.getElementById('left_pre').innerText);
-                    updateSingleRecordInVisitDB("m01_pre", [visit_id, document.getElementById('left_pre').innerText]);
-                    updateSingleRecordInVisitDB("m01_post", [visit_id, document.getElementById('left_post').innerText]);
-                    updateSingleRecordInVisitDB("m01a_pre", [visit_id, document.getElementById('middle_pre').innerText]);
-                    updateSingleRecordInVisitDB("m01a_post", [visit_id, document.getElementById('middle_post').innerText]);
-                    updateSingleRecordInVisitDB("m01b_pre", [visit_id, document.getElementById('right_pre').innerText]);
-                    updateSingleRecordInVisitDB("m01b_post", [visit_id, document.getElementById('right_post').innerText]);
-                    updateSingleRecordInVisitDB("m01_notes", [visit_id, document.getElementById('movement_notes').value]);
-                }
-                else if (movement_number == 2 || movement_number == 27 || movement_number == 28) {
-                    /*document.getElementById(the_id+"_pre_m").innerText = document.getElementById('middle_pre').innerText;
-                    document.getElementById(the_id+"_post_m").innerText = document.getElementById('middle_post').innerText;*/
-                  
-                    updateSingleRecordInVisitDB("m" + movement_number + "_pre", [visit_id, document.getElementById('middle_pre').innerText]);
-                    updateSingleRecordInVisitDB("m" + movement_number + "_post", [visit_id, document.getElementById('middle_post').innerText]);
-                    updateSingleRecordInVisitDB("m" + movement_number + "_notes", [visit_id, document.getElementById('movement_notes').value]);
-                  
-                }
-                else {
-                    /*document.getElementById(the_id+"_pre_l").innerText = document.getElementById('left_pre').innerText;
-                    document.getElementById(the_id+"_post_l").innerText = document.getElementById('left_post').innerText;
-                    document.getElementById(the_id+"_pre_r").innerText = document.getElementById('right_pre').innerText;
-                    document.getElementById(the_id+"_post_r").innerText = document.getElementById('right_post').innerText;*/
-                  
-                    updateSingleRecordInVisitDB("m" + movement_number + "l_pre", [visit_id, document.getElementById('left_pre').innerText]);
-                    updateSingleRecordInVisitDB("m" + movement_number + "l_post", [visit_id, document.getElementById('left_post').innerText]);
-                    updateSingleRecordInVisitDB("m" + movement_number + "r_pre", [visit_id, document.getElementById('right_pre').innerText]);
-                    updateSingleRecordInVisitDB("m" + movement_number + "r_post", [visit_id, document.getElementById('right_post').innerText]);
-                    updateSingleRecordInVisitDB("m" + movement_number + "_notes", [visit_id, document.getElementById('movement_notes').value]);
-                  
-                  
-                }
-                
-                outputNotes(visit_id);
-                outputOverallPostPreToScreen(visit_id)                     		
+                var movement_number = $(this).html();
+                movement_number = movement_number.substr(movement_number.indexOf("_big.png")-2, 2);
+                var the_id = "q" + movement_number;
+       		
+                saveNotesMovementDialogInfo(movement_number, visit_id, the_id);
                 
                 $(this).dialog('destroy');
-            }, }, {
-            text: "Cancel",
-            click: function () {
-                //cancelCallback();
-                //document.getElementById('textinput').value="";
-                $(this).dialog('close');
-            },
+            }
         }]
      });
      
-     $("#new_movement_dialog").dialog('open');
+    $("#new_notes_movement_dialog").dialog('open');
      
-     $('.ui-dialog').css("-webkit-tap-highlight-color","rgba(0,0,0,0)"); //stop entire dialog box from highlighting on click
-     $('.ui-dialog').css("top","50px"); //keeps dialog at top of screen to avoid keyboard
-     
-     //$('.ui-dialog-title').hide(); //hides title but keeps thin bar with 'X' close button
-     $('.ui-widget-header').hide(); //completely hides title bar
-     $('.ui-dialog :button').blur(); // Remove focus on all buttons within the div with class ui-dialog
-     $('.ui-dialog :input').blur(); // Remove initial focus on input elements within the div class ui-dialog KEEP THIS LINE OR NO?
+    $('.ui-dialog').css("top","130px"); //keeps dialog at top of screen to avoid keyboard
+    $('.ui-dialog').css("-webkit-tap-highlight-color","rgba(0,0,0,0)"); //stop entire dialog box from highlighting on click
+    $('.ui-widget-header').hide(); //completely hides title bar
+    $('.ui-dialog :button').blur(); // Remove focus on all buttons within the div with class ui-dialog
+    $('.ui-dialog :input').blur(); // Remove initial focus on input elements within the div class ui-dialog KEEP THIS LINE OR NO?
+    //$('.ui-dialog :button').css("background-color", "#ADD8E6");
+    $('.ui-dialog').css("background-color", "#EEEEEE");
+    $('.ui-dialog :button').css("color", "#FFFFFF");
 
     //the_id contains a string like "q04" which would refer to movement 4
+    //console.log("the id = " + the_id);
     var movement_number = the_id.substr(1);
-    movement_number_int = parseInt(movement_number, 10);
-    console.log("Clicked on movement number: " + movement_number);
+    movement_number_int = parseInt(movement_number);
+    //var the_id = "q" + movement_number;
+    //console.log("Clicked on movement number: " + movement_number);
     
-    document.getElementById('movement_dialog_image').innerHTML = "<img src=\"images/" + movement_number + "_big.png\">";
-    document.getElementById('movement_dialog_header').innerText = Movement_Descriptions[movement_number_int];
+    populateNotesMovementDialog(movement_number, visit_id, the_id);
 
-    //CREATE SCORE BOXES DYNAMICALLY
-    if (movement_number_int == 0) {
-        document.getElementById('movement_dialog_score_boxes').innerHTML = 
-            "<div id=\"middle_pre\" class=\"movement-rating_pre_box_single\"></div>" + 
-            "<div id=\"middle_post\" class=\"movement-rating_post_box_single\"></div>";
-        
-        num = padZeros(movement_number_int, 2);
-        
-        getSingleScore(visit_id, "overall_pre", "middle_pre");
-        getSingleScore(visit_id, "overall_post", "middle_post");
-                     
-        getSingleNotes(visit_id, movement_number);           
-                                
-    }
-    else if (movement_number_int == 1) {
-        document.getElementById('movement_dialog_score_boxes').innerHTML = 
-            "<div id=\"left_pre\" class=\"movement-rating_pre_box_three_wide\"></div>" + 
-            "<div id=\"left_post\" class=\"movement-rating_post_box_three_wide\"></div>" + 
-            "<div id=\"middle_pre\" class=\"movement-rating_pre_box_three_wide\"></div>" + 
-            "<div id=\"middle_post\" class=\"movement-rating_post_box_three_wide\"></div>" + 
-            "<div id=\"right_pre\" class=\"movement-rating_pre_box_three_wide\"></div>" + 					
-            "<div id=\"right_post\" class=\"movement-rating_post_box_three_wide\"></div>";
-        
-        num = padZeros(movement_number_int, 2);
-        //document.getElementById(the_id+"_pre_l").innerText
-        getSingleScore(visit_id, "m" + num + "_pre", "left_pre");
-        getSingleScore(visit_id, "m" + num + "_post", "left_post");
-        getSingleScore(visit_id, "m" + num + "a_pre", "middle_pre");
-        getSingleScore(visit_id, "m" + num + "a_post", "middle_post");
-        getSingleScore(visit_id, "m" + num + "b_pre", "right_pre");
-        getSingleScore(visit_id, "m" + num + "b_post", "right_post");
-        
-        getSingleNotes(visit_id, movement_number);
-        
-    }
-    else if (movement_number_int == 2 || movement_number_int == 27 || movement_number_int == 28) {
-        document.getElementById('movement_dialog_score_boxes').innerHTML = 
-            "<div id=\"middle_pre\" class=\"movement-rating_pre_box_single\"></div>" + 
-            "<div id=\"middle_post\" class=\"movement-rating_post_box_single\"></div>";
-        
-        num = padZeros(movement_number_int, 2);
-        
-        getSingleScore(visit_id, "m" + num + "_pre", "middle_pre");
-        getSingleScore(visit_id, "m" + num + "_post", "middle_post");
-                     
-        getSingleNotes(visit_id, movement_number);           
-                                
-    }
-    else {
-        //console.log("here: " + getSingleScore(visit_id, "m03l_pre"));
-        
-        document.getElementById('movement_dialog_score_boxes').innerHTML = 
-            "<div id=\"left_pre\" class=\"movement-rating_pre_box_two_wide\"></div>" + 
-            "<div id=\"left_post\" class=\"movement-rating_post_box_two_wide\"></div>" + 
-            "<div id=\"right_pre\" class=\"movement-rating_pre_box_two_wide\"></div>" + 
-            "<div id=\"right_post\" class=\"movement-rating_post_box_two_wide\"></div>";
-
-        num = padZeros(movement_number_int, 2);
-        //document.getElementById(the_id+"_pre_l").innerText
-        getSingleScore(visit_id, "m" + num + "l_pre", "left_pre");
-        getSingleScore(visit_id, "m" + num + "l_post", "left_post");
-        getSingleScore(visit_id, "m" + num + "r_pre", "right_pre");
-        getSingleScore(visit_id, "m" + num + "r_post", "right_post");
-                        
-        getSingleNotes(visit_id, movement_number);
-        
-    }
-    
-    var categories = Movement_Categories[movement_number_int].split(";");
-    //console.log(categories);
-    if (categories.length == 1) {
-        document.getElementById('movement_dialog_image_description_container').innerHTML =
-            "<div class=\"movement_dialog_image_description_one\">" + categories[0] + "</div>";
-    }
-    else if (categories.length == 2) {
-        document.getElementById('movement_dialog_image_description_container').innerHTML =
-            "<div class=\"movement_dialog_image_description_two\">" + categories[0] + "</div>" +
-            "<div class=\"movement_dialog_image_description_two\">" + categories[1] + "</div>";
-    }
-    else {
-        document.getElementById('movement_dialog_image_description_container').innerHTML =
-            "<div class=\"movement_dialog_image_description_three\">" + categories[0] + "</div>" +
-            "<div class=\"movement_dialog_image_description_three\">" + categories[1] + "</div>" +
-            "<div class=\"movement_dialog_image_description_three\">" + categories[2] + "</div>";
-    }        
-
-    var mousedowntime;
-    var presstime;
-    $(".movement-rating_pre_box_two_wide, .movement-rating_pre_box_three_wide, .movement-rating_pre_box_single, .movement-rating_post_box_two_wide, .movement-rating_post_box_three_wide, .movement-rating_post_box_single").bind("touchstart", function() {
-        var d = new Date();
-        mousedowntime = d.getTime();
-    });
-    
-    $(".movement-rating_pre_box_two_wide, .movement-rating_pre_box_three_wide, .movement-rating_pre_box_single, .movement-rating_post_box_two_wide, .movement-rating_post_box_three_wide, .movement-rating_post_box_single").bind("touchend", function() {
-        var d = new Date();
-        presstime = d.getTime() - mousedowntime;
-        if (presstime < 350) {
-            var old = this.innerText;
-            var mod;
-            
-            if (old == "" || old == " ") {
-                mod = 0;
-            }
-            else if (old == 10) {
-                mod = " ";
-            }
-            else {
-                old++; 
-                mod = old % 11;
-            }
-                
-            this.innerText = mod;
-        }
-        else {
-            var old = this.innerText; 
-            var mod;
-            if (old == "" || old == " " || old == null) {
-                mod = "10";
-            } 
-            else if (old == 0) {
-                mod = " ";
-            }
-            else {
-                old--;
-                mod = old % 11;
-            }
-            
-            this.innerText = mod;
-        }
-    });
      
 }

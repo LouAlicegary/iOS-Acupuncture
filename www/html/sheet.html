@@ -3,23 +3,23 @@
 <head>
     <title>M-Test Acupuncture Application</title>
     
-    <script type="text/javascript" charset="utf-8" src="js/jquery.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/jquery-ui.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../js/jquery-ui.min.js"></script>
     
-    <script type="text/javascript" charset="utf-8" src="js/cordova-2.2.0.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/SQLitePlugin.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/Screenshot.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/support.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/db_patient.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/db_visit.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/dialogs.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/data.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../js/cordova-2.2.0.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../js/SQLitePlugin.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../js/Screenshot.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../js/support.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../js/db_patient.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../js/db_visit.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../js/dialogs.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../js/data.js"></script>
     
-    <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="css/movement_dialog.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="css/point_dialog.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="css/patient_info_form.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="css/jquery-ui.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="../css/style.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="../css/movement_dialog.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="../css/point_dialog.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="../css/patient_info_form.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="../css/jquery-ui.css" type="text/css" media="all" />
     
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
     <meta name="format-detection" content="telephone=no" />
@@ -40,7 +40,7 @@
                         <div class="heading-mtest_label_right_gutter">&nbsp;</div>
                         <div class="heading-date">
                             <div class="heading-date_label">Date: </div>
-                            <div id="heading-date_content" class="heading-date_content">X</div>
+                            <div id="heading-date_content" class="heading-date_content">&nbsp;</div>
                         </div>
                         <div class="heading-vertical_margin">&nbsp;</div>
                     </div>
@@ -49,13 +49,13 @@
                         <div class="heading-vertical_margin">&nbsp;</div>
                         <div class="heading-left_margin">&nbsp;</div>
                         <div class="heading-ratings_explanation">
-                            <img src="images\ratings_explanation.png">
+                            <img src="../images/ratings_explanation.png">
                                 </div>
                         <div class="heading-bottom_of_main_part_gutter">&nbsp;</div>
 						<div id="patient_info_box" class="heading-patient_information_left_box">
-							<div class="heading-patient_information_label">Name: </div><div id="patient_name" class="heading-patient_information_content">XXXXXXXX, XXXXX</div>&nbsp;&nbsp;<div class="heading-patient_information_label">Sex: </div><div id="patient_sex" class="heading-patient_information_content">X</div>&nbsp;&nbsp;<div class="heading-patient_information_label">Age: </div><div id="patient_age" class="heading-patient_information_content">XXX</div><br/>
-							<!--<div class="heading-patient_information_label">Disorder: </div><div id="patient_disorder" class="heading-patient_information_content">XXXXXX</div><br/>-->
-							<div class="heading-patient_information_label">Chief Complaint: </div><div id="patient_chiefcomplaint" class="heading-patient_information_content">XXXXXXXXXXXXXXXXX</div>
+							<div class="heading-patient_information_label">Name: </div><div id="patient_name" class="heading-patient_information_content">&nbsp</div>&nbsp;&nbsp;<div class="heading-patient_information_label">Sex: </div><div id="patient_sex" class="heading-patient_information_content">&nbsp;</div>&nbsp;&nbsp;<div class="heading-patient_information_label">Age: </div><div id="patient_age" class="heading-patient_information_content">&nbsp</div><br/>
+							<!--<div class="heading-patient_information_label">Disorder: </div><div id="patient_disorder" class="heading-patient_information_content">&nbsp</div><br/>-->
+							<div class="heading-patient_information_label">Chief Complaint: </div><div id="patient_chiefcomplaint" class="heading-patient_information_content">&nbsp</div>
 						</div>
                         <div class="heading-bottom_of_main_part_gutter">&nbsp;</div>
                         <div id="q00" class="heading-patient_information_right_box">
@@ -86,7 +86,7 @@
                 <div class="grid-vertical_gutter">&nbsp;</div>
                 <div class="grid-anterior_column">
                     <div id="q01" class="grid-upper_anterior_column_top_row">
-                        <div class="grid-body_image_short"><img src="images\01.png"></div>
+                        <div class="grid-body_image_short"><img src="../images/01.png"></div>
                         <div id="q01_pre_l" class="grid-rating_pre_box_three_narrow"> </div>
                         <div id="q01_post_l" class="grid-rating_post_box_three_narrow"> </div>
                         <div id="q01_pre_m" class="grid-rating_pre_box_three_narrow"> </div>
@@ -95,21 +95,21 @@
                         <div id="q01_post_r" class="grid-rating_post_box_three_narrow"> </div>
                     </div>
                     <div id="q04"class="grid-anterior_column_middle_rows">
-                        <div class="grid-body_image_short"><img src="images\04.png"></div>
+                        <div class="grid-body_image_short"><img src="../images/04.png"></div>
                         <div id="q04_pre_l" class="grid-rating_pre_box"> </div>
                         <div id="q04_post_l" class="grid-rating_post_box"> </div>
                         <div id="q04_pre_r" class="grid-rating_pre_box"> </div>
                         <div id="q04_post_r" class="grid-rating_post_box"> </div>
                     </div>
                     <div id="q05" class="grid-anterior_column_middle_rows">
-                        <div class="grid-body_image_short"><img src="images\05.png"></div>
+                        <div class="grid-body_image_short"><img src="../images/05.png"></div>
                         <div id="q05_pre_l" class="grid-rating_pre_box"> </div>
                         <div id="q05_post_l" class="grid-rating_post_box"> </div>
                         <div id="q05_pre_r" class="grid-rating_pre_box"> </div>
                         <div id="q05_post_r" class="grid-rating_post_box"> </div>
                     </div>
                     <div id="q12" class="grid-anterior_column_middle_rows">
-                        <div class="grid-body_image_short"><img src="images\12.png"></div>
+                        <div class="grid-body_image_short"><img src="../images/12.png"></div>
                         <div id="q12_pre_l" class="grid-rating_pre_box"> </div>
                         <div id="q12_post_l" class="grid-rating_post_box"> </div>
                         <div id="q12_pre_r" class="grid-rating_pre_box"> </div>
@@ -123,26 +123,26 @@
                 <div class="grid-vertical_gutter">&nbsp;</div>
                 <div class="grid-posterior_column">
                     <div id="q02" class="grid-upper_anterior_column_top_row">
-                        <div class="grid-body_image_short"><img src="images\02.png"></div>
+                        <div class="grid-body_image_short"><img src="../images/02.png"></div>
                         <div id="q02_pre_m" class="grid-rating_pre_box_two_wide"> </div>
                         <div id="q02_post_m" class="grid-rating_post_box_two_wide"> </div>
                     </div>
                     <div id="q06" class="grid-anterior_column_middle_rows">
-                        <div class="grid-body_image_short"><img src="images\06.png"></div>
+                        <div class="grid-body_image_short"><img src="../images/06.png"></div>
                         <div id="q06_pre_l" class="grid-rating_pre_box"> </div>
                         <div id="q06_post_l" class="grid-rating_post_box"> </div>
                         <div id="q06_pre_r" class="grid-rating_pre_box"> </div>
                         <div id="q06_post_r" class="grid-rating_post_box"> </div>
                     </div>
                     <div id="q07" class="grid-anterior_column_middle_rows">
-                        <div class="grid-body_image_short"><img src="images\07.png"></div>
+                        <div class="grid-body_image_short"><img src="../images/07.png"></div>
                         <div id="q07_pre_l" class="grid-rating_pre_box"> </div>
                         <div id="q07_post_l" class="grid-rating_post_box"> </div>
                         <div id="q07_pre_r" class="grid-rating_pre_box"> </div>
                         <div id="q07_post_r" class="grid-rating_post_box"> </div>
                     </div>
                     <div id="q13" class="grid-anterior_column_middle_rows">
-                        <div class="grid-body_image_short"><img src="images\13.png"></div>
+                        <div class="grid-body_image_short"><img src="../images/13.png"></div>
                         <div id="q13_pre_l" class="grid-rating_pre_box"> </div>
                         <div id="q13_post_l" class="grid-rating_post_box"> </div>
                         <div id="q13_pre_r" class="grid-rating_pre_box"> </div>
@@ -156,49 +156,49 @@
                 <div class="grid-vertical_gutter">&nbsp;</div>
                 <div class="grid-lateral_medial_column">
                     <div id="q03" class="grid-upper_anterior_column_top_row">
-                        <div class="grid-body_image_short"><img src="images\03.png"></div>
+                        <div class="grid-body_image_short"><img src="../images/03.png"></div>
                         <div id="q03_pre_l" class="grid-rating_pre_box_two_wide"> </div>
                         <div id="q03_post_l" class="grid-rating_post_box_two_wide"> </div>
                         <div id="q03_pre_r" class="grid-rating_pre_box_two_wide"> </div>
                         <div id="q03_post_r" class="grid-rating_post_box_two_wide"> </div>
                     </div>
                     <div id="q08" class="grid-anterior_column_middle_rows2">
-                        <div class="grid-body_image_short"><img src="images\08.png"></div>
+                        <div class="grid-body_image_short"><img src="../images/08.png"></div>
                         <div id="q08_pre_l" class="grid-rating_pre_box"> </div>
                         <div id="q08_post_l" class="grid-rating_post_box"> </div>
                         <div id="q08_pre_r" class="grid-rating_pre_box"> </div>
                         <div id="q08_post_r" class="grid-rating_post_box"> </div>
                     </div>
                     <div id="q10" class="grid-anterior_column_middle_rows2">
-                        <div class="grid-body_image_short"><img src="images\10.png"></div>
+                        <div class="grid-body_image_short"><img src="../images/10.png"></div>
                         <div id="q10_pre_l" class="grid-rating_pre_box"> </div>
                         <div id="q10_post_l" class="grid-rating_post_box"> </div>
                         <div id="q10_pre_r" class="grid-rating_pre_box"> </div>
                         <div id="q10_post_r" class="grid-rating_post_box"> </div>
                     </div>
                     <div id="q09" class="grid-anterior_column_middle_rows2">
-                        <div class="grid-body_image_short"><img src="images\09.png"></div>
+                        <div class="grid-body_image_short"><img src="../images/09.png"></div>
                         <div id="q09_pre_l" class="grid-rating_pre_box"> </div>
                         <div id="q09_post_l" class="grid-rating_post_box"> </div>
                         <div id="q09_pre_r" class="grid-rating_pre_box"> </div>
                         <div id="q09_post_r" class="grid-rating_post_box"> </div>
                     </div>
                     <div id="q11" class="grid-anterior_column_middle_rows2">
-                        <div class="grid-body_image_short"><img src="images\11.png"></div>
+                        <div class="grid-body_image_short"><img src="../images/11.png"></div>
                         <div id="q11_pre_l" class="grid-rating_pre_box"> </div>
                         <div id="q11_post_l" class="grid-rating_post_box"> </div>
                         <div id="q11_pre_r" class="grid-rating_pre_box"> </div>
                         <div id="q11_post_r" class="grid-rating_post_box"> </div>
                     </div>
                     <div id="q14" class="grid-anterior_column_middle_rows2">
-                        <div class="grid-body_image_short"><img src="images\14.png"></div>
+                        <div class="grid-body_image_short"><img src="../images/14.png"></div>
                         <div id="q14_pre_l" class="grid-rating_pre_box"> </div>
                         <div id="q14_post_l" class="grid-rating_post_box"> </div>
                         <div id="q14_pre_r" class="grid-rating_pre_box"> </div>
                         <div id="q14_post_r" class="grid-rating_post_box"> </div>
                     </div>
                     <div id="q15" class="grid-anterior_column_middle_rows2">
-                        <div class="grid-body_image_short"><img src="images\15.png"></div>
+                        <div class="grid-body_image_short"><img src="../images/15.png"></div>
                         <div id="q15_pre_l" class="grid-rating_pre_box"> </div>
                         <div id="q15_post_l" class="grid-rating_post_box"> </div>
                         <div id="q15_pre_r" class="grid-rating_pre_box"> </div>
@@ -224,28 +224,28 @@
                         ST (ST41, ST45)
                     </div>
                     <div id="q16" class="grid-anterior_column_middle_rows">
-                        <div class="grid-body_image_short"><img src="images\16.png"></div>
+                        <div class="grid-body_image_short"><img src="../images/16.png"></div>
                         <div id="q16_pre_l" class="grid-rating_pre_box"> </div>
                         <div id="q16_post_l" class="grid-rating_post_box"> </div>
                         <div id="q16_pre_r" class="grid-rating_pre_box"> </div>
                         <div id="q16_post_r" class="grid-rating_post_box"> </div>
                     </div>
                     <div id="q17" class="grid-anterior_column_middle_rows">
-                        <div class="grid-body_image_short"><img src="images\17.png"></div>
+                        <div class="grid-body_image_short"><img src="../images/17.png"></div>
                         <div id="q17_pre_l" class="grid-rating_pre_box"> </div>
                         <div id="q17_post_l" class="grid-rating_post_box"> </div>
                         <div id="q17_pre_r" class="grid-rating_pre_box"> </div>
                         <div id="q17_post_r" class="grid-rating_post_box"> </div>
                     </div>
                     <div id="q23" class="grid-anterior_column_middle_rows">
-                        <div class="grid-body_image_short"><img src="images\23.png"></div>
+                        <div class="grid-body_image_short"><img src="../images/23.png"></div>
                         <div id="q23_pre_l" class="grid-rating_pre_box"> </div>
                         <div id="q23_post_l" class="grid-rating_post_box"> </div>
                         <div id="q23_pre_r" class="grid-rating_pre_box"> </div>
                         <div id="q23_post_r" class="grid-rating_post_box"> </div>
                     </div>
                     <div id="q27" class="grid-lower_anterior_column_bottom_row">
-                        <div class="grid-body_image_tall"><img src="images\27.png"></div>
+                        <div class="grid-body_image_tall"><img src="../images/27.png"></div>
                         <div id="q27_pre_m" class="grid-rating_pre_box_two_wide"> </div>
                         <div id="q27_post_m" class="grid-rating_post_box_two_wide"> </div>
                     </div>
@@ -257,28 +257,28 @@
                         BL (BL67, BL65)
                     </div>
                     <div id="q18" class="grid-anterior_column_middle_rows">
-                        <div class="grid-body_image_short"><img src="images\18.png"></div>
+                        <div class="grid-body_image_short"><img src="../images/18.png"></div>
                         <div id="q18_pre_l" class="grid-rating_pre_box"> </div>
                         <div id="q18_post_l" class="grid-rating_post_box"> </div>
                         <div id="q18_pre_r" class="grid-rating_pre_box"> </div>
                         <div id="q18_post_r" class="grid-rating_post_box"> </div>
                     </div>
                     <div id="q19" class="grid-anterior_column_middle_rows">
-                        <div class="grid-body_image_short"><img src="images\19.png"></div>
+                        <div class="grid-body_image_short"><img src="../images/19.png"></div>
                         <div id="q19_pre_l" class="grid-rating_pre_box"> </div>
                         <div id="q19_post_l" class="grid-rating_post_box"> </div>
                         <div id="q19_pre_r" class="grid-rating_pre_box"> </div>
                         <div id="q19_post_r" class="grid-rating_post_box"> </div>
                     </div>
                     <div id="q24" class="grid-anterior_column_middle_rows">
-                        <div class="grid-body_image_short"><img src="images\24.png"></div>
+                        <div class="grid-body_image_short"><img src="../images/24.png"></div>
                         <div id="q24_pre_l" class="grid-rating_pre_box"> </div>
                         <div id="q24_post_l" class="grid-rating_post_box"> </div>
                         <div id="q24_pre_r" class="grid-rating_pre_box"> </div>
                         <div id="q24_post_r" class="grid-rating_post_box"> </div>
                     </div>
                     <div id="q28" class="grid-lower_anterior_column_bottom_row">
-                        <div class="grid-body_image_tall"><img src="images\28.png"></div>
+                        <div class="grid-body_image_tall"><img src="../images/28.png"></div>
                         <div id="q28_pre_m" class="grid-rating_pre_box_two_wide"> </div>
                         <div id="q28_post_m" class="grid-rating_post_box_two_wide"> </div>
                     </div>
@@ -290,55 +290,55 @@
                         GB (GB43, GB38)
                     </div>
                     <div id="q20" class="grid-medial_lateral_column_middle_fat_tall">
-                        <div class="grid-body_image_fat_tall"><img src="images\20a.png"></div>
+                        <div class="grid-body_image_fat_tall"><img src="../images/20a.png"></div>
                         <div id="q20_pre_l" class="grid-rating_pre_box_jammed_together_tall_left"> </div>
                         <div id="q20_post_l" class="grid-rating_post_box_jammed_together_tall_left"> </div>
-                        <div class="grid-number_fat_tall"><img src="images\20_number.png"></div>
+                        <div class="grid-number_fat_tall"><img src="../images/20_number.png"></div>
                         <div id="q20_pre_r" class="grid-rating_pre_box_jammed_together_tall_right"> </div>
                         <div id="q20_post_r" class="grid-rating_post_box_jammed_together_tall_right"> </div>
-                        <div class="grid-body_image_fat_tall"><img src="images\20b.png"></div>
+                        <div class="grid-body_image_fat_tall"><img src="../images/20b.png"></div>
                     </div>
                     <div id="q21" class="grid-medial_lateral_column_middle_fat_short">
-                        <div class="grid-body_image_fat_tall"><img src="images\21a.png"></div>
+                        <div class="grid-body_image_fat_tall"><img src="../images/21a.png"></div>
                         <div id="q21_pre_l" class="grid-rating_pre_box_jammed_together_short_left"> </div>
                         <div id="q21_post_l"class="grid-rating_post_box_jammed_together_short_left"> </div>
-                        <div class="grid-number_fat_tall"><img src="images\21_number.png"></div>
+                        <div class="grid-number_fat_tall"><img src="../images/21_number.png"></div>
                         <div id="q21_pre_r" class="grid-rating_pre_box_jammed_together_short_right"> </div>
                         <div id="q21_post_r" class="grid-rating_post_box_jammed_together_short_right"> </div>
-                        <div class="grid-body_image_fat_tall"><img src="images\21b.png"></div>
+                        <div class="grid-body_image_fat_tall"><img src="../images/21b.png"></div>
                     </div>
                     <div id="q22" class="grid-medial_lateral_column_middle_fat_tall">
-                        <div class="grid-body_image_fat_tall"><img src="images\22a.png"></div>
+                        <div class="grid-body_image_fat_tall"><img src="../images/22a.png"></div>
                         <div id="q22_pre_l" class="grid-rating_pre_box_jammed_together_tall_left"> </div>
                         <div id="q22_post_l" class="grid-rating_post_box_jammed_together_tall_left"> </div>
-                        <div class="grid-number_fat_tall"><img src="images\22_number.png"></div>
+                        <div class="grid-number_fat_tall"><img src="../images/22_number.png"></div>
                         <div id="q22_pre_r" class="grid-rating_pre_box_jammed_together_tall_right"> </div>
                         <div id="q22_post_r" class="grid-rating_post_box_jammed_together_tall_right"> </div>
-                        <div class="grid-body_image_fat_tall"><img src="images\22b.png"></div>
+                        <div class="grid-body_image_fat_tall"><img src="../images/22b.png"></div>
                     </div>
                     <div id="q25" class="grid-anterior_column_middle_rows2">
-                        <div class="grid-body_image_short"><img src="images\25.png"></div>
+                        <div class="grid-body_image_short"><img src="../images/25.png"></div>
                         <div id="q25_pre_l" class="grid-rating_pre_box"> </div>
                         <div id="q25_post_l" class="grid-rating_post_box"> </div>
                         <div id="q25_pre_r" class="grid-rating_pre_box"> </div>
                         <div id="q25_post_r" class="grid-rating_post_box"> </div>
                     </div>
                     <div id="q26" class="grid-anterior_column_middle_rows2">
-                        <div class="grid-body_image_short"><img src="images\26.png"></div>
+                        <div class="grid-body_image_short"><img src="../images/26.png"></div>
                         <div id="q26_pre_l" class="grid-rating_pre_box"> </div>
                         <div id="q26_post_l" class="grid-rating_post_box"> </div>
                         <div id="q26_pre_r" class="grid-rating_pre_box"> </div>
                         <div id="q26_post_r" class="grid-rating_post_box"> </div>
                     </div>
                     <div id="q29" class="grid-lower_anterior_column_bottom_row2L">
-                        <div class="grid-body_image_tall"><img src="images\29.png"></div>
+                        <div class="grid-body_image_tall"><img src="../images/29.png"></div>
                         <div id="q29_pre_l" class="grid-rating_pre_box"> </div>
                         <div id="q29_post_l" class="grid-rating_post_box"> </div>
                         <div id="q29_pre_r" class="grid-rating_pre_box"> </div>
                         <div id="q29_post_r" class="grid-rating_post_box"> </div>
                     </div>
                     <div id="q30" class="grid-lower_anterior_column_bottom_row2R">
-                        <div class="grid-body_image_tall"><img src="images\30.png"></div>
+                        <div class="grid-body_image_tall"><img src="../images/30.png"></div>
                         <div id="q30_pre_l" class="grid-rating_pre_box"> </div>
                         <div id="q30_post_l" class="grid-rating_post_box"> </div>
                         <div id="q30_pre_r" class="grid-rating_pre_box"> </div>
@@ -368,17 +368,14 @@
   			<div class="movement_dialog_image_description_two">Right Arm</div>
   		</div>
   		<div id="movement_dialog_score_boxes" class="movement_dialog_score_boxes">
-  			<!--<div id="left_pre" class="movement-rating_pre_box_two_wide"></div>
-  			<div id="left_post" class="movement-rating_post_box_two_wide"></div>
-  			<div id="right_pre" class="movement-rating_pre_box_two_wide"></div>
-  			<div id="right_post" class="movement-rating_post_box_two_wide"></div>-->
   		</div>
-  		<div class="movement_dialog_notes_box"><textarea name="notes" id="movement_notes" placeholder="Insert notes here" rows="3" onfocus="window.scrollTo(0, 0); document.documentElement.scrollTop = 0;"></textarea></div>
+  		<div class="movement_dialog_notes_box"><textarea autocomplete="off" autocorrect="off" spellcheck="false" name="notes" id="movement_notes" placeholder="Insert notes here" rows="5" onfocus="window.scrollTo(0, 0); document.documentElement.scrollTop = 0;"></textarea></div>
   	</div>
 
 
   	<div id="new_point_dialog" class="new_point_dialog" title="Dialog Title" style="display:none">
-  		<div id="point_dialog_header" class="point_dialog_header">Location of XX and XX points</div>
+        <div class="point_dialog_close">&nbsp;</div>
+  		<div id="point_dialog_header" class="point_dialog_header">&nbsp;</div>
   		<div id="point_dialog_image" class="point_dialog_image"><img src="images/LR_GB.png"></div>
   	</div>
     
@@ -437,10 +434,13 @@
                         //console.log("data_array pre: " + data_array);
                         
                         //DATE PARSER
-                        var raw_date = document.getElementById('dob').value;
+                        var raw_date = document.getElementById('sheet_dob').value;
+                        //console.log("raw date = " + raw_date);
                         var fixed_date = dateParser(raw_date);
+                        //console.log("fixed date = " + fixed_date);
                         
-                        var dataString = visit_id + ":::" + patient_id + ":::" + document.getElementById('firstname').value + ":::" + document.getElementById('lastname').value + ":::" + fixed_date + ":::" + getSex() + ":::" + "0" + ":::" + document.getElementById('email').value + ":::" + "" + ":::" + document.getElementById('chiefcomplaint').value + ":::" + document.getElementById('notes').value + ":::" + document.getElementById('patient_image').src;
+                        var dataString = visit_id + ":::" + patient_id + ":::" + document.getElementById('sheet_firstname').value + ":::" + document.getElementById('sheet_lastname').value + ":::" + fixed_date + ":::" + getSex('sheet_') + ":::" + "0" + ":::" + document.getElementById('sheet_email').value + ":::" + "" + ":::" + document.getElementById('sheet_chiefcomplaint').value + ":::" + document.getElementById('sheet_notes').value + ":::" + document.getElementById('sheet_patient_image').src;
+                        //console.log("sheet.html line 442");
                         window.name = dataString;
                         data_array = dataString.split(":::");
                         updateRecordInPatientDB(data_array);
@@ -459,35 +459,39 @@
             
             $('.patient_frontpage_middle_button').hide();
             $('.patient_frontpage_middle_dialog').show();
-            $('.pvl_container').load('new_patient.html', function() {});
-            $('.ui-dialog').css("-webkit-tap-highlight-color","rgba(0,0,0,0)"); //stop entire dialog box from highlighting on click
-            $('.ui-dialog-title').hide(); //hides title but keeps thin bar with 'X' close button
-            $('.ui-widget-header').hide(); //completely hides title bar
-            $('.ui-dialog :button').blur(); // Remove focus on all buttons within the div class ui-dialog
-            $('.ui-dialog :input').blur(); // Remove initial focus on input elements within the div class ui-dialog KEEP THIS LINE OR NO?
-            $('.ui-dialog :button').css("background-color", "#504d3b");
-            $('.ui-dialog :button').css("color", "#9f9a79");
-            $('.ui-dialog').css("top","160px"); //keeps dialog at top of screen to avoid keyboard
-            $('.ui-dialog').css("background-color", "#dddddd");
-            $('.ui-dialog-content').css("background-color", "#dddddd");
-            $('.ui-dialog-buttonpane').css("background-color", "#dddddd");
-            //console.log("window.name = " + window.name);
-            
-            setTimeout(function(){
-            
-                $('#new_patient_continue_button').hide();
-                $('#new_patient_back_button').hide();
-                $('#form1 img').css("background-color", "#504d3b");
-                $('.radio_label').css("color", "#dddddd");
-                $('.dialog_header').html("Current Patient's Information");
+            $('.pvl_container').load('sheet_patient_info.html', function() {
                 
+                $('.ui-dialog').css("-webkit-tap-highlight-color","rgba(0,0,0,0)"); //stop entire dialog box from highlighting on click
+                $('.ui-dialog').css("top","160px"); //keeps dialog at top of screen to avoid keyboard
+                $('.ui-dialog').css("background-color", "#EEEEEE");
+                $('.ui-dialog-title').hide(); //hides title but keeps thin bar with 'X' close button
+                $('.ui-widget-header').hide(); //completely hides title bar
+                $('.ui-dialog :input').blur(); // Remove initial focus on input elements within the div class ui-dialog KEEP THIS LINE OR NO?
+                $('.ui-dialog :button').blur(); // Remove focus on all buttons within the div class ui-dialog
+                $('.ui-dialog :button').css("color", "#FFFFFF");
+                $('.ui-dialog :button').css("background-color", "#ADD8E6");
+                $('.ui-dialog-buttonpane').css("background-color", "#EEEEEE");
+                $('.ui-dialog-buttonset').css("margin-right", "10px");
+                $('.ui-dialog-content').css("background-color", "#EEEEEE");
+                
+                //console.log("window.name = " + window.name);
+
+                $('.dialog_header').html("Current Patient's Information");
+                $('.form_container img').css("background-color", "#ADD8E6");
+                $('.form_container input').css('background-color', '#90EE90');
+                $('.form_container input').css('color', '#FFFFFF');
+                $('.form_container textarea').css('background-color', '#90EE90');
+                $('.form_container textarea').css('color', '#FFFFFF');
+                $('.labelset').css('color', '#FFFFFF');
+                $('.labelset').css('background-color', '#90EE90');
+                $('.radio_label').css("color", "#FFFFFF");
+                $('.new_patient_continue_button').hide();
+                $('.new_patient_back_button').hide();
             
                 repopulatePatientInfoDialog(window.name);
-    
-    
+
                 $(".image_fieldset").live("touchend", function(event) {
-                    console.log("camera");
-                    // navigator.camera.getPicture( cameraSuccess, cameraError, [ cameraOptions ] );
+                    //console.log("camera");
                     navigator.camera.getPicture(getPhoto, onFail, {
                         quality: 50,
                         destinationType: Camera.DestinationType.FILE_URI, // // Return image file URI
@@ -497,38 +501,32 @@
                     });
                 });
         
-                /* navigator.camera.getPicture success function */
-                function getPhoto(imageData)
-                {
-                    var cameraImage = document.getElementById('image_fieldset');
-                    cameraImage.innerHTML = "<img id=\"patient_image\" src=\"" + imageData + "\">";
+                function getPhoto(imageData) {
+                    var cameraImage = document.getElementById('sheet_image_fieldset');
+                    cameraImage.innerHTML = "<img id=\"sheet_patient_image\" src=\"" + imageData + "\">";
                     //cameraImage.src = imageData;
-                    console.log("getPhoto() - cameraImage.src: " + imageData);
+                    //console.log("getPhoto() - cameraImage.src: " + imageData);
                 }
-                /* navigator.camera.getPicture fail function */
-                function onFail(message)
-                {
+
+                function onFail(message) {
                     alert('Failed because: ' + message);
                 }          
               
                 function repopulatePatientInfoDialog(dataString) {
                     var data = dataString.split(":::");
-                    //MAY NEED TO ADD ID
-                    //console.log("data: " + data);
-                    $('#firstname').val(data[2]);
-                    //console.log("repop2");
-                    document.getElementById('lastname').value = data[3];
-                    document.getElementById('dob').value = data[4];
+                    $('#sheet_firstname').val(data[2]);
+                    document.getElementById('sheet_lastname').value = data[3];
+                    document.getElementById('sheet_dob').value = data[4];
                     setSex(data[5]);
-                    //document.getElementById('phone').value = data[6];
-                    document.getElementById('email').value = data[7];
-                    //document.getElementById('disorder').value = data[8];
-                    document.getElementById('chiefcomplaint').value = data[9];
-                    document.getElementById('notes').value = data[10];
-                    document.getElementById('patient_image').src = data[11];
-                    //console.log("repop3: ");
-                }
-            }, 250);
+                  //document.getElementById('phone').value = data[6];
+                    document.getElementById('sheet_email').value = data[7];
+                  //document.getElementById('disorder').value = data[8];
+                    document.getElementById('sheet_chiefcomplaint').value = data[9];
+                    document.getElementById('sheet_notes').value = data[10];
+                    document.getElementById('sheet_patient_image').src = data[11];
+                } 
+            });
+
         });
       
         //Runs popUpDialog() function below on 1-30 if clicked
@@ -547,14 +545,14 @@
     	$("#back_button").click(function(event) {
 			//window.history.back();
             //popUpMainDialog();
-            window.location = 'index.html';
+            window.location = '../index.html';
         });
         
         $("#save_button").click(function(event) {
             
             var cordovaRef = window.PhoneGap || window.Cordova || window.cordova; // old to new fallbacks
             cordovaRef.exec(null, null, "Screenshot", "saveScreenshot", []);
-            console.log("Take screenshot");
+            //console.log("Take screenshot");
             
         });
 
@@ -562,7 +560,136 @@
 			setTimeout(function(){window.location="notes.html";}, 250);
         });
         
+
+
+
+        // ADD EVENTS TO DO START AND FINISH SWIPES
+        $('#new_movement_dialog').live("touchstart", function(event) {
+            xPos_start = event.originalEvent.touches[0].pageX;
+            //console.log("start row xPos: " + xPos_start);
+        });
         
+        $('#new_movement_dialog').live("touchend", function(event) {
+            
+            xPos_moving = event.originalEvent.changedTouches[0].pageX;
+            xDiff = xPos_moving - xPos_start;
+            //console.log("start row xPos: " + xPos_start + " xDiff: " + xDiff);
+            
+            //var oTable = $('#delete_visit_table').dataTable();
+            
+            if (xPos_start == 99999) {    
+                //console.log("SWIPE FROM LEFT TO RIGHT -- xPos_start = 99999");
+                
+            }
+            else if (xDiff > 125) {
+                //console.log("SWIPE FROM LEFT TO RIGHT -- xDiff: " + xDiff);
+
+                var movement_number = $(this).html();
+                movement_number = movement_number.substr(movement_number.indexOf("_big.png")-2, 2);
+                movement_number_int = parseInt(movement_number);
+                var the_id = "q" + movement_number;
+                
+                prev_movement_number_int = parseInt(movement_number) - 1;
+                
+                if (movement_number_int == 1) {
+                    prev_movement_number_int = 30;
+                }
+                else if (movement_number_int == 0) {
+                    prev_movement_number_int = 0;
+                }
+                
+                prev_movement_number = padZeros(prev_movement_number_int, 2);
+                prev_the_id = "q" + prev_movement_number;
+                //console.log("mn / vi / ti / pmn = " + movement_number + " " + visit_id + " " + the_id + " " + prev_movement_number);
+                saveMovementDialogInfo(movement_number, visit_id, the_id);
+                setTimeout(function(){populateMovementDialog(prev_movement_number, visit_id, prev_the_id);},250);
+                
+            }                    
+            else if (xDiff < -125) {
+                //console.log("SWIPE FROM RIGHT TO LEFT -- xDiff = " + xDiff);
+                
+                var movement_number = $(this).html();
+                movement_number = movement_number.substr(movement_number.indexOf("_big.png")-2, 2);
+                movement_number_int = parseInt(movement_number);
+                var the_id = "q" + movement_number;
+                
+                next_movement_number_int = parseInt(movement_number) + 1;
+                
+                if (movement_number_int == 30) {
+                    next_movement_number_int = 1;
+                }
+                else if (movement_number_int == 0) {
+                    next_movement_number_int = 0;
+                }
+                
+                next_movement_number = padZeros(next_movement_number_int, 2);
+                next_the_id = "q" + next_movement_number;
+                //console.log("mn / vi / ti / nmn = " + movement_number + " " + visit_id + " " + the_id + " " + next_movement_number);
+                saveMovementDialogInfo(movement_number, visit_id, the_id);
+                setTimeout(function(){populateMovementDialog(next_movement_number, visit_id, next_the_id);},250);
+                
+            }
+            else {
+                //console.log("CLICK");
+            }
+            
+        });
+        
+        
+        var mousedowntime;
+        var presstime;
+        
+        $(".movement-rating_pre_box_two_wide, .movement-rating_pre_box_three_wide, .movement-rating_pre_box_single, .movement-rating_post_box_two_wide, .movement-rating_post_box_three_wide, .movement-rating_post_box_single").live("touchstart", function() {
+            var d = new Date();
+            mousedowntime = d.getTime();
+        });
+        
+        $(".movement-rating_pre_box_two_wide, .movement-rating_pre_box_three_wide, .movement-rating_pre_box_single, .movement-rating_post_box_two_wide, .movement-rating_post_box_three_wide, .movement-rating_post_box_single").live("touchend", function() {
+            
+            var d = new Date();
+            presstime = d.getTime() - mousedowntime;
+            
+            if (presstime < 350) {
+                var old = this.innerText;
+                var mod;
+                
+                if (old == "" || old == " ") {
+                    mod = 0;
+                }
+                else if (old == 10) {
+                    mod = " ";
+                }
+                else {
+                    old++; 
+                    mod = old % 11;
+                }
+                    
+                this.innerText = mod;
+            }
+            
+            else {
+                var old = this.innerText;
+                var mod;
+                
+                if (old == "" || old == " " || old == null) {
+                    mod = "10";
+                } 
+                else if (old == 0) {
+                    mod = " ";
+                }
+                else {
+                    old--;
+                    mod = old % 11;
+                }
+                
+                this.innerText = mod;
+            }
+        });
+        
+        
+        
+
+
         var currentScrollPosition = 0;
         $(document).scroll(function(){
             currentScrollPosition = $(this).scrollTop();
@@ -600,7 +727,7 @@
   <!-- Set the event listener that signals initialisation complete. Your app can now be run. -->
   <script>
       document.addEventListener("deviceready", this.deviceready, false);
-      console.log("event listener call for deviceready");
+      //console.log("event listener call for deviceready");
   </script>
   
 </body>

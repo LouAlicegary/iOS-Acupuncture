@@ -35,7 +35,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   line-height: 16px;
   font-size: 10px;
   font-family: HelveticaNeue, Verdana, Geneva, sans-serif;
-  background-color:white;
+  background-color: white;
 }
 
 .grid h1 {
@@ -98,7 +98,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   float: left;
   width: 100%;
   height: 110px;
-  background: black;
+  background-color: black;
   color: white;
   /*text-align: center;*/
 }
@@ -107,7 +107,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   float: left;
   width: 100%;
   height: 95px;
-  background: white;
+  background-color: white;
   color: black;
   text-align: center;
 }
@@ -116,7 +116,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   float: left;
   width: 100%;
   height: 367px;
-  background: white;
+  background-color: white;
   color: white;
   /*text-align: center;*/
 }
@@ -125,7 +125,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   float: left;
   width: 100%;
   height: 387px;
-  background: white;
+  background-color: white;
   color: white;
   /*text-align: center;*/
 }
@@ -134,28 +134,28 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   float: left;
   width: 100%;
   height: 10px;
-  background: white;
+  background-color: white;
 }
 
 .grid-vertical_margin {
   float: left;
   width: 5px;
   height: 100%;
-  background: white;
+  background-color: white;
 }
 
 .grid-vertical_gutter {
   float: left;
   width: 5px;
   height: 100%;
-  background: white;
+  background-color: white;
 }
 
 .grid-body_section_horizontal_labels {
   float: left;
   width: 100%;
   height: 25px;
-  background: white;
+  background-color: white;
   text-align: center;
   vertical-align: middle;
   font-size: 18px;
@@ -165,7 +165,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   float:left;
   width:23px;
   height:257px;
-  background:white;
+  background-color: white;
   color:black;
   text-align:center;
   font-size:18px;
@@ -176,14 +176,14 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   float:left;
   width:23px;
   height:100%;
-  background:white;
+  background-color:white;
  }
  
 .grid-anterior_column {
   float: left;
   width: 180px;
   height: 100%;
-  background: white;
+  background-color: white;
   text-align: center;
   vertical-align:middle;
 }
@@ -192,7 +192,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   float: left;
   width: 180px;
   height: 100%;
-  background: white;
+  background-color: white;
   text-align: center;
 }
 
@@ -201,7 +201,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   float: left;
   width: 360px;
   height: 100%;
-  background: white;
+  background-color: white;
   text-align: center;
 }
 
@@ -247,7 +247,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   float: left;
   width: 100%;
   height: 60px;
-  background: lightgreen;
+  background-color: #90EE90;
   text-align: center;
 }
 
@@ -255,7 +255,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   float: left;
   width: 100%;
   height: 40px;
-  background: lightgreen;
+  background-color: #90EE90;
   text-align: center;
 }
 
@@ -596,7 +596,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   float: left;
   width: 100%;
   height: 80px;
-  background: lightblue;
+  background-color: #ADD8E6;
   text-align: center;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
@@ -606,7 +606,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   float: left;
   width: 100%;
   height: 80px;
-  background: lightgreen;
+  background-color: #90EE90;
   text-align: center;
   /*border-style:solid;
   border-width:1px;
@@ -617,7 +617,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   float: left;
   width: 50%;
   height: 80px;
-  background: lightgreen;
+  background-color: #90EE90;
   text-align: center;
   /*border-style:solid;
   border-width:1px;
@@ -627,7 +627,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   float: left;
   width: 100%;
   height: 47px;
-  background: gray;
+  background-color: gray;
   text-align: center;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
@@ -638,7 +638,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   float: left;
   width: 100%;
   height: 47px;
-  background: gray;
+  background-color: gray;
   text-align: center;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
@@ -649,7 +649,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   float: left;
   width: 100%;
   height: 100px;
-  background: lightblue;
+  background-color: #ADD8E6;
   text-align: center;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
@@ -659,7 +659,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   float: left;
   width: 50%;
   height: 100px;
-  background: lightblue;
+  background-color: #ADD8E6;
   text-align: center;
   border-bottom-left-radius: 15px;
   /*border-bottom-right-radius: 15px;*/
@@ -669,7 +669,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   float: left;
   width: 50%;
   height: 100px;
-  background: lightblue;
+  background-color: #ADD8E6;
   text-align: center;
   /*border-bottom-left-radius: 15px;*/
   border-bottom-right-radius: 15px;
@@ -679,7 +679,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   float: left;
   width: 624px;
   height: 45px;
-  background: white;
+  background-color: white;
   color: black;
   text-align: center;
   margin-top: 25px;
@@ -692,7 +692,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   float: left;
   width: 90px;
   height: 100%;
-  background: pink;
+  background-color: #FFC0CB;
   color: black;
   text-align: center;
   margin-left: 59px;
@@ -709,7 +709,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   float: left;
   width: 90px;
   height: 100%;
-  background: pink;
+  background-color: #FFC0CB;
   color: black;
   text-align: center;
   margin-left: 111px;
@@ -757,28 +757,28 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 	float: left;
 	width: 100%;
 	height: 10px;
-	background: white;
+	background-color: white;
 }
 
 .heading-bottom_spacer {
 	float: left;
 	width: 100%;
 	height: 10px;
-	background: white;
+	background-color: white;
 }
 
 .heading-main_part {
 	float: left;
 	width: 100%;
 	height: 90px;
-	background: green;
+	background-color: green;
 }
 
 .heading-top_of_main_part {
   float: left;
   width: 100%;
   height: 30px;
-  background: brown;
+  background-color: brown;
 }
 
 .heading-mtest_label {
@@ -786,7 +786,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   width: 553px;
   padding-left:25px;
   height: 100%;
-  background: white;
+  background-color: white;
   color: black;
   /*text-align: center;*/
   line-height: 28px;
@@ -799,14 +799,14 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   float: left;
   width: 20px;
   height: 100%;
-  background: white;
+  background-color: white;
 }
 
 .heading-date {
   float: right;
   width: 160px;
   height: 100%;
-  background: white;
+  background-color: white;
   color: black;
 }
 
@@ -814,21 +814,21 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   float: left;
   width: 100%;
   height: 55px;
-  background: black; //this appears for 5px on both sides of the name block
+  background-color: black; //this appears for 5px on both sides of the name block
 }
 
 .heading-left_margin {
   float:left;
   width:28px;
   height:100%;
-  background:white;
+  background-color:white;
  }
  
 .heading-ratings_explanation {
   float: left;
   width: 225px;
   height: 100%;
-  background: white;
+  background-color: white;
   color: black;
 }
 
@@ -836,7 +836,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   float: left;
   width: 20px;
   height: 100%;
-  background: white;
+  background-color: white;
 }
 
 .heading-patient_information_left_box {
@@ -845,7 +845,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   height: 45px;
   margin-top: 5px;
   margn-bottom: 5px;
-  background: white;
+  background-color: white;
   color: black;
 }
 
@@ -853,18 +853,18 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   float: left;
   width: 100px;
   height: 100%;
-  background: white;
+  background-color: white;
   color: black;
-  background-image: url('..\\images\\ratings.png'); 
+  background-image: url('../images/ratings.png'); 
 }
 
 .heading-patient_information_right_box_pre {
   float: left;
-  width: 40px;
+  width: 39px;
   height: 25px;
   margin-top: 20px;
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 8px;
+  margin-right: 2px;
   margin-bottom: 10px;
   color: black;
   text-align: center;
@@ -874,7 +874,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 
 .heading-patient_information_right_box_post {
   float: left;
-  width: 38px;
+  width: 39px;
   height: 25px;
   margin-top: 20px;
   margin-left: 5px;
@@ -890,14 +890,14 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   float: left;
   width: 5px;
   height: 100%;
-  background: white;
+  background-color: white;
 }
 
 .heading-horizontal_gutter {
   float: left;
   width: 100%;
   height: 5px;
-  background: white;
+  background-color: white;
 }
 
 .heading-patient_information_label {
@@ -969,7 +969,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
     display: block;
 	width: 768px;
   	height: 1004px;
-  	background: black;
+  	background-color: black;
   	font-size: 12px;
   	color: white;
     text-align: center;
@@ -1065,14 +1065,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 
 
 
-.dialog_header {
-    height: 40px;
-    line-height: 40px;
-    font-size: 24px;
-    text-align: left;
-    font-family: HelveticaNeue-Light, HelveticaNeue, Cabin-Medium;
-    padding-left: 40px;
-}
+
 
 
 .slides, .slides_container {
@@ -1097,33 +1090,77 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   float: left;
   width: 100%;
   height: 799px;
-  background: white;
+  background-color: white;
 }
 
 .notes_index_row {
   float: left;
   width: 100%;
   height: 25px;
-  background: white;
+  background-color: white;
   text-align: center;
   font-size: 18px;
   font-weight: bold;
 }
 
+.notes_label_odd {
+  float: left;
+  width: 15%;
+  height: 25px;
+  background-color: #ADD8E6;
+  line-height: 25px;
+  display: block;
+  font-weight: bold;
+  text-align: center;
+}
+
+.notes_label_even {
+  float: left;
+  width: 15%;
+  height: 25px;
+  background-color: #90EE90;
+  line-height: 25px;
+  display: block;
+  font-weight: bold;
+  text-align: center;
+}
+
 .notes_index_row_odd {
   float: left;
-  width: 100%;
+  width: 20%;
   height: 25px;
-  background: lightblue;
+  background-color: #ADD8E6;
   line-height: 25px;
+  display: block;
+  text-align: center;
 }
 
 .notes_index_row_even {
   float: left;
-  width: 100%;
+  width: 20%;
   height: 25px;
-  background: lightgreen;
+  background-color: #90EE90;
   line-height: 25px;
+  display: block;
+  text-align: center;
+}
+
+.notes_holder_odd {
+    width: 65%;
+    height: 25px;
+    float: left; 
+    display: inline;
+    background-color: #ADD8E6;
+    line-height: 25px;
+}
+
+.notes_holder_even {
+    width: 65%;
+    height: 25px;
+    float: left; 
+    display: inline;
+    background-color: #90EE90;
+    line-height: 25px;
 }
 
 
@@ -1139,17 +1176,32 @@ table, caption, tbody, tfoot, thead, tr, th, td {
     padding: 49px 0px;
 	opacity: 1;
     border-radius: 10px;
-    
-	background-color: #DDDDDD;
+	background-color: #EEEEEE;
     color: #504d3b;
-    font-size: 60px;
+    font-size: 32px;
     line-height: 100px;
 	text-align:center;
     font-family: HelveticaNeue;
+	transition: opacity 0.5s ease-out;
+	-webkit-transition: opacity 0.5s ease-out;  /* Saf3.2+, Chrome */			
+}
 
-	
-	/*The good stuff */
-	-webkit-transition: opacity 0.5s ease-out;  /* Saf3.2+, Chrome */
-	transition: opacity 0.5s ease-out;	
-	
+#delete_confirm_dialog {
+    font-size: 32px;
+    line-height: 48px;
+	text-align:center;
+    font-family: HelveticaNeue;
+}
+
+#btnNext {
+    margin-right: 250px;
+    background-color: #90EE90;
+}
+
+#btnPrev {
+    background-color: #90EE90;
+}
+
+#btnOk {
+    background-color: #ADD8E6;
 }

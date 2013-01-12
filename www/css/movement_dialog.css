@@ -1,33 +1,35 @@
 /* Added user-select code to prevent highlighting on double-click*/
 
-#new_movement_dialog {
+#new_movement_dialog, #new_notes_movement_dialog {
 	text-align: center;
 	-webkit-user-select: none;
-    background-color: #dddddd;
+    background-color: #EEEEEE;
+    color: #000000;
+    border: 1px solid #000000; 
+    font-family: HelveticaNeue;
 }
 
-#new_movement_dialog .ui-dialog {
+#new_movement_dialog .ui-dialog, #new_notes_movement_dialog .ui-dialog {
 	-webkit-user-select: none;
-    background-color: #dddddd;
+    background-color: #ff0000;
 }
 
-#new_movement_dialog .ui-dialog-buttonpane, .ui-widget-content {
-    border: 1px solid #504d3b; 
-    background: #dddddd;
+#new_movement_dialog .ui-dialog-buttonpane, #new_notes_movement_dialog .ui-dialog-buttonpane, .ui-widget-content {
+    background-color: #EEEEEE;
+    border: 1px solid #EEEEEE; 
+}
+
+#new_movement_dialog .ui-widget button, #new_notes_movement_dialog .ui-widget button {
+    background-color: #ADD836;
+    color: #EEEEEE;
 }
 
 
-#new_movement_dialog .ui-widget button {
-    background-color: #504d3b;
-    color: #9f9a79;
-}
-
-
-#new_movement_dialog textarea {
+#new_movement_dialog textarea, #new_notes_movement_dialog textarea {
 	width: 100%;
 	resize:none;
     border:none;
-    background-color: #dddddd;
+    background-color: #EEEEEE;
 }
 
 
@@ -36,6 +38,7 @@
     padding: 10px 54px;
 	height:60px;
     text-align: left;
+    font-size: 18px;
 }
 
 .movement_dialog_image {
@@ -54,7 +57,7 @@
 	height:30px;
 	line-height:30px;
 	font-size:20px;
-	background-color: lightgreen;
+	background-color: #90EE90;
 	float: left;	
 }
 .movement_dialog_image_description_two{
@@ -62,7 +65,7 @@
 	height:30px;
 	line-height:30px;
 	font-size:20px;
-	background-color: lightgreen;
+	background-color: #90EE90;
 	float: left;	
 }
 .movement_dialog_image_description_three{
@@ -70,7 +73,7 @@
 	height:30px;
 	line-height:30px;
 	font-size:20px;
-	background-color: lightgreen;
+	background-color: #90EE90;
 	float: left;	
 }
 
@@ -90,10 +93,9 @@
   height: 70px;
   line-height: 70px;
   font-size: 36px;
-  font-family: Verdana, Geneva, sans-serif;
   -webkit-text-size-adjust: none;
   margin-top: 10px;
-  margin-left: 264px;
+  margin-left: 263px;
   margin-bottom: 10px;
   border-style:solid;
   border-top-width:2px;
@@ -102,7 +104,7 @@
   border-right-width:1px;
   border-color:black;
   color:black;
-  background-color:white;
+  background-color: #FFFFFF;
   font-weight: bold;
 }
 
@@ -112,10 +114,9 @@
   height: 70px;
   line-height: 70px;
   font-size: 36px;
-  font-family: Verdana, Geneva, sans-serif;
   -webkit-text-size-adjust: none;
   margin-top: 10px;
-  margin-right: 264px;
+  margin-right: 263px;
   margin-bottom: 10px;
   border-style:solid;
   border-top-width:2px;
@@ -124,7 +125,7 @@
   border-left-width:1px;
   border-color:black;
   color:black;
-  background-color:white;
+  background-color: #FFFFFF;
   font-weight: bold;
 }
 
@@ -136,7 +137,6 @@
   height: 70px;
   line-height: 70px;
   font-size: 36px;
-  font-family: Verdana, Geneva, sans-serif;
   -webkit-text-size-adjust: none;
   margin-top: 10px;
   margin-left: 105px;
@@ -148,7 +148,7 @@
   border-right-width:1px;
   border-color:black;
   color:black;
-  background-color:white;
+  background-color: #FFFFFF;
   font-weight: bold;
 }
 
@@ -158,7 +158,6 @@
   height: 70px;
   line-height: 70px;
   font-size: 36px;
-  font-family: Verdana, Geneva, sans-serif;
   -webkit-text-size-adjust: none;
   margin-top: 10px;
   margin-right: 105px;
@@ -170,7 +169,7 @@
   border-left-width:1px;
   border-color:black;
   color:black;
-  background-color:white;
+  background-color: #FFFFFF;
   font-weight: bold;
 }
 
@@ -180,7 +179,6 @@
   height: 70px;
   line-height: 70px;
   font-size: 36px;
-  font-family: Verdana, Geneva, sans-serif;
   -webkit-text-size-adjust: none;
   margin-top: 10px;
   margin-left: 52.67px;
@@ -192,7 +190,7 @@
   border-right-width:1px;
   border-color:black;
   color:black;
-  background-color:white;
+  background-color: #FFFFFF;
   font-weight: bold;
 }
 
@@ -202,7 +200,6 @@
   height: 70px;
   line-height: 70px;
   font-size: 36px;
-  font-family: Verdana, Geneva, sans-serif;
   -webkit-text-size-adjust: none;
   margin-top: 10px;
   margin-right: 52.67px;
@@ -214,14 +211,17 @@
   border-left-width:1px;
   border-color:black;
   color:black;
-  background-color:white;
+  background-color: #FFFFFF;
   font-weight: bold;
 }
 
 
 
-.movement_dialog_notes_box {
+#movement_notes, #notes_movement_notes {
 	width:100%;
-	height:75px;	
-	background-color: #dddddd;
+	height:125px;	
+	background-color: #EEEEEE;
+    color: #000000;
+    font-size: 22px; 
+    line-height: 25px;
 }

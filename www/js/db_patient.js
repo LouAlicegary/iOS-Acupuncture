@@ -76,7 +76,7 @@ function updateRecordInPatientDB(data){
                     //console.log("updateRecordInPatientDB() Success");
                 },
                 function(e) {
-                    return console.log("UPDATERECORDINPATIENTDB ERROR: " + e.message);
+                    //console.log("UPDATERECORDINPATIENTDB ERROR: " + e.message);
                 });
     	}
 	);	
@@ -86,7 +86,7 @@ function updateRecordInPatientDB(data){
 
 function deleteRecordInPatientDB(patient_id){
 
-	console.log("delete record in patient db: " + patient_id);
+	//console.log("delete record in patient db: " + patient_id);
 	var patient_db = sqlitePlugin.openDatabase(shortName, version, displayName, maxSize);
 	
 	patient_db.transaction(
@@ -98,11 +98,11 @@ function deleteRecordInPatientDB(patient_id){
                     //console.log("deleteRecordInPatientDB() Success");
                 },
                 function(e) {
-                    return console.log("deleteRecordInPatientDB() [in db_patient.js] ERROR: " + e); //e.message
+                    //console.log("deleteRecordInPatientDB() [in db_patient.js] ERROR: " + e); //e.message
                 });
     	}
 	);
-    setTimeout(function(){patient_db.close();}, 250);
+    //setTimeout(function(){patient_db.close();}, 250);
 
 }
 	

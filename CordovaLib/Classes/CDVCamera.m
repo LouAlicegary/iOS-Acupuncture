@@ -204,9 +204,9 @@ static NSSet* org_apache_cordova_validArrowDirections;
     pc.delegate = nil;
     if (self.pickerController && self.pickerController.callbackId && self.pickerController.popoverController) {
         self.pickerController.popoverController = nil;
-        NSString* callbackId = self.pickerController.callbackId;
-        CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"no image selected"];   // error callback expects string ATM
-        [self.commandDelegate sendPluginResult:result callbackId:callbackId];
+        //NSString* callbackId = self.pickerController.callbackId;
+        //CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"no image selected"];   // error callback expects string ATM
+        //[self.commandDelegate sendPluginResult:result callbackId:callbackId];
     }
     self.hasPendingOperation = NO;
 }
@@ -324,8 +324,8 @@ static NSSet* org_apache_cordova_validArrowDirections;
     }
     // popoverControllerDidDismissPopover:(id)popoverController is called if popover is cancelled
 
-    CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"no image selected"];   // error callback expects string ATM
-    [self.commandDelegate sendPluginResult:result callbackId:cameraPicker.callbackId];
+   // CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"no image selected"];   // error callback expects string ATM
+    //[self.commandDelegate sendPluginResult:result callbackId:cameraPicker.callbackId];
 
     self.hasPendingOperation = NO;
     self.pickerController = nil;

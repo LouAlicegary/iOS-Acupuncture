@@ -83,6 +83,7 @@
                             </div>
                         </div>
                         <div id="toast">ONE RECORD DELETED</div>
+                        <div id="delete_confirm_dialog">Are you sure you want to delete this record?</div>
                     </div>
                     <div class="Level_5">
                         <div class="patient_frontpage_subheader">by Dr. Yoshito Mukaino5</div>
@@ -92,6 +93,8 @@
                                 <div class="pvl_container" id="pvl_container5">&nbsp;</div>
                             </div>
                         </div>
+                        <div id="toast">ONE RECORD DELETED</div>
+                        <div id="delete_confirm_dialog">Are you sure you want to delete this record?</div>
                     </div>
                 </div>
             </div>
@@ -104,7 +107,7 @@
             
             // The entry point for your app
             function deviceready() {
-                console.log("index.html : deviceready() start");
+                //console.log("index.html : deviceready() start");
                 
                 
                 //because i call these later on individually, i dont think i need to have these here
@@ -188,6 +191,8 @@
 
 
                 $("#2-1-1, #2-1-2, #2-1-3, #3-1-1, #3-1-2, #3-1-3, #3-1-4, #4-1-1, #4-1-2").live("touchend myCustomEvent", function(event) {
+                    var linkstring = $('.patient_frontpage_subheader:visible').html();
+                    //console.log("#X-1-X event handler header = " + linkstring);
                     popUpMainDialog();
                 });
                 
@@ -216,12 +221,12 @@
                 var mousedowntime = 0;
                 var presstime = 0;
 
-                $('.patient_sheet').live("touchstart", function(event) {
+                $('.patient_frontpage_bottom').live("touchstart", function(event) {
                     xPos_start = event.originalEvent.touches[0].pageX;
                     //console.log("start sheet xPos: " + xPos_start);
                 });
                 
-                $('.patient_sheet').live("touchmove", function(event) {
+                $('.patient_frontpage_bottom').live("touchmove", function(event) {
                     xPos_moving = event.originalEvent.touches[0].pageX;
                     xDiff = xPos_moving - xPos_start;
                     
@@ -231,7 +236,7 @@
                         var linkstring = $('.patient_frontpage_subheader:visible').html();
                         //console.log("link string = " + linkstring);
                         var the_id = linkstring.substr(linkstring.lastIndexOf("id=") + 4, 5);
-                        
+                        //console.log("fake click id = " + the_id);
                         fakeClick(event, document.getElementById(the_id)); // fakeClick defined in support.js
                     }
                 });
@@ -246,23 +251,34 @@
                 });
                 
                 $('#existing_patient_table tbody tr').live("touchend", function(event) {
-                    var d = new Date();
-                    presstime = d.getTime() - mousedowntime;
                     xPos_moving = event.originalEvent.changedTouches[0].pageX;
-                    //console.log("aaa");
                     xDiff = xPos_moving - xPos_start;
-                    //console.log(xPos_start + " -> " + xPos_moving + " (" + xDiff + ")");
+                   
+                    var oTable = $('#existing_patient_table').dataTable();
                     
-                    if ((xDiff < 125) && (xPos_start != 99999)) {
+                    if (xPos_start == 99999) {    
+                        //console.log("SWIPE FROM LEFT TO RIGHT -- xPos_start = 99999");
+                        oTable.fnPageChange( 'previous' );
+                    }
+                    else if (xDiff > 125) {
+                        //console.log("SWIPE FROM LEFT TO RIGHT -- xDiff: " + xDiff);
+                        oTable.fnPageChange( 'previous' );
+                    }                    
+                    else if (xDiff < -125) {
+                        //console.log("SWIPE FROM RIGHT TO LEFT -- xDiff = " + xDiff);
+                        oTable.fnPageChange( 'next' );
+                    }
+                    else {
                         patient_id = $(this).html();
                         var front_index = patient_id.lastIndexOf("<div id=") + 9;
                         patient_id = patient_id.substr(front_index, 10);
-                        patient_id_int = parseInt(patient_id, 10);
+                        patient_id_int = parseInt(patient_id);
                         
                         //console.log("#existing_patient_table click handler: window.name 0");
                         window.name = getWindowNameByID(patient_id, "0000000000000"); //0000000000000 for new visit, visit_id for old
-                        setTimeout(function(){window.location="sheet.html";}, 250);                    
+                        setTimeout(function(){window.location="./html/sheet.html";}, 250);                    
                     }
+                    
                 });
 
 
@@ -274,29 +290,43 @@
                 $('#prior_visit_patient_table tbody tr').live("touchend", function(event) {                    
                     xPos_moving = event.originalEvent.changedTouches[0].pageX;
                     xDiff = xPos_moving - xPos_start;
-                    if ((xDiff < 125) && (xPos_start != 99999)) {
+                    
+                    var oTable = $('#prior_visit_patient_table').dataTable();
+                    
+                    if (xPos_start == 99999) {    
+                        //console.log("SWIPE FROM LEFT TO RIGHT -- xPos_start = 99999");
+                        oTable.fnPageChange( 'previous' );
+                    }
+                    else if (xDiff > 125) {
+                        //console.log("SWIPE FROM LEFT TO RIGHT -- xDiff: " + xDiff);
+                        oTable.fnPageChange( 'previous' );
+                    }                    
+                    else if (xDiff < -125) {
+                        //console.log("SWIPE FROM RIGHT TO LEFT -- xDiff = " + xDiff);
+                        oTable.fnPageChange( 'next' );
+                    }
+                    else {
                         var patient_name = "";
                         patient_id = $(this).html();
                         var front_index = patient_id.lastIndexOf("<div id=") + 9;
                         patient_id = patient_id.substr(front_index, 10);
-                        patient_id_int = parseInt(patient_id, 10);
+                        patient_id_int = parseInt(patient_id);
                         
                         var patient_db = sqlitePlugin.openDatabase('MTESTDB', '1.0', 'MTest DB', 100000);
         
-                        patient_db.transaction(
-                            function (tx) {
-                                tx.executeSql("SELECT * FROM patients WHERE id=?;", [patient_id_int], patientNameDataHandler33, function(e){});
-                            }
-                        );		
-
-                        function patientNameDataHandler33(transaction, results){
-                            //console.log("get patient name: " + results.rows.length + " rows");
-                            var row = results.rows.item(0);
-                            patient_name = row['firstname'] + " " + row['lastname'];
-                            //console.log("name inside = " + patient_name);
-                            popUpPriorVisitDialog(patient_id, patient_name);
-                        }                   
-                    }
+                        patient_db.transaction( function (tx) {
+                            tx.executeSql("SELECT * FROM patients WHERE id=?;", [patient_id_int],
+                                function (transaction, results) {
+                                    //console.log("get patient name: " + results.rows.length + " rows");
+                                    var row = results.rows.item(0);
+                                    patient_name = row['firstname'] + " " + row['lastname'];
+                                    //console.log("name inside = " + patient_name);
+                                    popUpPriorVisitDialog(patient_id, patient_name);
+                                },
+                                function(e){}
+                            );
+                        });
+                    }  
                 });
                
                 $('#prior_visit_table tbody tr').live("touchstart", function(event) {
@@ -307,21 +337,37 @@
                 $('#prior_visit_table tbody tr').live("touchend", function(event) {
                     xPos_moving = event.originalEvent.changedTouches[0].pageX;
                     xDiff = xPos_moving - xPos_start;
-                    if ((xDiff < 125) && (xPos_start != 99999)) {
+                    
+                    var oTable = $('#prior_visit_table').dataTable();
+                    
+                    if (xPos_start == 99999) {    
+                        //console.log("SWIPE FROM LEFT TO RIGHT -- xPos_start = 99999");
+                        oTable.fnPageChange( 'previous' );
+                    }
+                    else if (xDiff > 125) {
+                        //console.log("SWIPE FROM LEFT TO RIGHT -- xDiff: " + xDiff);
+                        oTable.fnPageChange( 'previous' );
+                    }                    
+                    else if (xDiff < -125) {
+                        //console.log("SWIPE FROM RIGHT TO LEFT -- xDiff = " + xDiff);
+                        oTable.fnPageChange( 'next' );
+                    }
+                    else {
                         visit_id = $(this).html();
                         var front_index = visit_id.lastIndexOf("<div id=") + 9;
                         visit_id = visit_id.substr(front_index, 13);
-                        visit_id_int = parseInt(visit_id, 13);
+                        visit_id_int = parseInt(visit_id);
                         
                         if (presstime < 1000) {
                             //console.log("#priorvisittable DB row click handler. Visit_id = " + visit_id);
                             window.name = getWindowNameByID(patient_id, visit_id); //0000000000000 for new visit, visit_id for old
-                            setTimeout(function(){window.location="sheet.html";}, 250); //NEED TO CHANGE THIS SO IT LOADS PREEXISTING DATA
+                            setTimeout(function(){window.location="./html/sheet.html";}, 250); //NEED TO CHANGE THIS SO IT LOADS PREEXISTING DATA
                         }
                         else {
-                            deleteRecordInVisitDB(visit_id); 
-                        }                  
-                    }
+                            //deleteRecordInVisitDB(visit_id);
+                        } 
+                    }                   
+                    
                 });             
 
 
@@ -331,22 +377,34 @@
                 });
                 
                 $('#delete_patient_table tbody tr').live("touchend", function(event) {                    
+                    
                     xPos_moving = event.originalEvent.changedTouches[0].pageX;
                     xDiff = xPos_moving - xPos_start;
-                    if ((xDiff < 125) && (xPos_start != 99999)) {
+                    
+                    var oTable = $('#delete_patient_table').dataTable();
+                    
+                    if (xPos_start == 99999) {    
+                        //console.log("SWIPE FROM LEFT TO RIGHT -- xPos_start = 99999");
+                        oTable.fnPageChange( 'previous' );
+                    }
+                    else if (xDiff > 125) {
+                        //console.log("SWIPE FROM LEFT TO RIGHT -- xDiff: " + xDiff);
+                        oTable.fnPageChange( 'previous' );
+                    }                    
+                    else if (xDiff < -125) {
+                        //console.log("SWIPE FROM RIGHT TO LEFT -- xDiff = " + xDiff);
+                        oTable.fnPageChange( 'next' );
+                    }
+                    else {
                         var patient_name = "";
                         var patient_id = $(this).html();
                         var front_index = patient_id.lastIndexOf("<div id=") + 9;
                         patient_id = patient_id.substr(front_index, 10);
-                        patient_id_int = parseInt(patient_id, 10);
+                        patient_id_int = parseInt(patient_id);
                         
-                        deleteRecordInPatientDB(patient_id);
-                        
-                        setTimeout(function() {
-                            popUpDeletePatientDialog();
-                            showToast();
-                        }, 200);               
+                        showToast(0, patient_id_int, 0);         
                     }
+                    
                 });   
 
 
@@ -355,65 +413,90 @@
                     //console.log("start row xPos: " + xPos_start);
                 });
                 
-                $('#delete_visit_patient_table tbody tr').live("touchend", function(event) {                    
+                $('#delete_visit_patient_table tbody tr').live("touchend", function(event) {
                     xPos_moving = event.originalEvent.changedTouches[0].pageX;
                     xDiff = xPos_moving - xPos_start;
-                    if ((xDiff < 125) && (xPos_start != 99999)) {
+                    
+                    var oTable = $('#delete_visit_patient_table').dataTable();
+                    
+                    if (xPos_start == 99999) {    
+                        //console.log("SWIPE FROM LEFT TO RIGHT -- xPos_start = 99999");
+                        oTable.fnPageChange( 'previous' );
+                    }
+                    else if (xDiff > 125) {
+                        //console.log("SWIPE FROM LEFT TO RIGHT -- xDiff: " + xDiff);
+                        oTable.fnPageChange( 'previous' );
+                    }                    
+                    else if (xDiff < -125) {
+                        //console.log("SWIPE FROM RIGHT TO LEFT -- xDiff = " + xDiff);
+                        oTable.fnPageChange( 'next' );
+                    }
+                    else {
                         var patient_name;
                         patient_id = $(this).html();
                         var front_index = patient_id.lastIndexOf("<div id=") + 9;
                         patient_id = patient_id.substr(front_index, 10);
-                        patient_id_int = parseInt(patient_id, 10);
+                        patient_id_int = parseInt(patient_id);
                         
                         var patient_db = sqlitePlugin.openDatabase('MTESTDB', '1.0', 'MTest DB', 100000);
         
-                        patient_db.transaction(
-                            function (tx) {
-                                tx.executeSql("SELECT * FROM patients WHERE id=?;", [patient_id_int], patientNameDataHandler33, function(e){});
-                            }
-                        );		
-
-                        function patientNameDataHandler33(transaction, results){
-                            var row = results.rows.item(0);
-                            patient_name = row['firstname'] + " " + row['lastname'];
-                            popUpDeleteVisitDialog(patient_id, patient_name);
-                        }              
-                    }
-                });   
+                        patient_db.transaction(function(tx) {
+                            tx.executeSql("SELECT * FROM patients WHERE id=?;", [patient_id_int],
+                                function (transaction, results) {
+                                    var row = results.rows.item(0);
+                                    patient_name = row['firstname'] + " " + row['lastname'];
+                                    popUpDeleteVisitDialog(patient_id, patient_name);
+                                },
+                                function(e){}
+                            );
+                        });
+                    }                    
+                    
+                });
                 
                 
-                $('#delete_visit_patient_table tbody tr').live("touchstart", function(event) {
+                $('#delete_visit_table tbody tr').live("touchstart", function(event) {
                     xPos_start = event.originalEvent.touches[0].pageX;
                     //console.log("start row xPos: " + xPos_start);
                 });
                 
-                $('#delete_visit_patient_table tbody tr').live("touchend", function(event) {                    
+                $('#delete_visit_table tbody tr').live("touchend", function(event) {                    
+                    
                     xPos_moving = event.originalEvent.changedTouches[0].pageX;
                     xDiff = xPos_moving - xPos_start;
-                    if ((xDiff < 125) && (xPos_start != 99999)) {
+                    //console.log("start row xPos: " + xPos_start + " xDiff: " + xDiff);
+                    
+                    var oTable = $('#delete_visit_table').dataTable();
+                    
+                    if (xPos_start == 99999) {    
+                        //console.log("SWIPE FROM LEFT TO RIGHT -- xPos_start = 99999");
+                        oTable.fnPageChange( 'previous' );
+                    }
+                    else if (xDiff > 125) {
+                        //console.log("SWIPE FROM LEFT TO RIGHT -- xDiff: " + xDiff);
+                        oTable.fnPageChange( 'previous' );
+                    }                    
+                    else if (xDiff < -125) {
+                        //console.log("SWIPE FROM RIGHT TO LEFT -- xDiff = " + xDiff);
+                        oTable.fnPageChange( 'next' );
+                    }
+                    else {
                         visit_id = $(this).html();
                         patient_id = $(this).html();
                         //console.log("Contents of visit_id = " + visit_id);
                         
                         var front_index = visit_id.lastIndexOf("<div id=") + 9;
                         visit_id = visit_id.substr(front_index, 13);
-                        visit_id_int = parseInt(visit_id, 13);
+                        visit_id_int = parseInt(visit_id);
                         
                         var p_front_index = patient_id.indexOf("<div id=") + 9;
                         patient_id = patient_id.substr(p_front_index, 10);
-                        patient_id_int = parseInt(patient_id, 10);
-                        
-                        deleteRecordInVisitDB(visit_id);
-                        setTimeout(function() {
-                            popUpDeleteVisitDialog(patient_id, "the patient");
-                            showToast(); // showToast() is in support.js
-                        }, 200);            
+                        patient_id_int = parseInt(patient_id);
+                        //console.log("gets here. pid/vid = " + patient_id_int + " " + visit_id_int);
+                        showToast(1, patient_id_int, visit_id_int); // showToast() is in support.js           
                     }
+                    
                 });                 
-                
-                
-                
-                
                 
                 
                 //console.log("index.html : deviceready() end");

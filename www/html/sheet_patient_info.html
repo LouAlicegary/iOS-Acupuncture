@@ -1,0 +1,53 @@
+<!--Onfocus events prevent scrolling when input clicked (iOS wants to scroll b/c KB decreases effective window height)-->
+
+<div id="sheet_patient_info" class="form_container">
+
+    <fieldset id="sheet_image_fieldset" class="image_fieldset">
+        <img id="sheet_patient_image" class="patient_image" src="../images/patient_photo.png">
+    </fieldset>
+    
+    <fieldset class="fieldset_left">
+        <p class="first">
+            <label for="name">First Name</label>
+            <input type="text" autocomplete="off" autocorrect="off" spellcheck="false" class="first_name" name="firstname" id="sheet_firstname" onfocus="window.scrollTo(0, 0);" tabindex="1" value=""/>
+        </p>
+        <p>
+            <label for="dob">Date of Birth</label>
+            <input type=”number” autocomplete="off" autocorrect="off" spellcheck="false" class="DOB" name="dob" id="sheet_dob" placeholder="(MM/DD/YYYY)" onfocus="window.scrollTo(0, 0);" tabindex="3" value="numeric"/>
+        </p>
+        <p>
+            <label for="email">E-Mail Address</label>
+            <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="email" name="email" id="sheet_email" onfocus="window.scrollTo(0, 0);" tabindex="7" value=""/>
+        </p>                  
+    </fieldset>
+    
+    <fieldset class="fieldset_right">
+        <p>
+            <label for="last_name">Last Name</label>
+            <input type="text" autocomplete="off" autocorrect="off" spellcheck="false" class="last_name" name="lastname" id="sheet_lastname" onfocus="window.scrollTo(0, 0);" tabindex="2" value=""/>
+        </p>
+            <label for="labelset">Sex</label>
+            <div id="sheet_labelset" class="labelset">
+                <label for="female" id="sheet_female_label" class="radio_label">Female</label>
+                <input type="radio" id="sheet_female" class="female_male_radio" name="sex" value="female" onfocus="window.scrollTo(0, 0);" tabindex="4" checked="checked" />
+                <label for="male" id="sheet_male_label" class="radio_label">Male</label>
+                <input type="radio" id="sheet_male" class="female_male_radio" name="sex" value="male" onfocus="window.scrollTo(0, 0);" tabindex="5" />
+            </div>
+    </fieldset>
+    
+    <fieldset class="large_fieldset">
+        <p>
+            <label for="chiefcomplaint">Chief Complaint</label>
+            <input type="text" autocomplete="off" autocorrect="off" spellcheck="false" class="large_input" name="chiefcomplaint" id="sheet_chiefcomplaint" onfocus="window.scrollTo(0, 0);"  tabindex="9" value=""/>
+        </p>
+        
+        <p>
+            <label for="notes">Notes</label>
+            <textarea autocomplete="off" autocorrect="off" spellcheck="false" name="notes" id="sheet_notes" cols="50" rows="3" onfocus="window.scrollTo(0, 0);" tabindex="10"></textarea>
+        </p>
+    </fieldset>
+    
+    <div id="sheet_new_patient_back_button" class="new_patient_back_button">Back to Main Menu</div>
+    <div id="sheet_new_patient_continue_button" class="new_patient_continue_button">Begin Treatment</div>
+    
+</div>

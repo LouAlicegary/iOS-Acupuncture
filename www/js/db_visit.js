@@ -81,47 +81,64 @@ function updateSingleRecordInVisitDB(column, data){
                     //console.log("rowsAffected: " + res.rowsAffected + " -- should be 1");
                 },
                 function(e) {
-                    return console.log("ERROR: " + e.message);
+                    //console.log("UPDATE RECORD ERROR: " + e.message);
                 });
         }
     );	
     
+    //visit_db.close();
 }
 
 
 function getSingleNotes(visit_id, movement_number){
     
 	visit_db = sqlitePlugin.openDatabase(shortName, version, displayName, maxSize);
-	visit_db.transaction(
-        function (tx) {
-            tx.executeSql("SELECT * FROM visits WHERE id=?;", [visit_id], notesDataSelectHandler, visitErrorHandler);
-        }
-    );
-    
-    function notesDataSelectHandler(transaction, results) {
-        //console.log("notes dataselecthandler: " + results.rows.length + " rows");
-        var i;
-        for (i=0; i < results.rows.length; i++) {
-            row = results.rows.item(i);
-            if (movement_number == 0) {
-                notes = row["overall_notes"];
-            }
-            else {
-                notes = row["m"+movement_number+"_notes"];
-            }
-            document.getElementById("movement_notes").value = notes;
-        } 
-        //console.log("word: " + notes);
-	
-    }
-    
-    function visitErrorHandler(transaction, error) {
-        //console.log('visitErrorHandler.  Error was ' + error.message + ' (Code ' + error.code + ')');
-        return false;
-    }
+	visit_db.transaction( function (tx) {
+        tx.executeSql("SELECT * FROM visits WHERE id=?;", [visit_id],
+            function (transaction, results) {
+                //console.log("notes dataselecthandler: " + results.rows.length + " rows");
+                var i;
+                for (i=0; i < results.rows.length; i++) {
+                    row = results.rows.item(i);
+                    if (movement_number == 0) {
+                        notes = row["overall_notes"];
+                    }
+                    else {
+                        notes = row["m"+movement_number+"_notes"];
+                    }
+                    document.getElementById("movement_notes").value = notes;
+                }
+            },
+            function (transaction, e) {return false;}
+        );
+    });
     
 }
 
+function getSingleNotesNotes(visit_id, movement_number){
+    
+	visit_db = sqlitePlugin.openDatabase(shortName, version, displayName, maxSize);
+	visit_db.transaction( function (tx) {
+        tx.executeSql("SELECT * FROM visits WHERE id=?;", [visit_id],
+            function (transaction, results) {
+                //console.log("notes dataselecthandler: " + results.rows.length + " rows");
+                var i;
+                for (i=0; i < results.rows.length; i++) {
+                    row = results.rows.item(i);
+                    if (movement_number == 0) {
+                        notes = row["overall_notes"];
+                    }
+                    else {
+                        notes = row["m"+movement_number+"_notes"];
+                    }
+                    document.getElementById("notes_movement_notes").value = notes;
+                }
+            },
+            function (transaction, e) {return false;}
+        );
+    });
+    
+}
 
 function getSingleScore(visit_id, value_name, destination) {
     
@@ -187,174 +204,128 @@ function outputVisitFromDbToScreen(visit_id) {
     //console.log("got here");
 	visit_db = sqlitePlugin.openDatabase(shortName, version, displayName, maxSize);
     //console.log("got here 2");
-	visit_db.transaction(
-        function (tx) {
-            tx.executeSql("SELECT * FROM visits WHERE id=?;", [visit_id], DataSelectHandler23, visitErrorHandler);
-            //console.log("got here 3");
-        }
-    );
-    //console.log("got here 4");
-    
-    function DataSelectHandler23(transaction, results) {
-        
-        //console.log("outputVisitFromDbToScreen datahandler(): " + results.rows.length + " rows");
-        row = results.rows.item(0);
-        
-        for (i=3; i < 152; i++) {
-            if (i < 6) { //OVERALL PRE POST
-                if (i == 3) {
-                    //PRE
-                    document.getElementById("q00_pre_m").innerText = row['overall_pre'];
+	visit_db.transaction( function (tx) {
+        tx.executeSql("SELECT * FROM visits WHERE id=?;", [visit_id],
+            function(transaction, results) {
+                //console.log("outputVisitFromDbToScreen datahandler(): " + results.rows.length + " rows");
+                row = results.rows.item(0);
+                
+                for (i=3; i < 152; i++) {
+                    if (i < 6) { //OVERALL PRE POST
+                        if (i == 3) {
+                            //PRE
+                            document.getElementById("q00_pre_m").innerText = row['overall_pre'];
+                        }
+                        else if (i == 4) {
+                            //POST
+                            document.getElementById("q00_post_m").innerText = row['overall_post'];
+                        }
+                    }
+                    else if (i < 13) { //MOVEMENT 1
+                        if (i == 6) {
+                            //1 PRE
+                            document.getElementById("q01_pre_l").innerText = row['m01_pre'];
+                        }
+                        else if (i == 7) {
+                            //1 POST
+                            document.getElementById("q01_post_l").innerText = row['m01_post'];
+                        }
+                        else if (i == 8) {
+                            //1 A PRE
+                            document.getElementById("q01_pre_m").innerText = row['m01a_pre'];
+                        }
+                        else if (i == 9) {
+                            //1 A POST
+                            document.getElementById("q01_post_m").innerText = row['m01a_post'];
+                        }
+                        else if (i == 10) {
+                            //1 B PRE
+                            document.getElementById("q01_pre_r").innerText = row['m01b_pre'];
+                        }
+                        else if (i == 11) {
+                            //1 B POST
+                            document.getElementById("q01_post_r").innerText = row['m01b_post'];
+                        }                
+                    }
+                    else if (i < 16) { // MOVEMENT 2
+                        if (i == 13) {
+                            //PRE
+                            document.getElementById("q02_pre_m").innerText = row['m02_pre'];
+                        }
+                        else if (i == 14) {
+                            //POST
+                            document.getElementById("q02_post_m").innerText = row['m02_post'];
+                        }                        
+                    }
+                    else if (i < 136) { //MOVEMENTS 3-26
+                        movement_number = (i-1)/5;
+                        movement_number = Math.floor(movement_number);
+                        movement_number = padZeros(movement_number, 2);
+                        if ((i % 5) == 1) {
+                            // L PRE
+                            document.getElementById("q" + movement_number + "_pre_l").innerText = row['m' + movement_number + 'l_pre'];
+                        }
+                        else if ((i % 5) == 2) {
+                            // L POST
+                            document.getElementById("q" + movement_number + "_post_l").innerText = row['m' + movement_number + 'l_post'];
+                        }
+                        else if ((i % 5) == 3) {
+                            // R PRE
+                            document.getElementById("q" + movement_number + "_pre_r").innerText = row['m' + movement_number + 'r_pre'];
+                        }
+                        else if ((i % 5) == 4) {
+                            // R POST
+                            document.getElementById("q" + movement_number + "_post_r").innerText = row['m' + movement_number + 'r_post'];
+                        } 
+                    }
+                    else if (i < 142) { //MOVEMENTS 27-28
+                        if (i == 136) {
+                            //27 PRE
+                            document.getElementById("q27_pre_m").innerText = row['m27_pre'];
+                        }
+                        else if (i == 137) {
+                            //27 POST
+                            document.getElementById("q27_post_m").innerText = row['m27_post'];
+                        }
+                        else if (i == 139) {
+                            //28 PRE
+                            document.getElementById("q28_pre_m").innerText = row['m28_pre'];
+                        }
+                        else if (i == 140) {
+                            //28 POST
+                            document.getElementById("q28_post_m").innerText = row['m28_post'];
+                        }                
+                    }
+                    else { //MOVEMENTS 29-30 (142-151)
+                        movement_number = (i+3)/5;
+                        movement_number = Math.floor(movement_number);
+                        if ((i % 5) == 2) {
+                            // L PRE
+                            document.getElementById("q" + movement_number + "_pre_l").innerText = row['m' + movement_number + 'l_pre'];
+                        }
+                        else if ((i % 5) == 3) {
+                            // L POST
+                            document.getElementById("q" + movement_number + "_post_l").innerText = row['m' + movement_number + 'l_post'];
+                        }
+                        else if ((i % 5) == 4) {
+                            // R PRE
+                            document.getElementById("q" + movement_number + "_pre_r").innerText = row['m' + movement_number + 'r_pre'];
+                        }
+                        else if ((i % 5) == 0) {
+                            // R POST
+                            document.getElementById("q" + movement_number + "_post_r").innerText = row['m' + movement_number + 'r_post'];
+                        }                 
+                    }
                 }
-                else if (i == 4) {
-                    //POST
-                    document.getElementById("q00_post_m").innerText = row['overall_post'];
-                }
-            }
-            else if (i < 13) { //MOVEMENT 1
-                if (i == 6) {
-                    //1 PRE
-                    document.getElementById("q01_pre_l").innerText = row['m01_pre'];
-                }
-                else if (i == 7) {
-                    //1 POST
-                    document.getElementById("q01_post_l").innerText = row['m01_post'];
-                }
-                else if (i == 8) {
-                    //1 A PRE
-                    document.getElementById("q01_pre_m").innerText = row['m01a_pre'];
-                }
-                else if (i == 9) {
-                    //1 A POST
-                    document.getElementById("q01_post_m").innerText = row['m01a_post'];
-                }
-                else if (i == 10) {
-                    //1 B PRE
-                    document.getElementById("q01_pre_r").innerText = row['m01b_pre'];
-                }
-                else if (i == 11) {
-                    //1 B POST
-                    document.getElementById("q01_post_r").innerText = row['m01b_post'];
-                }                
-            }
-            else if (i < 16) { // MOVEMENT 2
-                if (i == 13) {
-                    //PRE
-                    document.getElementById("q02_pre_m").innerText = row['m02_pre'];
-                }
-                else if (i == 14) {
-                    //POST
-                    document.getElementById("q02_post_m").innerText = row['m02_post'];
-                }                        
-            }
-            else if (i < 136) { //MOVEMENTS 3-26
-                movement_number = (i-1)/5;
-                movement_number = Math.floor(movement_number);
-                movement_number = padZeros(movement_number, 2);
-                if ((i % 5) == 1) {
-                    // L PRE
-                    document.getElementById("q" + movement_number + "_pre_l").innerText = row['m' + movement_number + 'l_pre'];
-                }
-                else if ((i % 5) == 2) {
-                    // L POST
-                    document.getElementById("q" + movement_number + "_post_l").innerText = row['m' + movement_number + 'l_post'];
-                }
-                else if ((i % 5) == 3) {
-                    // R PRE
-                    document.getElementById("q" + movement_number + "_pre_r").innerText = row['m' + movement_number + 'r_pre'];
-                }
-                else if ((i % 5) == 4) {
-                    // R POST
-                    document.getElementById("q" + movement_number + "_post_r").innerText = row['m' + movement_number + 'r_post'];
-                } 
-            }
-            else if (i < 142) { //MOVEMENTS 27-28
-                if (i == 136) {
-                    //27 PRE
-                    document.getElementById("q27_pre_m").innerText = row['m27_pre'];
-                }
-                else if (i == 137) {
-                    //27 POST
-                    document.getElementById("q27_post_m").innerText = row['m27_post'];
-                }
-                else if (i == 139) {
-                    //28 PRE
-                    document.getElementById("q28_pre_m").innerText = row['m28_pre'];
-                }
-                else if (i == 140) {
-                    //28 POST
-                    document.getElementById("q28_post_m").innerText = row['m28_post'];
-                }                
-            }
-            else { //MOVEMENTS 29-30 (142-151)
-                movement_number = (i+3)/5;
-                movement_number = Math.floor(movement_number);
-                if ((i % 5) == 2) {
-                    // L PRE
-                    document.getElementById("q" + movement_number + "_pre_l").innerText = row['m' + movement_number + 'l_pre'];
-                }
-                else if ((i % 5) == 3) {
-                    // L POST
-                    document.getElementById("q" + movement_number + "_post_l").innerText = row['m' + movement_number + 'l_post'];
-                }
-                else if ((i % 5) == 4) {
-                    // R PRE
-                    document.getElementById("q" + movement_number + "_pre_r").innerText = row['m' + movement_number + 'r_pre'];
-                }
-                else if ((i % 5) == 0) {
-                    // R POST
-                    document.getElementById("q" + movement_number + "_post_r").innerText = row['m' + movement_number + 'r_post'];
-                }                 
-            }
-        }
-    }
-    
-      function visitErrorHandler(transaction, error) {
-        //console.log('visitErrorHandler.  Error was ' + error.message + ' (Code ' + error.code + ')');
-        return false;
-    }  
+            },
+            function(e) {return false;}
+        );
+    });
+    //close db here?
 }
 
 
-function outputNotes(visit_id) {
-    //console.log("got here");
-	visit_db = sqlitePlugin.openDatabase(shortName, version, displayName, maxSize);
-    //console.log("got here 2");
-	visit_db.transaction(
-        function (tx) {
-            tx.executeSql("SELECT * FROM visits WHERE id=?;", [visit_id], DataSelectHandler45, visitErrorHandler);
-            //console.log("got here 3");
-        }
-    );
-    //console.log("got here 4");
-    
-    function DataSelectHandler45(transaction, results) {
-        
-        //console.log("outputNotes datahandler(): " + results.rows.length + " rows");
-        row = results.rows.item(0);
-        
-        // get overall notes
-        // get 1-30 notes
-        for (i=0; i <= 30; i++) {
-            if (i == 0) {
-                these_notes = row['overall_notes'];
-                document.getElementById("notes_index_00").innerText = "Overall Visit Notes: " + these_notes; 
-            }
-            else {
-                movement_number = padZeros(i, 2);
-                these_notes = row['m' + movement_number + '_notes'];
-                //console.log("Note: " + these_notes);
-                document.getElementById("notes_index_" + movement_number).innerText = "Notes for Movement " + movement_number + ": " + these_notes;            
-            }
-        }
-    }
-    
-    function visitErrorHandler(transaction, error) {
-        //console.log('visitErrorHandler.  Error was ' + error.message + ' (Code ' + error.code + ')');
-        return false;
-    }
-    
-}
+
 
 
 
@@ -370,7 +341,7 @@ function deleteRecordInVisitDB(visit_id) {
                     //console.log("record id: " + visit_id + "successfully deleted.");
                 },
                 function(e) {
-                    return console.log("ERROR: " + e.message);
+                    //console.log("ERROR: " + e.message);
                 });
     	}
 	);	
