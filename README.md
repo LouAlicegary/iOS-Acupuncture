@@ -1,5 +1,5 @@
-ios-acupuncture
-===============
+iOS Acupuncture App
+===================
 
 An up-and-coming pair of acupuncturists in the Portland area were looking for a way to migrate their patient data collection to a digital solution from their current paper-and-pencil system. They wanted an application to use on their iPads, and I determined that a PhoneGap/Cordova application written in XCode on the Mac would be the most direct implementation for their needs.
 
